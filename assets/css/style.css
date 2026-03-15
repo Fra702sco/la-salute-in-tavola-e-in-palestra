@@ -1139,3 +1139,35 @@ footer a:hover { color: #ffffff; }
   border-radius: 32px;
   margin: 0 16px;
 }
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href').slice(1);
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    e.preventDefault();
+
+    const navbar = document.getElementById('navbar');
+    const navHeight = navbar ? navbar.offsetHeight : 0;
+
+    const startY = window.pageYOffset;
+    const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
+
+    const duration = 900;
+    const startTime = performance.now();
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function animate(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutQuad(progress);
+      window.scrollTo(0, startY + (targetY - startY) * eased);
+      if (progress < 1) requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  });
+});
