@@ -659,11 +659,17 @@ const AUDIO = (() => {
     DOM.btnBgToggle.classList.remove('on');
   }
 
+  function stopTick() {
+    if (!fx.tick) return;
+    fx.tick.pause();
+    fx.tick.currentTime = 0;
+  }
+
   function toggleBg() {
     S.musicaOn ? stopBg() : startBg();
   }
 
-  return { play, startBg, stopBg, toggleBg };
+  return { play, stopTick, startBg, stopBg, toggleBg };
 })();
 
 
@@ -957,6 +963,7 @@ function onRisposta(btnIdx) {
   if (S.risposto || !S.attiva) return;
   S.risposto = true;
   TIMER.stopDomanda();
+  AUDIO.stopTick();
 
   const btn = DOM.answerBtns[btnIdx];
   const corretta = btn.dataset.corretta === '1';
@@ -1010,6 +1017,7 @@ function onRisposta(btnIdx) {
 function onTimeout() {
   if (S.risposto || !S.attiva) return;
   S.risposto = true;
+  AUDIO.stopTick();
 
   S.errori++;
   AUDIO.play('wrong');
@@ -1051,6 +1059,7 @@ function onTempoTotaleScaduto() {
   if (!S.attiva) return;
   S.attiva = false;
   TIMER.stopAll();
+  AUDIO.stopTick();
   AUDIO.play('gameover');
   finePartita('timeout_totale');
 }

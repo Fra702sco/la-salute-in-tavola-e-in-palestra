@@ -100,8 +100,12 @@
     }
     </script>
 
+    <!-- ===== CSP ===== -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self';" />
+
     <link rel="icon" href="assets/ico-preview/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
     <meta name="google-site-verification" content="NsaOMUdaxnxkyRv63uZQDENKj52OdWl0YfU0upyW5XM" />
   </head>
   <body>
@@ -602,12 +606,29 @@
         <ul class="wn-list" role="list">
 
           <li class="wn-item wn-item--new">
-            <span class="wn-item-icon" aria-hidden="true">🧠</span>
+            <span class="wn-item-icon" aria-hidden="true">🔒</span>
             <div>
-              <strong>Quiz Alimentare disponibile!</strong>
-              <p>Il nuovo gioco a domande sulla nutrizione è online — metti alla prova le tue conoscenze!</p>
+              <strong>Privacy Policy aggiunta</strong>
+              <p>È ora disponibile la privacy policy del sito — nessun dato personale raccolto, nessun cookie di profilazione.</p>
             </div>
             <span class="wn-badge">Nuovo</span>
+          </li>
+
+          <li class="wn-item wn-item--new">
+            <span class="wn-item-icon" aria-hidden="true">⚡</span>
+            <div>
+              <strong>Ottimizzazioni performance e sicurezza</strong>
+              <p>Caricamento più veloce delle pagine e Content Security Policy aggiunta per una navigazione più sicura.</p>
+            </div>
+            <span class="wn-badge">Nuovo</span>
+          </li>
+
+          <li class="wn-item">
+            <span class="wn-item-icon" aria-hidden="true">🧠</span>
+            <div>
+              <strong>Quiz Alimentare</strong>
+              <p>Il gioco a domande sulla nutrizione è online — metti alla prova le tue conoscenze!</p>
+            </div>
           </li>
 
           <li class="wn-item">
