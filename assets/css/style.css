@@ -260,7 +260,7 @@ body {
   left: 0;
   right: 0;
   height: 90px;
-  background: var(--bg-main);
+  background: #e8eaf6;
   clip-path: ellipse(57% 100% at 50% 100%);
 }
 
