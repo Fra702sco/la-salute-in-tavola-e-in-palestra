@@ -26,7 +26,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 | Gioco | Stato | Descrizione |
 |---|---|---|
 | 🚦 **Il Semaforo della Merenda** | ✅ Disponibile | Drag & drop — classifica 15 alimenti nel semaforo |
-| 🧠 **Quiz Alimentare** | 🔵 In arrivo | Rispondi a domande sulla nutrizione |
+| 🧠 **Quiz Alimentare** | ✅ Disponibile | 70+ domande su nutrizione, sport e vitamine |
 | 🃏 **Memory degli Alimenti** | 🟠 In arrivo | Trova le coppie di alimenti sani |
 | 🧩 **Puzzle della Piramide** | 🟣 In arrivo | Componi la piramide alimentare |
 
@@ -42,7 +42,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 - 🏃 **Sezione sport** — 6 card con barre animate sui benefici dell'attività fisica
 - 👩‍🏫 **Sezione insegnanti e genitori** — informazioni sul progetto
 - 📲 **Link social** — Facebook e Instagram del progetto
-- ✉️ **Form contatti** — apre il client email con oggetto e messaggio precompilati
+- ✉️ **Form contatti** — invio diretto via **Formspree** con validazione email (blocco domini temporanei)
 - 🌀 **Scroll personalizzato** — animazione smooth con easing su click navbar (900ms)
 - ♿ **Accessibilità** — HTML semantico, ARIA completo, `aria-live` su feedback dinamici
 - 🚫 **Zero pubblicità**, zero registrazione, zero tracking
@@ -55,23 +55,25 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 1. Scarica o clona il repository
 2. Apri `index.html` nel browser — **nessun server necessario**
 
+> ⚠️ Il Quiz Alimentare usa `fetch()` per caricare le domande. Aprilo tramite un server locale oppure via GitHub Pages per il corretto funzionamento.
+
 ### Metodo 2 — Clona con Git
 ```bash
-git clone https://github.com/Fra702sco/la-salute-a-tavola.git
-cd la-salute-a-tavola
-Apri index.html nel browser
+git clone https://github.com/Fra702sco/la-salute-in-tavola-e-in-palestra.git
+cd la-salute-in-tavola-e-in-palestra
 ```
+Apri `index.html` nel browser.
 
 ### Metodo 3 — GitHub Pages
-Il portale è disponibile online all'indirizzo:  
-👉 **[https://fra702sco.github.io/la-salute-a-tavola](https://fra702sco.github.io/la-salute-a-tavola)**
+Il portale è disponibile online all'indirizzo:
+👉 **https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra**
 
 ---
 
 ## 📁 Struttura del progetto
 
 ```
-la-salute-a-tavola/
+la-salute-in-tavola-e-in-palestra/
 │
 ├── index.html                              # Homepage principale
 ├── README.md                               # Questo file
@@ -79,10 +81,10 @@ la-salute-a-tavola/
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css                       # CSS globale homepage
+│   │   └── style.css                       # CSS homepage
 │   ├── js/
-│   │   └── script.js                       # JS globale homepage
-│   └── ico&preview/
+│   │   └── script.js                       # JS homepage (navbar, form, reveal)
+│   └── ico-preview/
 │       ├── favicon.ico                     # Icona del sito
 │       └── preview.jpg                     # Immagine Open Graph (social/WhatsApp)
 │
@@ -90,67 +92,63 @@ la-salute-a-tavola/
     │
     ├── semaforo/                           # ✅ Disponibile
     │   ├── index.html
-    │   ├── README.md                       # Documentazione del gioco
+    │   ├── README.md
     │   └── assets/
-    │       ├── css/
-    │       │   └── style.css               # Stili del gioco
-    │       ├── js/
-    │       │   └── game.js                 # Logica del gioco
+    │       ├── css/style.css
+    │       ├── js/game.js
     │       ├── audio/
-    │       │   ├── background.mp3          # Musica di sottofondo (loop)
-    │       │   ├── correct.mp3             # Suono risposta corretta
-    │       │   ├── error.mp3               # Suono risposta sbagliata
-    │       │   ├── victory.mp3             # Fanfara di vittoria
-    │       │   └── loss.mp3                # Suono game over
+    │       │   ├── background.mp3
+    │       │   ├── correct.mp3
+    │       │   ├── error.mp3
+    │       │   ├── victory.mp3
+    │       │   └── loss.mp3
     │       └── image/
     │           ├── background/
-    │           │   ├── background.jpg      # Sfondo desktop
+    │           │   ├── background.jpg
     │           │   └── background-mobile.png
     │           └── (mobile)pop-up/
-    │               ├── semaforo-verde.png  # Toast risposta corretta
-    │               └── semaforo-rosso.png  # Toast risposta sbagliata
+    │               ├── semaforo-verde.png
+    │               └── semaforo-rosso.png
     │
-    ├── quiz/                               # 🔵 In arrivo
-    │   ├── index.html
-    │   └── assets/
-    │       ├── audio/
-    │       └── image/
-    │
-    ├── memory/                             # 🟠 In arrivo
-    │   ├── index.html
-    │   └── assets/
-    │       ├── audio/
-    │       └── image/
-    │
-    └── puzzle/                             # 🟣 In arrivo
+    └── quiz/                               # ✅ Disponibile
         ├── index.html
+        ├── README.md
         └── assets/
-            ├── audio/
-            └── image/
+            ├── css/style.css
+            ├── js/quiz.js
+            ├── domande-risposte/
+            │   └── domande.json            # Banca dati domande + categorie
+            └── audio/
+                ├── background.mp3
+                ├── correct.mp3
+                ├── error.mp3
+                ├── victory.mp3
+                ├── loss.mp3
+                └── tick.mp3
 ```
 
 ---
 
 ## 🏗️ Architettura del codice
 
-### `assets/js/script.js` — struttura interna
-Tutto il codice è racchiuso in un unico `DOMContentLoaded` padre:
+### `assets/js/script.js`
 
 ```
 DOMContentLoaded
  ├── Navbar — hamburger (apri/chiudi + chiudi su click link)
- ├── Navbar — scura allo scroll (IntersectionObserver)
+ ├── Navbar — scura allo scroll
  ├── Navbar — link attivo per sezione visibile (IntersectionObserver)
  ├── Navbar — scroll personalizzato easeInOutQuad (900ms)
  ├── Barre sport — animazione riempimento (IntersectionObserver)
  ├── Reveal on scroll (IntersectionObserver + fallback)
- └── Form contatti — apertura client email via mailto
+ ├── Validazione email — blocco domini temporanei/falsi (300+ domini)
+ └── Form contatti — invio async via Formspree con feedback successo/errore
 ```
 
-### `assets/css/style.css` — struttura interna
+### `assets/css/style.css`
 
 ```
-Reset → Variabili CSS → Global (body) → Navbar →
+Reset → Variabili CSS → Global → Navbar →
 Hero → Stats → Section header → Giochi →
 Educazione → Insegnanti → Sport → Social →
 Contatti → Footer → Reveal on scroll →
@@ -170,6 +168,8 @@ Responsive (≤ 900px → ≤ 768px → ≤ 600px)
 | **Web Audio API** | Effetti sonori e musica nei giochi |
 | **IntersectionObserver API** | Animazioni di entrata su scroll e link attivo navbar |
 | **localStorage** | Salvataggio impostazioni calibrazione semaforo |
+| **Fetch API** | Caricamento domande da file JSON esterno (quiz) |
+| **[Formspree](https://formspree.io)** | Ricezione messaggi del form contatti senza backend |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
 
@@ -183,10 +183,10 @@ Il portale e i giochi rispettano le linee guida WCAG 2.1:
 - `aria-hidden="true"` su tutti gli elementi decorativi (emoji, SVG, bolle)
 - `aria-label` su bottoni icon-only e link social
 - `aria-expanded` + `aria-controls` sull'hamburger navbar
-- `aria-live="polite"` sul feedback del form contatti
+- `aria-live="polite"` sul feedback del form contatti e dei giochi
 - `role="dialog"` + `aria-modal` + `aria-labelledby` sui pannelli dei giochi
-- `role="list"` + `aria-label` sulle zone di drop e zona alimenti
-- `prefers-reduced-motion` rispettato nelle animazioni reveal
+- `role="list"` + `aria-label` sulle zone di drop e zona alimenti (Semaforo)
+- `role="status"` + `aria-live` su timer e feedback risposta (Quiz)
 
 ---
 
@@ -207,9 +207,8 @@ Progetto realizzato nell'ambito del programma **"La Salute a Tavola e in Palestr
 un percorso di educazione alimentare e motoria rivolto agli studenti delle scuole primarie
 del comune di **Nicotera (VV), Calabria**.
 
-L'obiettivo è sensibilizzare i bambini a fare scelte consapevoli
-riguardo all'alimentazione quotidiana e all'importanza del movimento,
-attraverso giochi interattivi accessibili a tutti.
+L'obiettivo è sensibilizzare i bambini a fare scelte consapevoli riguardo all'alimentazione
+quotidiana e all'importanza del movimento, attraverso giochi interattivi accessibili a tutti.
 
 ---
 
@@ -227,11 +226,13 @@ attraverso giochi interattivi accessibili a tutti.
 durante il Servizio Civile 2025/2026 presso il comune di Nicotera (VV), Calabria 🇮🇹
 
 - **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
-- **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI**
+- **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI** e **Claude Code (Anthropic)**
 
 ### 🤝 Ringraziamenti
 - [Perplexity AI](https://perplexity.ai) — Supporto allo sviluppo del codice
+- [Claude Code](https://claude.ai) — Supporto allo sviluppo, refactoring e correzioni
 - [SortableJS](https://sortablejs.github.io/Sortable/) — Libreria drag & drop
+- [Formspree](https://formspree.io) — Servizio form senza backend
 - [Mixkit](https://mixkit.co) — Effetti sonori gratuiti
 - [Uppbeat](https://uppbeat.io) — Musica di sottofondo
 - [Pixabay](https://pixabay.com) — Effetti sonori gratuiti
@@ -240,11 +241,11 @@ durante il Servizio Civile 2025/2026 presso il comune di Nicotera (VV), Calabria
 
 ## 📄 Licenza
 
-Questo progetto è distribuito sotto licenza  
+Questo progetto è distribuito sotto licenza
 **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.
 
-✅ Puoi usarlo, modificarlo e condividerlo liberamente  
-✅ Devi citare l'autore originale  
+✅ Puoi usarlo, modificarlo e condividerlo liberamente
+✅ Devi citare l'autore originale
 ❌ Non puoi usarlo per scopi commerciali
 
 [![CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)
@@ -252,17 +253,3 @@ Questo progetto è distribuito sotto licenza
 ---
 
 *Fatto con ❤️ per i bambini di Nicotera*
-```
-
-***
-
-Le novità aggiunte rispetto alla versione precedente:
-
-- ✅ **Struttura file corretta** — `semaforo/` non è più single-file: ha `css/`, `js/`, `loss.mp3`, `(mobile)pop-up/` con nomi esatti, `README.md` proprio
-- ✅ **`assets/ico&preview/`** aggiunto — `favicon.ico` e `preview.jpg` erano orfani nella root
-- ✅ **Sezione `🏗️ Architettura del codice`** — mostra la struttura interna di `script.js` e `style.css`
-- ✅ **Sezione `♿ Accessibilità`** — documenta tutti gli attributi ARIA aggiunti su portale e giochi
-- ✅ **`♿ Accessibilità`** aggiunta nelle funzionalità del portale
-- ✅ **Git clone** — rimosso il link Markdown rotto `[url](url)`, ora URL puro
-- ✅ **[Pixabay](https://pixabay.com)** aggiunto nei ringraziamenti (mancava)
-- ✅ **`HTML5 semantico`** aggiornato nella tabella tecnologie

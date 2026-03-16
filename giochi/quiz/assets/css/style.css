@@ -1187,6 +1187,34 @@ body {
 
 
 /* ============================================================
+   SKULLS (gameover)
+   ============================================================ */
+#skulls-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  display: none;
+}
+
+#skulls-container.active { display: block; }
+
+.skull-piece {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  animation: skullBounce ease-in-out infinite alternate;
+  line-height: 1;
+  backface-visibility: hidden;
+}
+
+@keyframes skullBounce {
+  0%   { transform: translateY(var(--from-y)); }
+  100% { transform: translateY(var(--to-y)); }
+}
+
+
+/* ============================================================
    PROGRESS BAR DOMANDA (in fondo allo schermo)
    ============================================================ */
 .question-progress {

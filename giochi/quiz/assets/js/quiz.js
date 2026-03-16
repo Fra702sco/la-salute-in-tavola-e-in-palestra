@@ -44,9 +44,9 @@ const CFG = Object.freeze({
 
 
 /* ============================================================
-   §1  BANCA DATI DOMANDE
+   §1  BANCA DATI DOMANDE  (popolato da fetch in §16)
    ============================================================ */
-const DOMANDE = [
+let DOMANDE = [
 
   /* ── FRUTTA ── */
   {
@@ -448,9 +448,9 @@ const DOMANDE = [
 
 
 /* ============================================================
-   §2  MAPPA CATEGORIE
+   §2  MAPPA CATEGORIE  (popolato da fetch in §16)
    ============================================================ */
-const CATEGORIE = {
+let CATEGORIE = {
   frutta: {
     label    : '🍎 Frutta',
     emoji    : ['🍎','🍊','🍋','🍇','🍓','🍑','🥝','🍒','🍌','🍍','🥭','🍐'],
@@ -569,6 +569,8 @@ const DOM = (() => {
     toastText      : q('toast-text'),
     /* Confetti */
     confetti       : q('confetti-container'),
+    /* Skulls */
+    skulls         : q('skulls-container'),
     /* Progress */
     progressFill   : qs('.question-progress-fill'),
   };
@@ -1050,6 +1052,7 @@ function finePartita(motivo) {
       ? `Hai commesso ${CFG.MAX_ERRORI + 1} errori!`
       : '⏳ Hai esaurito il tempo totale!';
     SCHERMATE.mostraGameover(ragione);
+    SKULLS.lancia();
   }
 }
 
@@ -1064,6 +1067,7 @@ function aggiornaDotErrore(n) {
 function restartGame() {
   TIMER.stopAll();
   BG.clear();
+  SKULLS.ferma();
   DOM.successScreen.classList.remove('show');
   DOM.gameoverScreen.classList.remove('show');
   DOM.gameScreen.removeAttribute('hidden');
@@ -1139,6 +1143,49 @@ const CONFETTI = (() => {
   }
 
   return { lancia };
+})();
+
+
+/* ============================================================
+   §10b SKULLS (gameover)
+   ============================================================ */
+const SKULLS = (() => {
+  function lancia() {
+    DOM.skulls.innerHTML = '';
+    DOM.skulls.classList.add('active');
+    const n = 40;
+    for (let i = 0; i < n; i++) {
+      setTimeout(() => crea(), i * 60);
+    }
+  }
+
+  function crea() {
+    const el   = document.createElement('span');
+    el.className = 'skull-piece';
+    el.textContent = '💀';
+
+    const vh       = window.innerHeight;
+    const fromY    = Math.floor(Math.random() * vh * 0.3);
+    const toY      = Math.floor(vh * 0.6 + Math.random() * vh * 0.3);
+    const duration = +(2 + Math.random() * 2).toFixed(1);
+
+    el.style.left = `${Math.floor(Math.random() * 96)}%`;
+    el.style.fontSize = `${Math.floor(20 + Math.random() * 20)}px`;
+    el.style.animationDuration = `${duration}s`;
+    // Delay negativo: il teschio parte già a metà animazione → niente spawn dall'alto
+    el.style.animationDelay = `-${(Math.random() * duration).toFixed(1)}s`;
+    el.style.setProperty('--from-y', `${fromY}px`);
+    el.style.setProperty('--to-y',   `${toY}px`);
+
+    DOM.skulls.appendChild(el);
+  }
+
+  function ferma() {
+    DOM.skulls.innerHTML = '';
+    DOM.skulls.classList.remove('active');
+  }
+
+  return { lancia, ferma };
 })();
 
 
@@ -1315,13 +1362,28 @@ DOM.answersGrid.addEventListener('touchend', e => {
 /* ============================================================
    §16 INIT
    ============================================================ */
-(function init() {
+(async function init() {
   // Stato iniziale schermate
   DOM.successScreen.classList.remove('show');
   DOM.gameoverScreen.classList.remove('show');
   DOM.confirmHome.classList.remove('show');
   DOM.aboutPanel.classList.remove('show');
   DOM.gameScreen.setAttribute('hidden','');
+
+  // Carica domande e categorie dal file JSON
+  DOM.btnStart.disabled = true;
+  DOM.btnStart.textContent = '⏳ Caricamento...';
+  try {
+    const res  = await fetch('assets/domande-risposte/domande.json');
+    const data = await res.json();
+    DOMANDE    = data.domande;
+    CATEGORIE  = data.categorie;
+    DOM.btnStart.disabled    = false;
+    DOM.btnStart.textContent = '🎮 Inizia a giocare!';
+  } catch (err) {
+    console.error('Errore caricamento domande:', err);
+    DOM.btnStart.textContent = '❌ Errore caricamento';
+  }
 
   // Background di default sulla start screen
   DOM.bgScene.classList.add('bg-default');
