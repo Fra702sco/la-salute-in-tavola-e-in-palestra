@@ -11,7 +11,7 @@
 
 /* ===== VARIABILI ===== */
 :root {
-  --font-main: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
+  --font-main: 'Arial Rounded MT Bold', Arial, sans-serif;
 
   /* Palette */
   --blue-dark:   #0d1b6e;
