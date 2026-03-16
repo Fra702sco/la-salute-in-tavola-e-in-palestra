@@ -26,7 +26,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 | Gioco | Stato | Descrizione |
 |---|---|---|
 | 🚦 **Il Semaforo della Merenda** | ✅ Disponibile | Drag & drop — classifica 15 alimenti nel semaforo |
-| 🧠 **Quiz Alimentare** | ✅ Disponibile | 70+ domande su nutrizione, sport e vitamine |
+| 🧠 **Quiz Alimentare** | ✅ Disponibile | 70+ domande su nutrizione, sport e vitamine + riepilogo errori finale |
 | 🃏 **Memory degli Alimenti** | 🟠 In arrivo | Trova le coppie di alimenti sani |
 | 🧩 **Puzzle della Piramide** | 🟣 In arrivo | Componi la piramide alimentare |
 
@@ -35,7 +35,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 ## ✨ Funzionalità del portale
 
 - 🎨 **Design animato** — hero con bolle fluttuanti, animazioni di entrata su scroll (reveal)
-- 📱 **Completamente responsive** — ottimizzato per desktop, tablet e smartphone
+- 📱 **Completamente responsive** — ottimizzato per desktop, tablet e smartphone (iOS/Android)
 - 🧭 **Navbar sticky** con hamburger menu su mobile e link attivo per sezione visibile
 - 📊 **Sezione statistiche** — contatori animati (giochi, gratuito, no pub, contenuti)
 - 🥦 **Sezione alimentazione** — 4 card sui benefici di mangiare sano
@@ -142,7 +142,7 @@ DOMContentLoaded
  ├── Barre sport — animazione riempimento (IntersectionObserver)
  ├── Reveal on scroll (IntersectionObserver + fallback)
  ├── Validazione email — blocco domini temporanei/falsi (300+ domini)
- └── Form contatti — invio async via Formspree con feedback successo/errore
+ └── Form contatti — invio async via Formspree con feedback successo/errore + disable bottone
 ```
 
 ### `assets/css/style.css`

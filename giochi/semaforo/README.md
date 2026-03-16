@@ -36,7 +36,7 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 
 - 🖥️ **Schermata iniziale** con regole del gioco, avviso 3 errori e pulsante "Inizia a giocare!"
 - 🔙 **Pulsante Annulla** nella schermata iniziale per tornare alla homepage senza conferma
-- 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet)
+- 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet; fallback CDN)
 - 👻 **Ghost manuale personalizzato** — elemento rimpicciolito che segue il cursore/dito
 - 🚦 **Semaforo animato** — si illumina di verde se corretto, rosso se sbagliato
 - 📳 **Toast banner mobile** — notifica animata con immagine semaforo da sinistra su smartphone
@@ -173,7 +173,7 @@ Sortable/Ghost → Responsive (tablet → mobile)
 |---|---|
 | **HTML5 semantico** | Struttura + accessibilità ARIA completa |
 | **CSS3** | Animazioni, layout, glow, clip-path toast, media queries |
-| **JavaScript ES6+** | Logica, ghost, audio, calibrazione, localStorage |
+| **JavaScript ES6+** | Logica, ghost, audio, calibrazione, localStorage, debounce resize |
 | **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop degli alimenti |
 | **Web Audio API** | Effetti sonori e musica di sottofondo |
 | **localStorage** | Salvataggio impostazioni di calibrazione |

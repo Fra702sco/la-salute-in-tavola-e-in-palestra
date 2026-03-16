@@ -54,17 +54,18 @@ commettendo al massimo 3 errori, entro un tempo totale di **4 minuti e 5 secondi
 - 🌊 **Particelle emoji animate** — galleggiano sullo sfondo in base alla categoria corrente
 - ⏱️ **Timer doppio** — cerchio SVG animato per la domanda (15 sec) + timer totale (4:05)
 - 🔴 **Urgenza visiva** — i bottoni tremano quando mancano meno di 5 secondi alla domanda
-- ✅ **Feedback immediato** — bottone verde se giusto, rosso se sbagliato + testo spiegazione
+- ✅ **Toast notifica** — popup animato in basso (verde = corretto, rosso = sbagliato, arancio = tempo scaduto)
 - ❌ **Indicatore errori** — 3 pallini rossi che si accendono ad ogni errore
 - 🏆 **Schermata Vittoria** con coriandoli colorati (90 pezzi) e valutazione a stelle (1-5 ⭐)
-- 💀 **Schermata Hai Perso** con teschi 💀 che salgono e scendono in loop sullo schermo
+- 😵 **Schermata Hai Perso** con motivo della sconfitta e statistiche
+- 📋 **Riepilogo errori finale** — mostra per ogni errore: domanda, risposta data, risposta corretta e tempo impiegato; affiancato alla card risultato su desktop, sotto con scroll su mobile
 - 📊 **Statistiche finali** — risposte corrette, errori, domanda raggiunta, tempo impiegato
 - 🎵 **Musica di sottofondo** con controllo on/off
 - 🔊 **Effetti sonori** — correct, wrong, victory, gameover, tick (conto alla rovescia)
 - 🏠 **Bottone Home con conferma** — modale "Sei sicuro di voler uscire?" per evitare uscite accidentali
 - ℹ️ **Pannello About** — informazioni sul progetto
 - ♿ **Accessibilità** — ARIA completo, `aria-live` su feedback e timer
-- 📱 **Completamente responsive** — desktop, tablet e mobile
+- 📱 **Completamente responsive** — desktop, tablet e mobile con scroll nativo iOS
 
 ---
 
@@ -174,11 +175,10 @@ DOMContentLoaded
  ├── §6   Sistema Background & Particelle (BG: setCat, spawnParticle, clear)
  ├── §7   Sistema Timer (TIMER: domanda SVG, totale, urgenza, stopAll)
  ├── §8   Motore di gioco (startGame → caricaDomanda → onRisposta → finePartita)
- ├── §9   Sistema Feedback & Toast
+ ├── §9   Sistema Toast (notifiche popup animate per esito risposta)
  ├── §10  Sistema Confetti (CONFETTI: 90 pezzi colorati)
- ├── §10b Sistema Skulls gameover (SKULLS: 💀 bounce infinito, ferma)
  ├── §11  Sistema Stelle (1-5 ⭐ in base a errori e tempo)
- ├── §12  Gestione Schermate (SCHERMATE: mostraSuccesso, mostraGameover)
+ ├── §12  Gestione Schermate (SCHERMATE: mostraSuccesso, mostraGameover + buildRecap)
  ├── §13  Pannelli (confirm-home, about)
  ├── §14  Scorciatoie tastiera (ESC, Ctrl+R)
  ├── §15  Event Listeners
@@ -192,9 +192,9 @@ Reset → Variabili CSS → Body → Background scene →
 Particelle emoji → Header gioco → Timer SVG →
 Card domanda → Bottoni risposta (stati: correct/wrong/urgent) →
 Feedback → Schermate risultato (successo/gameover) →
-Stelle → Confetti → Skulls gameover →
+Riepilogo errori → Stelle → Confetti →
 Modale confirm-home → Pannello About → Toast →
-Progress bar domanda → Responsive (tablet → mobile)
+Progress bar domanda → Responsive (tablet → mobile → ≤380px)
 ```
 
 ---
@@ -230,7 +230,7 @@ Progress bar domanda → Responsive (tablet → mobile)
 ## ♿ Accessibilità
 
 - `role="dialog"` + `aria-modal` + `aria-labelledby` su tutti i pannelli
-- `aria-hidden="true"` su elementi decorativi (particelle, confetti, teschi)
+- `aria-hidden="true"` su elementi decorativi (particelle, confetti)
 - `role="status"` + `aria-live="polite"` su timer e feedback risposta
 - `aria-label` su tutti i bottoni icon-only
 - `aria-disabled` sul pulsante Start durante il caricamento delle domande
