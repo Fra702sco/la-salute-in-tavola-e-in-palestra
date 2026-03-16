@@ -1343,16 +1343,20 @@ body {
    ============================================================ */
 @media (max-width: 768px) {
 
-  /* Schermate risultato: colonna su mobile (recap sotto il card) */
+  /* Schermate risultato: flusso normale su mobile per scroll nativo iOS */
   #success-screen,
   #gameover-screen {
+    position: absolute;
+    inset: 0;
     flex-direction: column;
-    flex-wrap: nowrap;
     align-items: center;
     padding: 20px 12px;
     gap: 16px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
   }
   .recap-errori {
     flex: 0 0 auto;
@@ -1361,6 +1365,7 @@ body {
     position: static;
     order: 2;
     overflow-y: visible;
+    padding-bottom: 32px;
   }
   .result-card {
     flex: 0 0 auto;
