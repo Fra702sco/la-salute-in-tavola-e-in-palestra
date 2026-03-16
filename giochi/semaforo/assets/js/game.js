@@ -321,8 +321,10 @@ document.addEventListener('DOMContentLoaded', () => {
      KEYBOARD SHORTCUTS
      ===================================================== */
   document.addEventListener('keydown', e => {
+    if (document.getElementById('start-screen')) return;
     if (e.key === 'Escape') {
       if (isCalibrating) { stopCalib(); return; }
+      confirmHomeScreen.classList.remove('show');
       closeSettings();
       closeAbout();
       return;
@@ -692,7 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =====================================================
-     PULSANTI RESET / RETRY / PLAY AGAIN
+     PULSANTI RESET / RETRY / PLAY AGAIN / CONFERMA HOME
      ===================================================== */
   document.getElementById('btn-reset').addEventListener('click',        e => { e.stopPropagation(); resetGame(); });
   document.getElementById('btn-reset-mobile').addEventListener('click', e => { e.stopPropagation(); resetGame(); });
@@ -707,7 +709,24 @@ document.addEventListener('DOMContentLoaded', () => {
     gameoverScreen.classList.remove('show');
     resetGame();
   });
+  const confirmHomeScreen = document.getElementById('confirm-home-screen');
+  const HOME_URL = '../../index.html';
 
+  function openConfirmHome(e) {
+    e.preventDefault();              
+    confirmHomeScreen.classList.add('show');
+  }
+
+  document.querySelector('.btn-back-home')?.addEventListener('click', openConfirmHome);
+  document.querySelector('.btn-back-home-mobile')?.addEventListener('click', openConfirmHome);
+
+  document.getElementById('btn-confirm-home-yes').addEventListener('click', () => {
+    window.location.href = HOME_URL;
+  });
+
+  document.getElementById('btn-confirm-home-no').addEventListener('click', () => {
+    confirmHomeScreen.classList.remove('show');
+  });
 
   /* =====================================================
      INIT

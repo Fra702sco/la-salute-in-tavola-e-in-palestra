@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quiz educativo sulla nutrizione e alimentazione sana per bambini delle scuole primarie." />
+    <meta name="theme-color" content="#1a237e" />
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content="Quiz Alimentare" />
+    <meta property="og:description" content="Rispondi alle domande sulla nutrizione e diventa un esperto della salute!" />
+    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico-preview/preview.jpg" />
+    <meta property="og:url"         content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/giochi/quiz/index.html" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:locale"      content="it_IT" />
+
+    <title>Quiz Alimentare</title>
+    <link rel="icon"       href="../../assets/ico-preview/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- ===== AUDIO ===== -->
+    <div aria-hidden="true">
+      <audio id="audio-correct"  src="assets/audio/correct.mp3"    preload="auto"></audio>
+      <audio id="audio-wrong"    src="assets/audio/error.mp3"      preload="auto"></audio>
+      <audio id="audio-victory"  src="assets/audio/victory.mp3"    preload="auto"></audio>
+      <audio id="audio-gameover" src="assets/audio/loss.mp3"       preload="auto"></audio>
+      <audio id="audio-tick"     src="assets/audio/tick.mp3"       preload="auto"></audio>
+      <audio id="audio-bg"       src="assets/audio/background.mp3" preload="auto" loop></audio>
+    </div>
+
+
+    <!-- ===== BACKGROUND SCENICO (cambia per ogni categoria) ===== -->
+    <!--
+      Il JS assegna a #bg-scene una classe categoria:
+        .bg-frutta | .bg-verdura | .bg-cereali | .bg-latticini |
+        .bg-proteine | .bg-dolci | .bg-sport | .bg-acqua | .bg-vitamine
+      Ogni classe definisce un gradiente + emoji animati diversi.
+      #bg-particles viene popolato dinamicamente dal JS con <span> emoji.
+      #bg-overlay è un layer semitrasparente per leggibilità del testo.
+    -->
+    <div id="bg-scene" aria-hidden="true">
+      <div id="bg-particles"></div>
+      <div id="bg-overlay"></div>
+    </div>
+
+
+    <!-- ===== SCHERMATA INIZIALE ===== -->
+    <div id="start-screen" role="dialog" aria-modal="true" aria-labelledby="start-title">
+      <div class="start-card">
+
+        <span class="start-emoji" aria-hidden="true">🧠</span>
+        <div class="start-title" id="start-title">Quiz<br>Alimentare</div>
+        <p class="start-subtitle">
+          Rispondi alle domande sulla nutrizione<br>
+          e diventa un esperto della salute!
+        </p>
+
+        <div class="start-rules" role="list" aria-label="Regole del gioco">
+          <p role="listitem">❓ <strong>15 domande</strong> randomiche ad ogni partita</p>
+          <p role="listitem">⏱️ <strong>15 secondi</strong> per rispondere a ogni domanda</p>
+          <p role="listitem">❌ Massimo <strong>3 errori</strong> — al quarto hai perso!</p>
+          <p role="listitem">⏳ Tempo massimo totale: <strong>4:05</strong></p>
+          <p role="listitem" class="start-rules-warning">
+            ⚠️ <strong>Attenzione:</strong> il tempo scaduto conta come errore!
+          </p>
+        </div>
+
+        <div class="start-actions">
+          <button class="btn-start" id="btn-start">🎮 Inizia il Quiz!</button>
+          <a href="../../index.html" class="btn-annulla">✖ Annulla</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ===== SCHERMATA DI GIOCO ===== -->
+    <main id="game-screen" aria-label="Quiz Alimentare" hidden>
+
+      <!-- Header -->
+      <header class="game-header" role="banner">
+
+        <div class="header-left">
+          <button id="btn-home" class="btn-ctrl btn-home" aria-label="Torna alla home">
+            🏠 <span class="btn-label">Home</span>
+          </button>
+        </div>
+
+        <div class="header-center">
+
+          <!-- Contatore domanda -->
+          <div class="question-counter" aria-label="Domanda corrente">
+            Domanda&nbsp;
+            <span id="question-num"  class="counter-num">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-tot">15</span>
+          </div>
+
+          <!-- Timer totale -->
+          <div class="total-timer" aria-label="Tempo totale rimanente">
+            <span aria-hidden="true">⏳</span>
+            <span id="total-timer-display">4:05</span>
+          </div>
+
+          <!-- Indicatore errori -->
+          <div class="error-dots"
+               role="status"
+               aria-live="polite"
+               aria-label="Errori commessi">
+            <div class="error-dot" id="err-1" aria-hidden="true"></div>
+            <div class="error-dot" id="err-2" aria-hidden="true"></div>
+            <div class="error-dot" id="err-3" aria-hidden="true"></div>
+          </div>
+
+        </div>
+
+        <div class="header-right">
+          <button id="btn-bg-toggle" class="btn-ctrl" aria-label="Musica">🎵</button>
+          <button id="btn-restart"   class="btn-ctrl btn-restart" aria-label="Ricomincia">🔄</button>
+          <button id="btn-about"     class="btn-ctrl btn-about-game" aria-label="Informazioni sul gioco">ℹ️</button>
+        </div>
+
+      </header>
+
+
+      <!-- Area domanda -->
+      <section class="question-area" aria-label="Domanda">
+
+        <!-- Timer circolare SVG -->
+        <div class="timer-ring-wrapper" aria-hidden="true">
+          <svg class="timer-ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="timer-ring-track" cx="60" cy="60" r="52" />
+            <circle class="timer-ring-fill"  cx="60" cy="60" r="52"
+                    id="timer-ring-fill"
+                    stroke-dasharray="326.7"
+                    stroke-dashoffset="0" />
+          </svg>
+          <div class="timer-number"
+               id="timer-display"
+               role="timer"
+               aria-live="assertive"
+               aria-label="Secondi rimanenti">15</div>
+        </div>
+
+        <!-- Card domanda -->
+        <div class="question-card">
+          <div class="question-category-badge"
+               id="question-category"
+               aria-hidden="true"></div>
+          <p class="question-text"
+             id="question-text"
+             role="heading"
+             aria-level="2"></p>
+        </div>
+
+      </section>
+
+
+      <!-- Griglia risposte -->
+      <section class="answers-section" aria-label="Risposte">
+        <div class="answers-grid"
+             id="answers-grid"
+             role="group"
+             aria-label="Scegli la risposta corretta">
+          <button class="answer-btn" id="ans-0" aria-label="Risposta A"></button>
+          <button class="answer-btn" id="ans-1" aria-label="Risposta B"></button>
+          <button class="answer-btn" id="ans-2" aria-label="Risposta C"></button>
+          <button class="answer-btn" id="ans-3" aria-label="Risposta D"></button>
+        </div>
+      </section>
+
+
+      <!-- Feedback status -->
+      <div class="answer-feedback"
+           id="answer-feedback"
+           role="status"
+           aria-live="polite"
+           aria-atomic="true"></div>
+
+    </main>
+
+
+    <!-- ===== SCHERMATA SUCCESSO ===== -->
+    <div id="success-screen" role="dialog" aria-modal="true" aria-labelledby="success-title">
+      <div class="result-card success-card">
+
+        <span class="result-big-emoji" aria-hidden="true">🏆</span>
+        <div class="result-title" id="success-title">CAMPIONE!</div>
+        <div class="result-subtitle">Hai completato il Quiz Alimentare! 🎉</div>
+
+        <div class="result-stats">
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">✅</span>
+            <span class="stat-value" id="success-correct"></span>
+            <span class="stat-label">Corrette</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">❌</span>
+            <span class="stat-value" id="success-wrong"></span>
+            <span class="stat-label">Errori</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">⏱️</span>
+            <span class="stat-value" id="success-time"></span>
+            <span class="stat-label">Tempo</span>
+          </div>
+        </div>
+
+        <div class="result-stars" id="success-stars" aria-label="Valutazione"></div>
+
+        <div class="result-message">
+          Sei un vero esperto della salute!<br>
+          Continua così! 💪🥗
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-play-again" id="btn-play-again">🔄 Gioca ancora!</button>
+          <a href="../../index.html" class="btn-home-result">🏠 Home</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ===== SCHERMATA GAME OVER ===== -->
+    <div id="gameover-screen" role="dialog" aria-modal="true" aria-labelledby="gameover-title">
+      <div class="result-card gameover-card">
+
+        <span class="result-big-emoji" aria-hidden="true">😵</span>
+        <div class="result-title" id="gameover-title">HAI PERSO!</div>
+        <div class="result-subtitle" id="gameover-reason"></div>
+
+        <div class="result-stats">
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">✅</span>
+            <span class="stat-value" id="gameover-correct"></span>
+            <span class="stat-label">Corrette</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">❌</span>
+            <span class="stat-value" id="gameover-wrong"></span>
+            <span class="stat-label">Errori</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon" aria-hidden="true">📍</span>
+            <span class="stat-value" id="gameover-reached"></span>
+            <span class="stat-label">Domanda</span>
+          </div>
+        </div>
+
+        <div class="result-message">
+          Studia bene le regole della nutrizione<br>
+          e ritenta! 📚
+        </div>
+
+        <div class="result-actions">
+          <button class="btn-retry" id="btn-retry">🔄 Riprova!</button>
+          <a href="../../index.html" class="btn-home-result">🏠 Home</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ===== MODALE CONFERMA HOME ===== -->
+    <div id="confirm-home-screen"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="confirm-home-title"
+         aria-hidden="true">
+      <div class="confirm-home-card">
+        <span class="confirm-home-emoji" aria-hidden="true">🏠</span>
+        <div class="confirm-home-title" id="confirm-home-title">Tornare alla Home?</div>
+        <div class="confirm-home-message">
+          La partita in corso andrà <strong>persa</strong>.<br>
+          Sei sicuro di voler uscire?
+        </div>
+        <div class="confirm-home-btns">
+          <button id="btn-confirm-home-yes">✅ Sì, esci</button>
+          <button id="btn-confirm-home-no">❌ No, resta</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ===== PANNELLO ABOUT ===== -->
+    <div id="about-panel"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="about-title"
+         aria-hidden="true">
+      <div class="about-emoji" aria-hidden="true">🧠</div>
+      <h2 id="about-title">Quiz Alimentare</h2>
+      <p class="about-subtitle">Gioco educativo interattivo per bambini</p>
+      <div class="about-box">
+        <p>🧑‍💻 <strong>Ideazione & Design:</strong><br>Francesco Taccone</p>
+        <p>🤖 <strong>Sviluppo codice:</strong><br>
+           Realizzato con il supporto di <strong>Perplexity AI</strong></p>
+        <p>🏫 <strong>Contesto:</strong><br>
+           Servizio Civile 2025/2026<br>
+           "La Salute a Tavola e in Palestra"<br>
+           Nicotera (VV), Calabria 🇮🇹</p>
+      </div>
+      <div class="about-goal">
+        🎯 <strong>Obiettivo:</strong> Insegnare ai bambini la corretta
+        alimentazione attraverso il gioco!
+      </div>
+      <p class="about-license">📄 Licenza CC BY-NC 4.0 · © 2026 Francesco Taccone</p>
+      <button id="btn-about-close">✖ Chiudi</button>
+    </div>
+
+
+    <!-- ===== TOAST NOTIFICA ===== -->
+    <div id="toast-banner"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"
+         aria-hidden="true">
+      <span id="toast-icon"  aria-hidden="true"></span>
+      <span id="toast-text"></span>
+    </div>
+
+
+    <!-- ===== CONFETTI CONTAINER ===== -->
+    <div id="confetti-container" aria-hidden="true"></div>
+
+
+    <script src="assets/js/quiz.js"></script>
+  </body>
+</html>

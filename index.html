@@ -9,13 +9,13 @@
     <!-- Open Graph -->
     <meta property="og:title"       content="La Salute a Tavola e in Palestra" />
     <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria." />
-    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg" />
+    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico-preview/preview.jpg" />
     <meta property="og:url"         content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/index.html" />
     <meta property="og:type"        content="website" />
     <meta property="og:locale"      content="it_IT" />
 
     <title>La Salute a Tavola e in Palestra</title>
-    <link rel="icon" href="assets/ico&preview/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="assets/ico-preview/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
@@ -25,10 +25,10 @@
       <div class="nav-inner">
 
         <a href="#hero" class="nav-logo">
-          🥗
+          <span class="nav-logo-emoji" aria-hidden="true">🥗</span>
           <span>La Salute a Tavola</span>
-          <span class="nav-logo-dot" aria-hidden="true"></span>
         </a>
+
 
         <ul class="nav-links" id="nav-links" role="list">
           <li><a href="#games">🎮 Giochi</a></li>
@@ -136,15 +136,13 @@
           <a href="giochi/semaforo/index.html" class="btn-play">▶ Gioca ora</a>
         </div>
 
-        <!-- Card in arrivo -->
-        <div class="game-card coming-soon quiz reveal reveal-delay-2"
-          role="img"
-          aria-label="Quiz Alimentare — in arrivo">
-          <span class="coming-soon-tag" aria-hidden="true">PRESTO</span>
+        <!-- Card disponibile -->
+        <div class="game-card available quiz reveal reveal-delay-2">
           <span class="game-emoji" aria-hidden="true">🧠</span>
           <div class="game-title">Quiz Alimentare</div>
           <div class="game-desc">Rispondi alle domande sulla nutrizione e diventa un esperto della salute!</div>
-          <span class="game-tag tag-blue">🔵 In arrivo</span>
+          <span class="game-tag tag-green">🟢 Disponibile</span>
+          <a href="giochi/quiz/index.html" class="btn-play">▶ Gioca ora</a>
         </div>
 
         <div class="game-card coming-soon memory reveal reveal-delay-3"
@@ -398,7 +396,6 @@
             </div>
           </div>
 
-          <!-- id="contact-form" — il JS attacca l'evento qui, niente onsubmit -->
           <div class="contact-right reveal reveal-right reveal-delay-2">
             <form id="contact-form" class="contact-form" novalidate>
               <div class="form-group">
@@ -461,6 +458,9 @@
       <div style="margin-top:10px; font-size:12px; opacity:0.6;">
         Licenza
         <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
+        <p>Questo sito non raccoglie né tratta dati personali. 
+          Nessun cookie di profilazione viene utilizzato.
+        </p>
       </div>
     </footer>
 

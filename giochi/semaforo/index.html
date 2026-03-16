@@ -9,13 +9,13 @@
     <!-- Open Graph -->
     <meta property="og:title"       content="Il Semaforo della Merenda" />
     <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria." />
-    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg" />
+    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico-preview/preview.jpg" />
     <meta property="og:url"         content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/giochi/semaforo/index.html" />
     <meta property="og:type"        content="website" />
     <meta property="og:locale"      content="it_IT" />
 
     <title>Il Semaforo della Merenda</title>
-    <link rel="icon" href="../../assets/ico&preview/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../assets/ico-preview/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
@@ -62,9 +62,10 @@
           <p>⚠️ <strong>Attenzione:</strong> hai solo <strong>3 errori</strong> a disposizione!</p>
         </div>
 
-        <button class="btn-start" id="btn-start">
-          🎮 Inizia a giocare!
-        </button>
+        <div class="start-actions">
+          <button class="btn-start" id="btn-start">🎮 Inizia a giocare!</button>
+          <a href="../../index.html" class="btn-annulla">✖ Annulla</a>
+        </div>
 
       </div>
     </div>
@@ -142,6 +143,21 @@
           🔄 Riprova!
         </button>
 
+      </div>
+    </div>
+    
+    <div id="confirm-home-screen">
+      <div class="confirm-home-card">
+        <span class="confirm-home-emoji">🏠</span>
+        <div class="confirm-home-title">Tornare alla Home?</div>
+        <div class="confirm-home-message">
+          La partita in corso andrà <strong>persa</strong>.<br>
+          Sei sicuro di voler uscire?
+        </div>
+        <div class="confirm-home-btns">
+          <button id="btn-confirm-home-yes">✅ Sì, esci</button>
+          <button id="btn-confirm-home-no">❌ No, resta</button>
+        </div>
       </div>
     </div>
 

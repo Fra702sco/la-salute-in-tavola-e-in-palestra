@@ -153,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =====================================================
-     FORM CONTATTI
+     FORM CONTATTI — Formspree
      ===================================================== */
   const contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const btn      = document.getElementById('btn-contact-text');
@@ -169,34 +169,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!name || !email || !message) return;
 
-      const subject = encodeURIComponent(`Messaggio da ${name} - La Salute a Tavola`);
-      const body    = encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMessaggio:\n${message}`);
-      const mailto  = `mailto:serviziocivilenicotera2025@outlook.com?subject=${subject}&body=${body}`;
+      if (btn) btn.textContent = '⏳ Invio in corso...';
 
-      if (btn) btn.textContent = '⏳ Apertura email...';
+      try {
+        const res = await fetch('https://formspree.io/f/mkoqqqrj', {
+          method:  'POST',
+          headers: { 'Accept': 'application/json' },
+          body:    new FormData(contactForm)
+        });
 
-      const a = document.createElement('a');
-      a.href = mailto;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-      setTimeout(() => {
-        if (btn) btn.textContent = '📨 Invia messaggio';
-
-        if (feedback) {
-          feedback.textContent = '✅ Client email aperto! Se non si apre, scrivi a serviziocivilenicotera2025@outlook.com';
-          feedback.className   = 'contact-feedback success';
-        }
-
-        setTimeout(() => {
+        if (res.ok) {
+          if (feedback) {
+            feedback.textContent = '✅ Messaggio inviato! Ti risponderemo il prima possibile.';
+            feedback.className   = 'contact-feedback success';
+          }
           contactForm.reset();
+        } else {
+          throw new Error('Errore server');
+        }
+      } catch {
+        if (feedback) {
+          feedback.textContent = '❌ Invio fallito. Scrivici a serviziocivilenicotera2025@outlook.com';
+          feedback.className   = 'contact-feedback error';
+        }
+      } finally {
+        if (btn) btn.textContent = '📨 Invia messaggio';
+        setTimeout(() => {
           if (feedback) {
             feedback.textContent = '';
             feedback.className   = 'contact-feedback';
           }
         }, 6000);
-      }, 1500);
+      }
     });
   }
 
