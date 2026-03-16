@@ -1347,17 +1347,23 @@ body {
   #success-screen,
   #gameover-screen {
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     padding: 20px 12px;
     gap: 16px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
   .recap-errori {
+    flex: 0 0 auto;
     max-width: 100%;
     max-height: none;
     position: static;
     order: 2;
+    overflow-y: visible;
   }
   .result-card {
+    flex: 0 0 auto;
     order: 1;
     width: 100%;
     max-width: 100%;
