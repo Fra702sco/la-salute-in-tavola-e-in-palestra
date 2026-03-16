@@ -497,6 +497,8 @@ body {
   background: rgba(255, 255, 255, 0.92);
   border-radius: 30px;
   padding: 36px 26px 30px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
   transition: all 0.25s ease;
@@ -594,6 +596,7 @@ body {
   display: inline-block;
   padding: 5px 16px;
   border-radius: 999px;
+  margin-top: auto;
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 4px;
