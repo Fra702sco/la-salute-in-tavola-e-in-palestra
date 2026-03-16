@@ -1,525 +1,374 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria.">
-  <title>La Salute a Tavola e in Palestra</title>
-  <!-- Favicon -->
-  <link rel="icon" href="assets/ico&preview/favicon.ico" type="image/x-icon">
-  <!-- Theme color (barra browser Android) -->
-  <meta name="theme-color" content="#0d47a1">
-  <!-- Open Graph (anteprima su social e WhatsApp) -->
-  <meta property="og:title" content="La Salute a Tavola e in Palestra">
-  <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria.">
-  <meta property="og:image" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg">
-  <meta property="og:url" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/index.html">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="it_IT">
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria.">
+    <title>La Salute a Tavola e in Palestra</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/ico&preview/favicon.ico" type="image/x-icon">
+    <!-- Theme color (barra browser Android) -->
+    <meta name="theme-color" content="#0d47a1">
+    <!-- Open Graph (anteprima su social e WhatsApp) -->
+    <meta property="og:title" content="La Salute a Tavola e in Palestra">
+    <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria.">
+    <meta property="og:image" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg">
+    <meta property="og:url" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
-        🥗 <span>La Salute a Tavola</span>
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#games">🎮 Giochi</a></li>
-        <li><a href="#education">🥦 Alimentazione</a></li>
-        <li><a href="#sport">🏃 Sport</a></li>
-        <li><a href="#teachers">👩‍🏫 Insegnanti</a></li>
-        <li><a href="#social">📲 Social</a></li>
-        <li><a href="#contact" class="nav-cta">✉️ Contattaci</a></li>
-      </ul>
-      <button class="nav-burger" id="nav-burger"
-        aria-label="Apri menu di navigazione"
-        aria-expanded="false"
-        aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ===== HERO ===== -->
-  <section id="hero" class="reveal">
-    <div class="hero-bubbles">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-    </div>
-    <span class="hero-emoji" aria-hidden="true">🥗</span>
-    <h1 class="hero-title reveal reveal-delay-1">La Salute a Tavola<br>e in Palestra</h1>
-    <p class="hero-subtitle reveal reveal-delay-2">
-      Un percorso educativo interattivo per imparare a mangiare sano
-      e muoversi con gioia — pensato per i bambini delle scuole primarie.
-    </p>
-    <div class="hero-badges hero-actions reveal reveal-delay-3">
-      <span class="badge">🏫 Scuole primarie</span>
-      <span class="badge">🎮 Giochi interattivi</span>
-      <span class="badge">📍 Nicotera (VV)</span>
-    </div>
-  </section>
-
-  <!-- ===== STATS ===== -->
-  <section id="stats" class="reveal reveal-delay-1">
-    <h2 class="visually-hidden">Statistiche</h2>
-    <div class="stats-inner">
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-number">4</div>
-        <div class="stat-label">🎮 Giochi in arrivo</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">✅ Gratuito</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-number">0</div>
-        <div class="stat-label">🚫 Pubblicità</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-4">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">📚 Contenuti educativi</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== GIOCHI ===== -->
-  <section id="games" class="reveal">
-    <div class="section-header reveal reveal-delay-1">
-      <span class="section-label">🎮 Giochi</span>
-      <h2 class="section-title">I nostri giochi</h2>
-      <p class="section-subtitle">Impara mangiando bene — un gioco alla volta!</p>
-    </div>
-    <div class="games-grid">
-
-      <!-- SEMAFORO -->
-      <div class="game-card available semaforo">
-        <span class="game-emoji">🚦</span>
-        <div class="game-title">Il Semaforo della Merenda</div>
-        <div class="game-desc">
-          Trascina gli alimenti nel rettangolo giusto: rosso, giallo o verde!
-        </div>
-        <span class="game-tag tag-green">🟢 Disponibile</span>
-
-        <!-- solo questo è cliccabile -->
-        <a href="giochi/semaforo/index.html" class="btn-play">
-          ▶ Gioca ora
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          🥗 <span>La Salute a Tavola</span>
         </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#games">🎮 Giochi</a></li>
+          <li><a href="#education">🥦 Alimentazione</a></li>
+          <li><a href="#sport">🏃 Sport</a></li>
+          <li><a href="#teachers">👩‍🏫 Insegnanti</a></li>
+          <li><a href="#social">📲 Social</a></li>
+          <li><a href="#contact" class="nav-cta">✉️ Contattaci</a></li>
+        </ul>
+        <button class="nav-burger" id="nav-burger"
+          aria-label="Apri menu di navigazione"
+          aria-expanded="false"
+          aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </nav>
 
-
-
-      <div class="game-card coming-soon quiz reveal reveal-delay-2" role="button" aria-disabled="true" tabindex="-1">
-        <span class="coming-soon-tag">PRESTO</span>
-        <span class="game-emoji">🧠</span>
-        <div class="game-title">Quiz Alimentare</div>
-        <div class="game-desc">Rispondi alle domande sulla nutrizione e diventa un esperto della salute!</div>
-        <span class="game-tag tag-blue">🔵 In arrivo</span>
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="reveal">
+      <div class="hero-bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
       </div>
-
-      <div class="game-card coming-soon memory reveal reveal-delay-3" role="button" aria-disabled="true" tabindex="-1">
-        <span class="coming-soon-tag">PRESTO</span>
-        <span class="game-emoji">🃏</span>
-        <div class="game-title">Memory degli Alimenti</div>
-        <div class="game-desc">Trova le coppie di alimenti sani e allena la memoria divertendoti!</div>
-        <span class="game-tag tag-orange">🟠 In arrivo</span>
+      <span class="hero-emoji" aria-hidden="true">🥗</span>
+      <h1 class="hero-title reveal reveal-delay-1">La Salute a Tavola<br>e in Palestra</h1>
+      <p class="hero-subtitle reveal reveal-delay-2">
+        Un percorso educativo interattivo per imparare a mangiare sano
+        e muoversi con gioia — pensato per i bambini delle scuole primarie.
+      </p>
+      <div class="hero-badges hero-actions reveal reveal-delay-3">
+        <span class="badge">🏫 Scuole primarie</span>
+        <span class="badge">🎮 Giochi interattivi</span>
+        <span class="badge">📍 Nicotera (VV)</span>
       </div>
+    </section>
 
-      <div class="game-card coming-soon puzzle reveal reveal-delay-4" role="button" aria-disabled="true" tabindex="-1">
-        <span class="coming-soon-tag">PRESTO</span>
-        <span class="game-emoji">🧩</span>
-        <div class="game-title">Puzzle della Piramide</div>
-        <div class="game-desc">Componi la piramide alimentare e scopri cosa mangiare ogni giorno!</div>
-        <span class="game-tag tag-purple">🟣 In arrivo</span>
+    <!-- ===== STATS ===== -->
+    <section id="stats" class="reveal reveal-delay-1">
+      <h2 class="visually-hidden">Statistiche</h2>
+      <div class="stats-inner">
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number">4</div>
+          <div class="stat-label">🎮 Giochi in arrivo</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">✅ Gratuito</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number">0</div>
+          <div class="stat-label">🚫 Pubblicità</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-4">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">📚 Contenuti educativi</div>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- ===== PERCHÉ MANGIARE SANO ===== -->
-  <section id="education" class="reveal">
-    <div class="edu-inner">
+    <!-- ===== GIOCHI ===== -->
+    <section id="games" class="reveal">
       <div class="section-header reveal reveal-delay-1">
-        <span class="section-label">🥦 Alimentazione</span>
-        <h2 class="section-title">Perché mangiare sano?</h2>
-        <p class="section-subtitle">Piccole scelte quotidiane che fanno una grande differenza!</p>
+        <span class="section-label">🎮 Giochi</span>
+        <h2 class="section-title">I nostri giochi</h2>
+        <p class="section-subtitle">Impara mangiando bene — un gioco alla volta!</p>
       </div>
-      <div class="edu-grid">
-        <div class="edu-card reveal reveal-delay-1">
-          <span class="edu-icon" aria-hidden="true">💪</span>
-          <h3>Energia per crescere</h3>
-          <p>Gli alimenti giusti danno al tuo corpo l'energia per giocare, studiare e crescere forte!</p>
-        </div>
-        <div class="edu-card reveal reveal-delay-2">
-          <span class="edu-icon" aria-hidden="true">🧠</span>
-          <h3>Mente più sveglia</h3>
-          <p>Una buona alimentazione aiuta la concentrazione e la memoria a scuola.</p>
-        </div>
-        <div class="edu-card reveal reveal-delay-3">
-          <span class="edu-icon" aria-hidden="true">🦷</span>
-          <h3>Denti e ossa forti</h3>
-          <p>Calcio e vitamine rendono denti e ossa resistenti — frutta e verdura sono i tuoi amici!</p>
-        </div>
-        <div class="edu-card reveal reveal-delay-4">
-          <span class="edu-icon" aria-hidden="true">😊</span>
-          <h3>Umore positivo</h3>
-          <p>Mangiare bene migliora anche il tuo umore e ti aiuta a sentirti felice ogni giorno!</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="games-grid">
 
-  <!-- ===== PERCHÉ LA PALESTRA ===== -->
-  <section id="sport" class="reveal">
-    <div class="sport-inner">
-      <div class="section-header reveal reveal-delay-1">
-        <span class="section-label">🏃 Movimento &amp; Salute</span>
-        <h2 class="section-title">Perché praticare <span class="title-highlight">sport?</span></h2>
-        <p class="section-subtitle">Il corpo ha bisogno di muoversi tanto quanto di mangiare bene!</p>
-      </div>
-      <div class="sport-hero reveal reveal-delay-2">
-        <div class="sport-emojis">
-          <span class="sport-emoji-item" style="--d:0s" aria-hidden="true">⚽</span>
-          <span class="sport-emoji-item" style="--d:0.3s" aria-hidden="true">🏊</span>
-          <span class="sport-emoji-item" style="--d:0.6s" aria-hidden="true">🚴</span>
-          <span class="sport-emoji-item" style="--d:0.9s" aria-hidden="true">🤸</span>
-          <span class="sport-emoji-item" style="--d:1.2s" aria-hidden="true">🏀</span>
-          <span class="sport-emoji-item" style="--d:1.5s" aria-hidden="true">🎾</span>
-        </div>
-      </div>
-      <div class="sport-grid">
-        <div class="sport-card reveal reveal-delay-1" style="--accent:#e53935">
-          <div class="sport-card-icon" aria-hidden="true">❤️</div>
-          <h3>Cuore più forte</h3>
-          <p>L'esercizio fisico allena il cuore e migliora la circolazione, rendendoti più resistente e in salute.</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:90%; background:#e53935"></div></div>
-        </div>
-        <div class="sport-card reveal reveal-delay-2" style="--accent:#1e88e5">
-          <div class="sport-card-icon" aria-hidden="true">🦴</div>
-          <h3>Ossa e muscoli sani</h3>
-          <p>Saltare, correre e giocare rafforza le ossa e sviluppa i muscoli nei momenti giusti della crescita.</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:85%; background:#1e88e5"></div></div>
-        </div>
-        <div class="sport-card reveal reveal-delay-3" style="--accent:#43a047">
-          <div class="sport-card-icon" aria-hidden="true">😴</div>
-          <h3>Sonno migliore</h3>
-          <p>Chi si muove durante il giorno dorme più profondamente e si sveglia riposato e pieno di energia.</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:80%; background:#43a047"></div></div>
-        </div>
-        <div class="sport-card reveal reveal-delay-4" style="--accent:#fb8c00">
-          <div class="sport-card-icon" aria-hidden="true">🧠</div>
-          <h3>Più concentrazione</h3>
-          <p>Il movimento stimola il cervello: i bambini che fanno sport imparano meglio e si concentrano di più.</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:88%; background:#fb8c00"></div></div>
-        </div>
-        <div class="sport-card reveal reveal-delay-1" style="--accent:#8e24aa">
-          <div class="sport-card-icon" aria-hidden="true">😊</div>
-          <h3>Umore positivo</h3>
-          <p>Lo sport rilascia endorfine — le molecole della felicità — che riducono lo stress e migliorano l'umore.</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:92%; background:#8e24aa"></div></div>
-        </div>
-        <div class="sport-card reveal reveal-delay-2" style="--accent:#00897b">
-          <div class="sport-card-icon" aria-hidden="true">🤝</div>
-          <h3>Amicizie e squadra</h3>
-          <p>Giocare insieme insegna il rispetto, la collaborazione e il fair play — valori per tutta la vita!</p>
-          <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:78%; background:#00897b"></div></div>
-        </div>
-      </div>
-      <div class="sport-tip reveal reveal-delay-3">
-        <span class="sport-tip-icon" aria-hidden="true">💡</span>
-        <div>
-          <strong>Lo sapevi?</strong> L'OMS raccomanda almeno
-          <strong>60 minuti</strong> di attività fisica moderata ogni giorno
-          per i bambini tra i 6 e i 17 anni!
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== INSEGNANTI E GENITORI ===== -->
-  <section id="teachers" class="reveal">
-    <div class="teachers-inner">
-      <div class="teacher-box reveal reveal-delay-1">
-        <h2><span aria-hidden="true">👩‍🏫</span> Per insegnanti e genitori</h2>
-        <p>
-          Questi giochi nascono nell'ambito del programma
-          <strong>"La Salute a Tavola e in Palestra"</strong> per le scuole primarie
-          del comune di Nicotera (VV). Tutti i giochi sono gratuiti, senza pubblicità
-          e pensati per essere usati in classe o a casa.
-        </p>
-        <div class="teacher-features reveal reveal-delay-2">
-          <span class="teacher-feat">✅ Gratuito</span>
-          <span class="teacher-feat">🚫 Nessuna pubblicità</span>
-          <span class="teacher-feat">📱 Funziona su tablet</span>
-          <span class="teacher-feat">🌐 Nessuna registrazione</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SOCIAL ===== -->
-  <section id="social" class="reveal">
-    <div class="social-inner">
-      <div class="section-header reveal reveal-delay-1">
-        <span class="section-label">📲 Seguici</span>
-        <h2 class="section-title">Resta in contatto!</h2>
-        <p class="section-subtitle">Segui il progetto per aggiornamenti, novità e nuovi giochi!</p>
-      </div>
-      <div class="social-cards">
-
-        <a href="https://www.facebook.com/profile.php?id=61581125656677" target="_blank" rel="noopener noreferrer" class="social-card facebook reveal reveal-left reveal-delay-2">
-          <div class="social-icon">
-            <svg viewBox="0 0 24 24" fill="white" width="38" height="38">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
+        <!-- SEMAFORO -->
+        <div class="game-card available semaforo">
+          <span class="game-emoji">🚦</span>
+          <div class="game-title">Il Semaforo della Merenda</div>
+          <div class="game-desc">
+            Trascina gli alimenti nel rettangolo giusto: rosso, giallo o verde!
           </div>
-          <div class="social-info">
-            <div class="social-name">Facebook</div>
-            <div class="social-handle">@Servizio Civile Nicotera 2025</div>
-            <div class="social-desc">Aggiornamenti e novità del progetto</div>
-          </div>
-          <div class="social-arrow" aria-hidden="true">→</div>
-        </a>
+          <span class="game-tag tag-green">🟢 Disponibile</span>
 
-        <a href="https://www.instagram.com/serviziocivilenicotera_2025/" target="_blank" rel="noopener noreferrer" class="social-card instagram reveal reveal-right reveal-delay-3">
-          <div class="social-icon">
-            <svg viewBox="0 0 24 24" fill="white" width="38" height="38">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </div>
-          <div class="social-info">
-            <div class="social-name">Instagram</div>
-            <div class="social-handle">@serviziocivilenicotera_2025/</div>
-            <div class="social-desc">Foto e momenti del progetto</div>
-          </div>
-          <div class="social-arrow" aria-hidden="true">→</div>
-        </a>
+          <!-- solo questo è cliccabile -->
+          <a href="giochi/semaforo/index.html" class="btn-play">
+            ▶ Gioca ora
+          </a>
+        </div>
+
+
+
+        <div class="game-card coming-soon quiz reveal reveal-delay-2" role="button" aria-disabled="true" tabindex="-1">
+          <span class="coming-soon-tag">PRESTO</span>
+          <span class="game-emoji">🧠</span>
+          <div class="game-title">Quiz Alimentare</div>
+          <div class="game-desc">Rispondi alle domande sulla nutrizione e diventa un esperto della salute!</div>
+          <span class="game-tag tag-blue">🔵 In arrivo</span>
+        </div>
+
+        <div class="game-card coming-soon memory reveal reveal-delay-3" role="button" aria-disabled="true" tabindex="-1">
+          <span class="coming-soon-tag">PRESTO</span>
+          <span class="game-emoji">🃏</span>
+          <div class="game-title">Memory degli Alimenti</div>
+          <div class="game-desc">Trova le coppie di alimenti sani e allena la memoria divertendoti!</div>
+          <span class="game-tag tag-orange">🟠 In arrivo</span>
+        </div>
+
+        <div class="game-card coming-soon puzzle reveal reveal-delay-4" role="button" aria-disabled="true" tabindex="-1">
+          <span class="coming-soon-tag">PRESTO</span>
+          <span class="game-emoji">🧩</span>
+          <div class="game-title">Puzzle della Piramide</div>
+          <div class="game-desc">Componi la piramide alimentare e scopri cosa mangiare ogni giorno!</div>
+          <span class="game-tag tag-purple">🟣 In arrivo</span>
+        </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== CONTATTI ===== -->
-  <section id="contact" class="reveal">
-    <div class="contact-inner">
-      <div class="section-header reveal reveal-delay-1">
-        <span class="section-label">✉️ Contatti</span>
-        <h2 class="section-title">Scrivici!</h2>
-        <p class="section-subtitle">Hai domande, suggerimenti o vuoi portare il progetto nella tua scuola?</p>
-      </div>
-      <div class="contact-box">
-        <div class="contact-left reveal-left reveal-delay-2">
-          <span class="contact-big-emoji" aria-hidden="true">📬</span>
-          <h3>Siamo qui per te!</h3>
-          <p>Insegnanti, genitori o curiosi — chiunque può contattarci. Risponderemo il prima possibile!</p>
-          <div class="contact-info-list">
-            <div class="contact-info-item">
-              <span class="contact-info-icon" aria-hidden="true">📧</span>
-              <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>
-            </div>
-            <div class="contact-info-item">
-              <span class="contact-info-icon" aria-hidden="true">📍</span>
-              <span>Comune di Nicotera (VV), Calabria</span>
-            </div>
+    <!-- ===== PERCHÉ MANGIARE SANO ===== -->
+    <section id="education" class="reveal">
+      <div class="edu-inner">
+        <div class="section-header reveal reveal-delay-1">
+          <span class="section-label">🥦 Alimentazione</span>
+          <h2 class="section-title">Perché mangiare sano?</h2>
+          <p class="section-subtitle">Piccole scelte quotidiane che fanno una grande differenza!</p>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card reveal reveal-delay-1">
+            <span class="edu-icon" aria-hidden="true">💪</span>
+            <h3>Energia per crescere</h3>
+            <p>Gli alimenti giusti danno al tuo corpo l'energia per giocare, studiare e crescere forte!</p>
+          </div>
+          <div class="edu-card reveal reveal-delay-2">
+            <span class="edu-icon" aria-hidden="true">🧠</span>
+            <h3>Mente più sveglia</h3>
+            <p>Una buona alimentazione aiuta la concentrazione e la memoria a scuola.</p>
+          </div>
+          <div class="edu-card reveal reveal-delay-3">
+            <span class="edu-icon" aria-hidden="true">🦷</span>
+            <h3>Denti e ossa forti</h3>
+            <p>Calcio e vitamine rendono denti e ossa resistenti — frutta e verdura sono i tuoi amici!</p>
+          </div>
+          <div class="edu-card reveal reveal-delay-4">
+            <span class="edu-icon" aria-hidden="true">😊</span>
+            <h3>Umore positivo</h3>
+            <p>Mangiare bene migliora anche il tuo umore e ti aiuta a sentirti felice ogni giorno!</p>
           </div>
         </div>
-        <div class="contact-right reveal-right reveal-delay-3">
-          <form class="contact-form" onsubmit="handleContact(event)">
-            <div class="form-group">
-              <label for="contact-name">👤 Nome</label>
-              <input type="text" id="contact-name" name="nome" placeholder="Il tuo nome..." required>
-            </div>
-            <div class="form-group">
-              <label for="contact-email">📧 Email</label>
-              <input type="email" id="contact-email" name="email" placeholder="La tua email..." required>
-            </div>
-            <div class="form-group">
-              <label for="contact-message">💬 Messaggio</label>
-              <textarea id="contact-message" rows="4" name="messaggio" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
-            </div>
-            <button type="submit" class="btn-contact">
-              <span id="btn-contact-text">📨 Invia messaggio</span>
-            </button>
-            <div id="contact-feedback" class="contact-feedback" role="alert" aria-live="polite"></div>
-          </form>
+      </div>
+    </section>
+
+    <!-- ===== PERCHÉ LA PALESTRA ===== -->
+    <section id="sport" class="reveal">
+      <div class="sport-inner">
+        <div class="section-header reveal reveal-delay-1">
+          <span class="section-label">🏃 Movimento &amp; Salute</span>
+          <h2 class="section-title">Perché praticare <span class="title-highlight">sport?</span></h2>
+          <p class="section-subtitle">Il corpo ha bisogno di muoversi tanto quanto di mangiare bene!</p>
+        </div>
+        <div class="sport-hero reveal reveal-delay-2">
+          <div class="sport-emojis">
+            <span class="sport-emoji-item" style="--d:0s" aria-hidden="true">⚽</span>
+            <span class="sport-emoji-item" style="--d:0.3s" aria-hidden="true">🏊</span>
+            <span class="sport-emoji-item" style="--d:0.6s" aria-hidden="true">🚴</span>
+            <span class="sport-emoji-item" style="--d:0.9s" aria-hidden="true">🤸</span>
+            <span class="sport-emoji-item" style="--d:1.2s" aria-hidden="true">🏀</span>
+            <span class="sport-emoji-item" style="--d:1.5s" aria-hidden="true">🎾</span>
+          </div>
+        </div>
+        <div class="sport-grid">
+          <div class="sport-card reveal reveal-delay-1" style="--accent:#e53935">
+            <div class="sport-card-icon" aria-hidden="true">❤️</div>
+            <h3>Cuore più forte</h3>
+            <p>L'esercizio fisico allena il cuore e migliora la circolazione, rendendoti più resistente e in salute.</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:90%; background:#e53935"></div></div>
+          </div>
+          <div class="sport-card reveal reveal-delay-2" style="--accent:#1e88e5">
+            <div class="sport-card-icon" aria-hidden="true">🦴</div>
+            <h3>Ossa e muscoli sani</h3>
+            <p>Saltare, correre e giocare rafforza le ossa e sviluppa i muscoli nei momenti giusti della crescita.</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:85%; background:#1e88e5"></div></div>
+          </div>
+          <div class="sport-card reveal reveal-delay-3" style="--accent:#43a047">
+            <div class="sport-card-icon" aria-hidden="true">😴</div>
+            <h3>Sonno migliore</h3>
+            <p>Chi si muove durante il giorno dorme più profondamente e si sveglia riposato e pieno di energia.</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:80%; background:#43a047"></div></div>
+          </div>
+          <div class="sport-card reveal reveal-delay-4" style="--accent:#fb8c00">
+            <div class="sport-card-icon" aria-hidden="true">🧠</div>
+            <h3>Più concentrazione</h3>
+            <p>Il movimento stimola il cervello: i bambini che fanno sport imparano meglio e si concentrano di più.</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:88%; background:#fb8c00"></div></div>
+          </div>
+          <div class="sport-card reveal reveal-delay-1" style="--accent:#8e24aa">
+            <div class="sport-card-icon" aria-hidden="true">😊</div>
+            <h3>Umore positivo</h3>
+            <p>Lo sport rilascia endorfine — le molecole della felicità — che riducono lo stress e migliorano l'umore.</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:92%; background:#8e24aa"></div></div>
+          </div>
+          <div class="sport-card reveal reveal-delay-2" style="--accent:#00897b">
+            <div class="sport-card-icon" aria-hidden="true">🤝</div>
+            <h3>Amicizie e squadra</h3>
+            <p>Giocare insieme insegna il rispetto, la collaborazione e il fair play — valori per tutta la vita!</p>
+            <div class="sport-bar"><div class="sport-bar-fill" style="--bar-width:78%; background:#00897b"></div></div>
+          </div>
+        </div>
+        <div class="sport-tip reveal reveal-delay-3">
+          <span class="sport-tip-icon" aria-hidden="true">💡</span>
+          <div>
+            <strong>Lo sapevi?</strong> L'OMS raccomanda almeno
+            <strong>60 minuti</strong> di attività fisica moderata ogni giorno
+            per i bambini tra i 6 e i 17 anni!
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="reveal reveal-delay-1">
-    <div class="footer-title">🥗 La Salute a Tavola e in Palestra</div>
-    <div>Progetto educativo — Comune di Nicotera (VV), Calabria 🇮🇹</div>
-    <div>Sviluppato durante il <strong>Servizio Civile</strong> 2025/2026</div>
-    <div class="footer-divider"></div>
-    <div>
-      Ideazione e coordinamento: <strong>Francesco Taccone</strong>
-      (<a href="https://github.com/Fra702sco" target="_blank" rel="noopener noreferrer">@Fra702sco</a>) ·
-      Sviluppo con il supporto di
-      <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer">Perplexity AI</a>
-    </div>
-    <div style="margin-top:10px; font-size:12px; opacity:0.6;">
-      Licenza
-      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
-    </div>
-  </footer>
+    <!-- ===== INSEGNANTI E GENITORI ===== -->
+    <section id="teachers" class="reveal">
+      <div class="teachers-inner">
+        <div class="teacher-box reveal reveal-delay-1">
+          <h2><span aria-hidden="true">👩‍🏫</span> Per insegnanti e genitori</h2>
+          <p>
+            Questi giochi nascono nell'ambito del programma
+            <strong>"La Salute a Tavola e in Palestra"</strong> per le scuole primarie
+            del comune di Nicotera (VV). Tutti i giochi sono gratuiti, senza pubblicità
+            e pensati per essere usati in classe o a casa.
+          </p>
+          <div class="teacher-features reveal reveal-delay-2">
+            <span class="teacher-feat">✅ Gratuito</span>
+            <span class="teacher-feat">🚫 Nessuna pubblicità</span>
+            <span class="teacher-feat">📱 Funziona su tablet</span>
+            <span class="teacher-feat">🌐 Nessuna registrazione</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    // NAVBAR — hamburger
-    const burger   = document.getElementById('nav-burger');
-    const navLinks = document.getElementById('nav-links');
+    <!-- ===== SOCIAL ===== -->
+    <section id="social" class="reveal">
+      <div class="social-inner">
+        <div class="section-header reveal reveal-delay-1">
+          <span class="section-label">📲 Seguici</span>
+          <h2 class="section-title">Resta in contatto!</h2>
+          <p class="section-subtitle">Segui il progetto per aggiornamenti, novità e nuovi giochi!</p>
+        </div>
+        <div class="social-cards">
 
-    burger.addEventListener('click', function() {
-      burger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      const isOpen = burger.classList.contains('open');
-      burger.setAttribute('aria-expanded', isOpen);
-      burger.setAttribute('aria-label', isOpen ? 'Chiudi menu' : 'Apri menu di navigazione');
-    });
+          <a href="https://www.facebook.com/profile.php?id=61581125656677" target="_blank" rel="noopener noreferrer" class="social-card facebook reveal reveal-left reveal-delay-2">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="white" width="38" height="38">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <div class="social-name">Facebook</div>
+              <div class="social-handle">@Servizio Civile Nicotera 2025</div>
+              <div class="social-desc">Aggiornamenti e novità del progetto</div>
+            </div>
+            <div class="social-arrow" aria-hidden="true">→</div>
+          </a>
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        burger.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
-    });
+          <a href="https://www.instagram.com/serviziocivilenicotera_2025/" target="_blank" rel="noopener noreferrer" class="social-card instagram reveal reveal-right reveal-delay-3">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="white" width="38" height="38">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div class="social-info">
+              <div class="social-name">Instagram</div>
+              <div class="social-handle">@serviziocivilenicotera_2025/</div>
+              <div class="social-desc">Foto e momenti del progetto</div>
+            </div>
+            <div class="social-arrow" aria-hidden="true">→</div>
+          </a>
 
-    // NAVBAR — scura allo scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-    });
+        </div>
+      </div>
+    </section>
 
-    // NAVBAR — link attivo per sezione visibile
-    const sections = document.querySelectorAll('section[id]');
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-          const id = entry.target.id;
-          const active = document.querySelector('.nav-links a[href="#' + id + '"]');
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 });
-    sections.forEach(s => navObserver.observe(s));
+    <!-- ===== CONTATTI ===== -->
+    <section id="contact" class="reveal">
+      <div class="contact-inner">
+        <div class="section-header reveal reveal-delay-1">
+          <span class="section-label">✉️ Contatti</span>
+          <h2 class="section-title">Scrivici!</h2>
+          <p class="section-subtitle">Hai domande, suggerimenti o vuoi portare il progetto nella tua scuola?</p>
+        </div>
+        <div class="contact-box">
+          <div class="contact-left reveal-left reveal-delay-2">
+            <span class="contact-big-emoji" aria-hidden="true">📬</span>
+            <h3>Siamo qui per te!</h3>
+            <p>Insegnanti, genitori o curiosi — chiunque può contattarci. Risponderemo il prima possibile!</p>
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <span class="contact-info-icon" aria-hidden="true">📧</span>
+                <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>
+              </div>
+              <div class="contact-info-item">
+                <span class="contact-info-icon" aria-hidden="true">📍</span>
+                <span>Comune di Nicotera (VV), Calabria</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-right reveal-right reveal-delay-3">
+            <form class="contact-form" onsubmit="handleContact(event)">
+              <div class="form-group">
+                <label for="contact-name">👤 Nome</label>
+                <input type="text" id="contact-name" name="nome" placeholder="Il tuo nome..." required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">📧 Email</label>
+                <input type="email" id="contact-email" name="email" placeholder="La tua email..." required>
+              </div>
+              <div class="form-group">
+                <label for="contact-message">💬 Messaggio</label>
+                <textarea id="contact-message" rows="4" name="messaggio" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
+              </div>
+              <button type="submit" class="btn-contact">
+                <span id="btn-contact-text">📨 Invia messaggio</span>
+              </button>
+              <div id="contact-feedback" class="contact-feedback" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // FORM CONTATTI
-    function handleContact(e) {
-      e.preventDefault();
-      const btn      = document.getElementById('btn-contact-text');
-      const feedback = document.getElementById('contact-feedback');
-      const name     = document.getElementById('contact-name').value;
-      const email    = document.getElementById('contact-email').value;
-      const message  = document.getElementById('contact-message').value;
-      const subject  = encodeURIComponent('Messaggio da ' + name + ' - La Salute a Tavola');
-      const body     = encodeURIComponent('Nome: ' + name + '\nEmail: ' + email + '\n\nMessaggio:\n' + message);
-      const mailto   = 'mailto:serviziocivilenicotera2025@outlook.com?subject=' + subject + '&body=' + body;
-
-      btn.textContent = '⏳ Apertura email...';
-
-      const a = document.createElement('a');
-      a.href = mailto;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-      setTimeout(function() {
-        btn.textContent = '📨 Invia messaggio';
-        feedback.textContent = '✅ Client email aperto! Se non si apre, scrivi a serviziocivilenicotera2025@outlook.com';
-        feedback.className = 'contact-feedback success';
-        setTimeout(function() {
-          e.target.reset();
-          feedback.textContent = '';
-          feedback.className = 'contact-feedback';
-        }, 6000);
-      }, 1500);
-    }
-
-    // BARRE SPORT — animazione riempimento
-    const barObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.sport-bar-fill').forEach(function(bar) {
-            bar.classList.add('animated');
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.sport-card').forEach(function(card) {
-      barObserver.observe(card);
-    });
-
-    // REVEAL ON SCROLL
-    const revealEls = document.querySelectorAll(
-      '.reveal, .reveal-right, .reveal-left'
-    );
-
-    if ('IntersectionObserver' in window && revealEls.length > 0) {
-      const revealObserver = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('reveal-visible');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin: '0px 0px -10% 0px'
-        }
-      );
-
-      revealEls.forEach(el => revealObserver.observe(el));
-    } else {
-      revealEls.forEach(el => el.classList.add('reveal-visible'));
-    }
-    // SCROLL PERSONALIZZATO PER I LINK DELLA NAVBAR
-    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href').slice(1);
-        const targetEl = document.getElementById(targetId);
-        if (!targetEl) return;
-
-        e.preventDefault();
-
-        const navbar = document.getElementById('navbar');
-        const navHeight = navbar ? navbar.offsetHeight : 0;
-
-        const startY = window.pageYOffset;
-        const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
-
-        const duration = 900; // ms: aumenta per scorrere più lento
-        const startTime = performance.now();
-
-        function easeInOutQuad(t) {
-          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        }
-
-        function animate(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = easeInOutQuad(progress);
-          const newY = startY + (targetY - startY) * eased;
-
-          window.scrollTo(0, newY);
-
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          }
-        }
-
-        requestAnimationFrame(animate);
-      });
-    });
-  </script>
-  <script src="assets/js/script.js"></script>
-</body>
+    <!-- ===== FOOTER ===== -->
+    <footer class="reveal reveal-delay-1">
+      <div class="footer-title">🥗 La Salute a Tavola e in Palestra</div>
+      <div>Progetto educativo — Comune di Nicotera (VV), Calabria 🇮🇹</div>
+      <div>Sviluppato durante il <strong>Servizio Civile</strong> 2025/2026</div>
+      <div class="footer-divider"></div>
+      <div>
+        Ideazione e coordinamento: <strong>Francesco Taccone</strong>
+        (<a href="https://github.com/Fra702sco" target="_blank" rel="noopener noreferrer">@Fra702sco</a>) ·
+        Sviluppo con il supporto di
+        <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer">Perplexity AI</a>
+      </div>
+      <div style="margin-top:10px; font-size:12px; opacity:0.6;">
+        Licenza
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
+      </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>

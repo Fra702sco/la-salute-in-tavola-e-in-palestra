@@ -58,7 +58,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 ```bash
 git clone https://github.com/Fra702sco/la-salute-a-tavola.git
 cd la-salute-a-tavola
-# Apri index.html nel browser
+Apri index.html nel browser
 ```
 
 ### Metodo 3 — GitHub Pages

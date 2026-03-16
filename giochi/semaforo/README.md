@@ -16,6 +16,8 @@
 L'obiettivo è classificare correttamente 15 alimenti nei tre rettangoli colorati del semaforo,
 imparando in modo divertente cosa è bene mangiare durante la merenda.
 
+> ⚠️ Attenzione: hai solo **3 errori** a disposizione — al terzo errore la partita termina!
+
 ---
 
 ## 🍽️ Classificazione degli alimenti
@@ -32,15 +34,18 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 
 ## ✨ Funzionalità
 
-- 🖥️ **Schermata iniziale** con regole del gioco e pulsante "Inizia a giocare!" animato
+- 🖥️ **Schermata iniziale** con regole del gioco, avviso 3 errori e pulsante "Inizia a giocare!" animato
 - 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet)
 - 👻 **Ghost manuale personalizzato** — elemento rimpicciolito che segue il cursore/dito senza inclinazione
 - 🚦 **Semaforo animato** — si illumina di verde se corretto, rosso se sbagliato
 - 📳 **Toast banner mobile** — notifica visiva animata con immagine del semaforo (verde/rosso) che appare da sinistra su smartphone
-- 🎵 **Musica di sottofondo** — si avvia automaticamente al click su "Inizia a giocare!", controllabile con bottone 🎵
-- 🔊 **Effetti sonori** — suono diverso per risposta corretta, sbagliata e vittoria finale
+- 🎵 **Musica di sottofondo** — si avvia automaticamente al click su "Inizia a giocare!", controllabile con bottone 🎵 e slider volume
+- 🔊 **Effetti sonori** — suono diverso per risposta corretta, sbagliata, vittoria e game over
 - 🏆 **Suono di vittoria** — fanfara al completamento di tutti gli alimenti
 - 🎊 **Schermata di successo** con coriandoli animati al completamento
+- 💀 **Schermata game over** — appare al terzo errore con suono dedicato
+- ❤️ **Indicatore errori** — 3 pallini rossi che si accendono ad ogni errore (desktop e mobile)
+- 🏠 **Bottone Home** — torna alla homepage del portale (desktop: in alto a sinistra; mobile: barra in basso)
 - 🎯 **Calibrazione luci** — accessibile solo tramite scorciatoia da tastiera (nascosta agli utenti)
 - ⚙️ **Pannello coordinate** — accessibile solo tramite scorciatoia da tastiera (nascosta agli utenti)
 - 💾 **Salvataggio automatico** delle impostazioni di calibrazione nel localStorage
@@ -98,7 +103,7 @@ Per ripristinare i valori di default, clicca **🔄 Default** nel pannello.
 | Piattaforma | Supporto |
 |---|---|
 | Desktop (Chrome, Firefox, Edge) | ✅ Completo |
-| Desktop Safari / macOS | ✅ Completo  |
+| Desktop Safari / macOS | ✅ Completo |
 | Tablet (touch) | ✅ Completo |
 | Mobile (iOS / Android) | ✅ Completo con toast semaforo animato |
 
@@ -107,21 +112,26 @@ Per ripristinare i valori di default, clicca **🔄 Default** nel pannello.
 ## 📁 Struttura del progetto
 
 ```
-semaforo-merenda/
-├── index.html                              # Applicazione completa (single file)
+giochi/semaforo/
+├── index.html                              # HTML principale
 ├── assets/
+│   ├── css/
+│   │   └── style.css                       # Stili del gioco
+│   ├── js/
+│   │   └── game.js                         # Logica del gioco
 │   ├── audio/
 │   │   ├── background.mp3                  # Musica di sottofondo (loop)
 │   │   ├── correct.mp3                     # Suono risposta corretta
 │   │   ├── error.mp3                       # Suono risposta sbagliata
-│   │   └── victory.mp3                     # Fanfara di vittoria
+│   │   ├── victory.mp3                     # Fanfara di vittoria
+│   │   └── loss.mp3                        # Suono game over
 │   └── image/
 │       ├── background/
 │       │   ├── background.jpg              # Sfondo desktop
 │       │   └── background-mobile.png       # Sfondo mobile
 │       └── (mobile)pop-up/
-│           ├── semaforo-verde.jpg          # Immagine toast risposta corretta
-│           └── semaforo-rosso.jpg          # Immagine toast risposta sbagliata
+│           ├── semaforo-verde.png          # Immagine toast risposta corretta
+│           └── semaforo-rosso.png          # Immagine toast risposta sbagliata
 ├── README.md                               # Questo file
 └── LICENSE                                 # Licenza CC BY-NC 4.0
 ```
@@ -132,9 +142,10 @@ semaforo-merenda/
 
 | File | Fonte | Licenza |
 |---|---|---|
-| `correct.mp3` | [Mixkit](https://mixkit.co) | Free, no attribution |
-| `error.mp3` | [Mixkit](https://mixkit.co) | Free, no attribution |
-| `victory.mp3` | [Mixkit](https://mixkit.co) | Free, no attribution |
+| `correct.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
+| `error.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
+| `victory.mp3` | [Mixkit](https://mixkit.co) | Free — no attribution required |
+| `gameover.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
 | `background.mp3` | [Uppbeat](https://uppbeat.io) | Free Tier — credit obbligatorio |
 
 ---
@@ -170,7 +181,6 @@ cosa mangiare durante la merenda quotidiana.
 **Il Semaforo della Merenda** è un progetto educativo interattivo realizzato
 nell'ambito del programma **"La Salute a Tavola e in Palestra"** a Nicotera (VV), Calabria 🇮🇹
 
-### 🧑‍💻 Autore
 - **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
 - **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI**
 
@@ -185,6 +195,7 @@ presso il comune di Nicotera (VV), Calabria.
 
 ### 🤝 Ringraziamenti
 - [Perplexity AI](https://perplexity.ai) — Supporto allo sviluppo del codice
+- [SortableJS](https://sortablejs.github.io/Sortable/) — Libreria drag & drop
 
 ---
 
@@ -204,14 +215,11 @@ Questo progetto è distribuito sotto licenza
 *Fatto con ❤️ per i bambini di Nicotera*
 ```
 
-***
-
-## 📝 Cosa ho aggiornato rispetto alla versione precedente
-
-- ✅ Aggiunta sezione **Schermata iniziale** nelle funzionalità
-- ✅ Aggiunta sezione **Musica di sottofondo** con dettagli controlli
-- ✅ Aggiunti **Effetti sonori** e **Suono vittoria**
-- ✅ Aggiornato **Toast banner mobile** con immagini semaforo
-- ✅ Aggiornata **struttura progetto** con cartella `assets/audio/` e immagini toast
-- ✅ Aggiunta **Web Audio API** nelle tecnologie
-- ✅ Corrette le **scorciatoie da tastiera** (erano `L/K`, nel codice sono `8/9`)
+Le novità aggiunte rispetto alla versione precedente:
+- ✅ Avviso **3 errori** nella descrizione e nella schermata iniziale
+- ✅ **Schermata game over** nelle funzionalità
+- ✅ **Indicatore errori** (3 pallini) nelle funzionalità
+- ✅ **Bottone Home** nelle funzionalità
+- ✅ **Slider volume** menzionato
+- ✅ `gameover.mp3` aggiunto nella struttura e nei credits audio
+- ✅ `game.js` e `style.css` aggiunti nella struttura — non è più single file
