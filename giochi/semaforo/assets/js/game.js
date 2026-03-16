@@ -679,7 +679,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =====================================================
      SCHERMATA INIZIALE
      ===================================================== */
-  document.getElementById('btn-start').addEventListener('click', () => {
+  document.getElementById('btn-start').addEventListener('click', function () {
+    this.disabled = true;
     const screen = document.getElementById('start-screen');
 
     // Avvia musica (siamo dentro un click → browser lo permette)

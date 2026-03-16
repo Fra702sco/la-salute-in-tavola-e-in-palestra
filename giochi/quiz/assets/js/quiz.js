@@ -747,6 +747,7 @@ const TIMER = (() => {
     aggiornaRingUI(CFG.SECONDI_DOMANDA);
     DOM.timerDisplay.classList.remove('warning','danger');
     DOM.timerRingFill.classList.remove('warning','danger');
+    DOM.timerDisplay.setAttribute('aria-label', `${CFG.SECONDI_DOMANDA} secondi rimasti`);
 
     S.timerDomanda = setInterval(() => {
       S.secondiRimasti--;
@@ -758,6 +759,7 @@ const TIMER = (() => {
         DOM.timerRingFill.classList.add('warning');
         DOM.timerDisplay.classList.remove('danger');
         DOM.timerRingFill.classList.remove('danger');
+        DOM.timerDisplay.setAttribute('aria-label', `Attenzione! Solo ${S.secondiRimasti} secondi rimasti`);
         setUrgenza(true);
         AUDIO.play('tick');
       }
@@ -767,6 +769,7 @@ const TIMER = (() => {
         DOM.timerRingFill.classList.remove('warning');
         DOM.timerDisplay.classList.add('danger');
         DOM.timerRingFill.classList.add('danger');
+        DOM.timerDisplay.setAttribute('aria-label', `Urgente! Solo ${S.secondiRimasti} secondi rimasti`);
       }
 
       if (S.secondiRimasti <= 0) {
