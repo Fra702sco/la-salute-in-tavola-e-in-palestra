@@ -255,6 +255,8 @@ Progress bar domanda → Responsive (tablet → mobile → ≤380px)
 
 Progetto sviluppato durante il **Servizio Civile** 2025/2026 — comune di Nicotera (VV), Calabria.
 
+> Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy. Vedi il [README principale](../../README.md) per i dettagli.
+
 ---
 
 ## 📄 Licenza

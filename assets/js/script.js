@@ -459,4 +459,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* =====================================================
+     PRIVACY POLICY MODAL
+     ===================================================== */
+  const privacyOverlay = document.getElementById('privacy-overlay');
+  const openPrivacyBtn = document.getElementById('open-privacy');
+  const closePrivacyBtn = document.getElementById('privacy-close');
+
+  if (privacyOverlay && openPrivacyBtn) {
+    function openPrivacy() {
+      privacyOverlay.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      closePrivacyBtn.focus();
+    }
+    function closePrivacy() {
+      privacyOverlay.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+
+    openPrivacyBtn.addEventListener('click', openPrivacy);
+    closePrivacyBtn.addEventListener('click', closePrivacy);
+    privacyOverlay.addEventListener('click', e => { if (e.target === privacyOverlay) closePrivacy(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !privacyOverlay.hasAttribute('hidden')) closePrivacy();
+    });
+  }
+
 }); // fine DOMContentLoaded

@@ -36,14 +36,17 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 
 - 🎨 **Design animato** — hero con bolle fluttuanti, animazioni di entrata su scroll (reveal)
 - 📱 **Completamente responsive** — ottimizzato per desktop, tablet e smartphone (iOS/Android)
-- 🧭 **Navbar sticky** con hamburger menu su mobile e link attivo per sezione visibile
+- 🧭 **Navbar scroll-linked** — si scurisce proporzionalmente allo scroll (da blu vivace a quasi nero), con altezza che si comprime; hamburger menu su mobile
+- 🆕 **Popup novità** — modale che appare al primo accesso (o al cambio versione) con le ultime novità del sito; chiudibile con ✕, click fuori o `Escape`
 - 📊 **Sezione statistiche** — contatori animati (giochi, gratuito, no pub, contenuti)
 - 🥦 **Sezione alimentazione** — 4 card sui benefici di mangiare sano
-- 🏃 **Sezione sport** — 6 card con barre animate sui benefici dell'attività fisica
+- 🏃 **Sezione sport** — 6 card con barre animate; emoji 🏃 decorativa animata con effetto corsa (bounce + rotazione)
 - 👩‍🏫 **Sezione insegnanti e genitori** — informazioni sul progetto
 - 📲 **Link social** — Facebook e Instagram del progetto
 - ✉️ **Form contatti** — invio diretto via **Formspree** con validazione email (blocco domini temporanei)
 - 🌀 **Scroll personalizzato** — animazione smooth con easing su click navbar (900ms)
+- 🔒 **Privacy Policy** — modale accessibile dal footer con informativa GDPR completa
+- 🔍 **SEO ottimizzato** — title/description con keyword, canonical, geo tag, Open Graph completo, Twitter Card, JSON-LD strutturato (WebSite, EducationalOrganization, ItemList giochi)
 - ♿ **Accessibilità** — HTML semantico, ARIA completo, `aria-live` su feedback dinamici
 - 🚫 **Zero pubblicità**, zero registrazione, zero tracking
 
@@ -134,25 +137,29 @@ la-salute-in-tavola-e-in-palestra/
 ### `assets/js/script.js`
 
 ```
+IIFE (esecuzione immediata)
+ └── Popup novità — mostra se versione localStorage ≠ WHATS_NEW_VERSION
+
 DOMContentLoaded
  ├── Navbar — hamburger (apri/chiudi + chiudi su click link)
- ├── Navbar — scura allo scroll
+ ├── Navbar — scroll-linked (lerp colore/ombra/altezza su ogni evento scroll)
  ├── Navbar — link attivo per sezione visibile (IntersectionObserver)
  ├── Navbar — scroll personalizzato easeInOutQuad (900ms)
  ├── Barre sport — animazione riempimento (IntersectionObserver)
  ├── Reveal on scroll (IntersectionObserver + fallback)
  ├── Validazione email — blocco domini temporanei/falsi (300+ domini)
- └── Form contatti — invio async via Formspree con feedback successo/errore + disable bottone
+ ├── Form contatti — invio async via Formspree con feedback successo/errore + disable bottone
+ └── Privacy Policy modal — apri/chiudi dal footer
 ```
 
 ### `assets/css/style.css`
 
 ```
-Reset → Variabili CSS → Global → Navbar →
+Reset → Variabili CSS → Global → Navbar (scroll-linked) →
 Hero → Stats → Section header → Giochi →
-Educazione → Insegnanti → Sport → Social →
-Contatti → Footer → Reveal on scroll →
-Responsive (≤ 900px → ≤ 768px → ≤ 600px)
+Educazione → Insegnanti → Sport (animazione 🏃) → Social →
+Contatti → Footer → Popup novità → Privacy Policy modal →
+Reveal on scroll → Responsive (≤ 900px → ≤ 768px → ≤ 600px)
 ```
 
 ---
@@ -167,11 +174,25 @@ Responsive (≤ 900px → ≤ 768px → ≤ 600px)
 | **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop nel gioco Semaforo |
 | **Web Audio API** | Effetti sonori e musica nei giochi |
 | **IntersectionObserver API** | Animazioni di entrata su scroll e link attivo navbar |
-| **localStorage** | Salvataggio impostazioni calibrazione semaforo |
+| **localStorage** | Versione popup novità + impostazioni calibrazione semaforo |
 | **Fetch API** | Caricamento domande da file JSON esterno (quiz) |
 | **[Formspree](https://formspree.io)** | Ricezione messaggi del form contatti senza backend |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
+
+---
+
+## 🔍 SEO
+
+Il portale è ottimizzato per i motori di ricerca con:
+
+- **Title e description** con keyword mirate (alimentazione bambini, scuola primaria, Nicotera)
+- **`<link rel="canonical">`** per evitare contenuto duplicato
+- **Geo tag** (`geo.region`, `geo.placename`, `geo.position`) per SEO locale
+- **Open Graph completo** — anteprima ricca su WhatsApp, Facebook, LinkedIn
+- **Twitter Card** `summary_large_image`
+- **JSON-LD strutturato** — `WebSite`, `EducationalOrganization`, `WebPage`, `ItemList` giochi
+- **Google Search Console** configurata (verifica presente nel `<head>`)
 
 ---
 
