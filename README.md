@@ -44,6 +44,7 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 - 📲 **Link social** — Facebook e Instagram del progetto
 - ✉️ **Form contatti** — apre il client email con oggetto e messaggio precompilati
 - 🌀 **Scroll personalizzato** — animazione smooth con easing su click navbar (900ms)
+- ♿ **Accessibilità** — HTML semantico, ARIA completo, `aria-live` su feedback dinamici
 - 🚫 **Zero pubblicità**, zero registrazione, zero tracking
 
 ---
@@ -72,49 +73,56 @@ Il portale è disponibile online all'indirizzo:
 ```
 la-salute-a-tavola/
 │
-├── index.html                        # Homepage principale
-├── favicon.ico                       # Icona del sito
-├── preview.jpg                       # Immagine Open Graph (WhatsApp/social)
-├── README.md                         # Questo file
-├── LICENSE                           # Licenza CC BY-NC 4.0
+├── index.html                              # Homepage principale
+├── README.md                               # Questo file
+├── LICENSE                                 # Licenza CC BY-NC 4.0
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css                 # CSS globale homepage
-│   └── js/
-│       └── script.js                 # JS globale homepage
+│   │   └── style.css                       # CSS globale homepage
+│   ├── js/
+│   │   └── script.js                       # JS globale homepage
+│   └── ico&preview/
+│       ├── favicon.ico                     # Icona del sito
+│       └── preview.jpg                     # Immagine Open Graph (social/WhatsApp)
 │
 └── giochi/
     │
-    ├── semaforo/                     # ✅ Disponibile
-    │   ├── index.html                # Gioco completo (single file)
+    ├── semaforo/                           # ✅ Disponibile
+    │   ├── index.html
+    │   ├── README.md                       # Documentazione del gioco
     │   └── assets/
+    │       ├── css/
+    │       │   └── style.css               # Stili del gioco
+    │       ├── js/
+    │       │   └── game.js                 # Logica del gioco
     │       ├── audio/
-    │       │   ├── background.mp3    # Musica di sottofondo
-    │       │   ├── correct.mp3       # Suono risposta corretta
-    │       │   ├── error.mp3         # Suono risposta sbagliata
-    │       │   └── victory.mp3       # Fanfara di vittoria
+    │       │   ├── background.mp3          # Musica di sottofondo (loop)
+    │       │   ├── correct.mp3             # Suono risposta corretta
+    │       │   ├── error.mp3               # Suono risposta sbagliata
+    │       │   ├── victory.mp3             # Fanfara di vittoria
+    │       │   └── loss.mp3                # Suono game over
     │       └── image/
     │           ├── background/
-    │           │   ├── background.jpg
+    │           │   ├── background.jpg      # Sfondo desktop
     │           │   └── background-mobile.png
-    │           └── mobile/pop-ups/
-    │               ├── semaforo-verde.png
-    │               └── semaforo-rosso.png
+    │           └── (mobile)pop-up/
+    │               ├── semaforo-verde.png  # Toast risposta corretta
+    │               └── semaforo-rosso.png  # Toast risposta sbagliata
     │
-    ├── quiz/                         # 🔵 In arrivo
+    ├── quiz/                               # 🔵 In arrivo
     │   ├── index.html
     │   └── assets/
     │       ├── audio/
     │       └── image/
     │
-    ├── memory/                       # 🟠 In arrivo
+    ├── memory/                             # 🟠 In arrivo
     │   ├── index.html
     │   └── assets/
     │       ├── audio/
     │       └── image/
     │
-    └── puzzle/                       # 🟣 In arrivo
+    └── puzzle/                             # 🟣 In arrivo
         ├── index.html
         └── assets/
             ├── audio/
@@ -123,19 +131,62 @@ la-salute-a-tavola/
 
 ---
 
+## 🏗️ Architettura del codice
+
+### `assets/js/script.js` — struttura interna
+Tutto il codice è racchiuso in un unico `DOMContentLoaded` padre:
+
+```
+DOMContentLoaded
+ ├── Navbar — hamburger (apri/chiudi + chiudi su click link)
+ ├── Navbar — scura allo scroll (IntersectionObserver)
+ ├── Navbar — link attivo per sezione visibile (IntersectionObserver)
+ ├── Navbar — scroll personalizzato easeInOutQuad (900ms)
+ ├── Barre sport — animazione riempimento (IntersectionObserver)
+ ├── Reveal on scroll (IntersectionObserver + fallback)
+ └── Form contatti — apertura client email via mailto
+```
+
+### `assets/css/style.css` — struttura interna
+
+```
+Reset → Variabili CSS → Global (body) → Navbar →
+Hero → Stats → Section header → Giochi →
+Educazione → Insegnanti → Sport → Social →
+Contatti → Footer → Reveal on scroll →
+Responsive (≤ 900px → ≤ 768px → ≤ 600px)
+```
+
+---
+
 ## 🛠️ Tecnologie utilizzate
 
 | Tecnologia | Utilizzo |
 |---|---|
-| **HTML5** | Struttura del portale e dei giochi |
-| **CSS3** | Animazioni, layout, glassmorphism, reveal on scroll |
-| **JavaScript (ES6+)** | Navbar, scroll personalizzato, form contatti, reveal observer |
+| **HTML5 semantico** | Struttura portale e giochi + ARIA completo |
+| **CSS3** | Animazioni, glassmorphism, reveal on scroll, media queries |
+| **JavaScript ES6+** | Navbar, scroll custom, form, IntersectionObserver |
 | **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop nel gioco Semaforo |
 | **Web Audio API** | Effetti sonori e musica nei giochi |
-| **IntersectionObserver API** | Animazioni di entrata su scroll |
+| **IntersectionObserver API** | Animazioni di entrata su scroll e link attivo navbar |
 | **localStorage** | Salvataggio impostazioni calibrazione semaforo |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
+
+---
+
+## ♿ Accessibilità
+
+Il portale e i giochi rispettano le linee guida WCAG 2.1:
+
+- HTML semantico (`<main>`, `<nav>`, `<section>`, `<footer>`)
+- `aria-hidden="true"` su tutti gli elementi decorativi (emoji, SVG, bolle)
+- `aria-label` su bottoni icon-only e link social
+- `aria-expanded` + `aria-controls` sull'hamburger navbar
+- `aria-live="polite"` sul feedback del form contatti
+- `role="dialog"` + `aria-modal` + `aria-labelledby` sui pannelli dei giochi
+- `role="list"` + `aria-label` sulle zone di drop e zona alimenti
+- `prefers-reduced-motion` rispettato nelle animazioni reveal
 
 ---
 
@@ -166,7 +217,7 @@ attraverso giochi interattivi accessibili a tutti.
 
 - 📘 **Facebook**: [Servizio Civile Nicotera 2025](https://www.facebook.com/profile.php?id=61581125656677)
 - 📸 **Instagram**: [@serviziocivilenicotera_2025](https://www.instagram.com/serviziocivilenicotera_2025/)
-- ✉️ **Email**: serviziocivilenicotera2025@outlook.com
+- ✉️ **Email**: [serviziocivilenicotera2025@outlook.com](mailto:serviziocivilenicotera2025@outlook.com)
 
 ---
 
@@ -183,6 +234,7 @@ durante il Servizio Civile 2025/2026 presso il comune di Nicotera (VV), Calabria
 - [SortableJS](https://sortablejs.github.io/Sortable/) — Libreria drag & drop
 - [Mixkit](https://mixkit.co) — Effetti sonori gratuiti
 - [Uppbeat](https://uppbeat.io) — Musica di sottofondo
+- [Pixabay](https://pixabay.com) — Effetti sonori gratuiti
 
 ---
 
@@ -200,3 +252,17 @@ Questo progetto è distribuito sotto licenza
 ---
 
 *Fatto con ❤️ per i bambini di Nicotera*
+```
+
+***
+
+Le novità aggiunte rispetto alla versione precedente:
+
+- ✅ **Struttura file corretta** — `semaforo/` non è più single-file: ha `css/`, `js/`, `loss.mp3`, `(mobile)pop-up/` con nomi esatti, `README.md` proprio
+- ✅ **`assets/ico&preview/`** aggiunto — `favicon.ico` e `preview.jpg` erano orfani nella root
+- ✅ **Sezione `🏗️ Architettura del codice`** — mostra la struttura interna di `script.js` e `style.css`
+- ✅ **Sezione `♿ Accessibilità`** — documenta tutti gli attributi ARIA aggiunti su portale e giochi
+- ✅ **`♿ Accessibilità`** aggiunta nelle funzionalità del portale
+- ✅ **Git clone** — rimosso il link Markdown rotto `[url](url)`, ora URL puro
+- ✅ **[Pixabay](https://pixabay.com)** aggiunto nei ringraziamenti (mancava)
+- ✅ **`HTML5 semantico`** aggiornato nella tabella tecnologie

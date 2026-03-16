@@ -24,11 +24,11 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 
 | 🔴 Rosso — Da evitare | 🟡 Giallo — Con moderazione | 🟢 Verde — Consigliati |
 |---|---|---|
-| 🍟 Patatine | 🍰 Torta fatta in casa | 🍎 Mela |
-| 🍫 Cioccolato | 🧃 Succo | 🥣 Yogurt |
-| 🥐 Brioche | 🫓 Focaccia | 🍌 Banana |
-| 🥤 Bibita | 🥪 Panino | 🥕 Carota |
-| 🍬 Caramella | 🍪 Biscotto fatto in casa | 🥖 Pane |
+| 🍟 Patatine        | 🍰 Torta fatta in casa     | 🍎 Mela    |
+| 🍫 Cioccolato      | 🧃 Succo                   | 🥣 Yogurt  |
+| 🥐 Brioche         | 🫓 Focaccia                | 🍌 Banana  |
+| 🥤 Bibita          | 🥪 Panino                  | 🥕 Carota  |
+| 🍬 Caramella       | 🍪 Biscotto fatto in casa  | 🥖 Pane    |
 
 ---
 
@@ -38,10 +38,9 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 - 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet)
 - 👻 **Ghost manuale personalizzato** — elemento rimpicciolito che segue il cursore/dito senza inclinazione
 - 🚦 **Semaforo animato** — si illumina di verde se corretto, rosso se sbagliato
-- 📳 **Toast banner mobile** — notifica visiva animata con immagine del semaforo (verde/rosso) che appare da sinistra su smartphone
+- 📳 **Toast banner mobile** — notifica visiva animata con immagine del semaforo che appare da sinistra su smartphone
 - 🎵 **Musica di sottofondo** — si avvia automaticamente al click su "Inizia a giocare!", controllabile con bottone 🎵 e slider volume
 - 🔊 **Effetti sonori** — suono diverso per risposta corretta, sbagliata, vittoria e game over
-- 🏆 **Suono di vittoria** — fanfara al completamento di tutti gli alimenti
 - 🎊 **Schermata di successo** con coriandoli animati al completamento
 - 💀 **Schermata game over** — appare al terzo errore con suono dedicato
 - ❤️ **Indicatore errori** — 3 pallini rossi che si accendono ad ogni errore (desktop e mobile)
@@ -49,6 +48,7 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 - 🎯 **Calibrazione luci** — accessibile solo tramite scorciatoia da tastiera (nascosta agli utenti)
 - ⚙️ **Pannello coordinate** — accessibile solo tramite scorciatoia da tastiera (nascosta agli utenti)
 - 💾 **Salvataggio automatico** delle impostazioni di calibrazione nel localStorage
+- ♿ **Accessibilità** — ARIA completo su pannelli, zone di drop, status e toast
 - 🔄 **Reset** per ricominciare da zero
 
 ---
@@ -84,7 +84,7 @@ le impostazioni.
 |---|---|---|
 | Apri/chiudi **Coordinate** | `Ctrl + Shift + 8` | `Cmd + 8` |
 | Avvia/annulla **Calibratore** | `Ctrl + Shift + 9` | `Cmd + 9` |
-| Annulla calibrazione | `ESC` | `ESC` |
+| Annulla / chiudi pannelli | `ESC` | `ESC` |
 
 ### Procedura di calibrazione
 1. Premi `Ctrl+Shift+9` (o `Cmd+9` su macOS)
@@ -93,8 +93,8 @@ le impostazioni.
 4. Clicca sul **centro del bulbo verde**
 5. Le coordinate vengono **salvate automaticamente** nel browser
 
-Per impostare le coordinate manualmente, usa `Ctrl+Shift+8`.  
-Per ripristinare i valori di default, clicca **🔄 Default** nel pannello.
+Per impostare le coordinate manualmente usa `Ctrl+Shift+8`.  
+Per ripristinare i valori di default clicca **🔄 Default** nel pannello.
 
 ---
 
@@ -138,14 +138,56 @@ giochi/semaforo/
 
 ---
 
+## 🏗️ Architettura del codice
+
+### `game.js` — struttura interna
+Tutto il codice è racchiuso in un unico `DOMContentLoaded` padre,
+con sezioni ordinate in questo modo:
+
+```
+DOMContentLoaded
+ ├── Costanti (IMG_W, TOTAL, itemsData, correctZone…)
+ ├── Stato gioco (correctCount, errorCount, bgPlaying…)
+ ├── Cache DOM
+ ├── Audio (playSound, toggleBgMusic, startBgMusic, unlockAudio)
+ ├── Glow semaforo (positionGlows, resize)
+ ├── Pannello Settings (openSettings, closeSettings)
+ ├── Calibrazione (startCalib, stopCalib, showCalibStep)
+ ├── Pannello About (openAbout, closeAbout)
+ ├── Keyboard shortcuts (ESC, Ctrl+Shift+8/9)
+ ├── Confetti
+ ├── Toast banner
+ ├── Semaforo feedback (setTraffic)
+ ├── Indicatore errori (updateErrorDots)
+ ├── Game Over / Successo (triggerGameOver, checkSuccess)
+ ├── Stato item (updateItemStatus)
+ ├── Drag & Drop (handleDrop, Sortable, dragover)
+ ├── Ghost touch/mouse (createGhost, moveGhost, removeGhost)
+ ├── Build/Reset gioco (createItem, buildItems, resetGame)
+ ├── Bottoni (reset, retry, play-again, start)
+ └── Init → buildItems()
+```
+
+### `style.css` — struttura interna
+
+```
+Reset → Body → Glow → Schermata iniziale →
+Success → Gameover → Confetti → Toast →
+Calibrazione → Settings → About →
+Controlli desktop → Area gioco → Item →
+Sortable/Ghost → Responsive (tablet → mobile)
+```
+
+---
+
 ## 🔊 Credits audio
 
 | File | Fonte | Licenza |
 |---|---|---|
-| `correct.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
-| `error.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
-| `victory.mp3` | [Mixkit](https://mixkit.co) | Free — no attribution required |
-| `gameover.mp3` | [Pixabay](https://pixabay.com) | Free — no attribution required |
+| `correct.mp3`    | [Pixabay](https://pixabay.com) | Free — no attribution required |
+| `error.mp3`      | [Pixabay](https://pixabay.com) | Free — no attribution required |
+| `victory.mp3`    | [Mixkit](https://mixkit.co)   | Free — no attribution required |
+| `loss.mp3`       | [Pixabay](https://pixabay.com) | Free — no attribution required |
 | `background.mp3` | [Uppbeat](https://uppbeat.io) | Free Tier — credit obbligatorio |
 
 ---
@@ -154,14 +196,28 @@ giochi/semaforo/
 
 | Tecnologia | Utilizzo |
 |---|---|
-| **HTML5** | Struttura dell'applicazione |
-| **CSS3** | Animazioni, layout, effetti glow, clip-path toast |
-| **JavaScript (ES6+)** | Logica del gioco, ghost manuale, audio, calibrazione, localStorage |
+| **HTML5 semantico** | Struttura (`<main>`, `<nav>`) + accessibilità ARIA completa |
+| **CSS3** | Animazioni, layout, glow, clip-path toast, media queries |
+| **JavaScript ES6+** | Logica, ghost, audio, calibrazione, localStorage |
 | **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop degli alimenti |
 | **Web Audio API** | Effetti sonori e musica di sottofondo |
 | **localStorage** | Salvataggio impostazioni di calibrazione |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
+
+---
+
+## ♿ Accessibilità
+
+Il gioco rispetta le linee guida WCAG 2.1 nei limiti di un gioco drag & drop:
+
+- `role="dialog"` + `aria-modal` + `aria-labelledby` su tutti i pannelli (start, success, gameover, settings, about)
+- `aria-hidden="true"` su pannelli chiusi e tutti gli elementi decorativi (emoji, SVG)
+- `role="list"` + `aria-label` sulle dropzone e sulla zona alimenti
+- `role="status"` + `aria-live="polite"` su status bar e toast banner
+- `<main>` come elemento semantico dell'area di gioco
+- `<nav>` per la barra di controlli mobile
+- `aria-label` su tutti i bottoni icon-only
 
 ---
 
@@ -178,16 +234,8 @@ cosa mangiare durante la merenda quotidiana.
 
 ## 👤 Autore
 
-**Il Semaforo della Merenda** è un progetto educativo interattivo realizzato
-nell'ambito del programma **"La Salute a Tavola e in Palestra"** a Nicotera (VV), Calabria 🇮🇹
-
 - **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
 - **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI**
-
-### 🎯 Obiettivo
-Sensibilizzare i bambini delle scuole primarie a scegliere in modo
-consapevole cosa mangiare durante la merenda quotidiana,
-attraverso un gioco interattivo e divertente.
 
 ### 🏫 Contesto
 Progetto sviluppato durante il **Servizio Civile** 2025/2026
@@ -215,11 +263,12 @@ Questo progetto è distribuito sotto licenza
 *Fatto con ❤️ per i bambini di Nicotera*
 ```
 
+***
+
 Le novità aggiunte rispetto alla versione precedente:
-- ✅ Avviso **3 errori** nella descrizione e nella schermata iniziale
-- ✅ **Schermata game over** nelle funzionalità
-- ✅ **Indicatore errori** (3 pallini) nelle funzionalità
-- ✅ **Bottone Home** nelle funzionalità
-- ✅ **Slider volume** menzionato
-- ✅ `gameover.mp3` aggiunto nella struttura e nei credits audio
-- ✅ `game.js` e `style.css` aggiunti nella struttura — non è più single file
+
+- ✅ **Sezione `♿ Accessibilità`** — documenta tutti gli attributi ARIA aggiunti
+- ✅ **Sezione `🏗️ Architettura del codice`** — mostra la struttura interna di `game.js` e `style.css` come albero leggibile
+- ✅ **`ESC` aggiornato** — ora chiude anche i pannelli About e Settings (non solo la calibrazione)
+- ✅ **`HTML5 semantico`** aggiornato nella tabella tecnologie — menziona `<main>`, `<nav>` e ARIA
+- ✅ **`game.js`** aggiornato nella struttura file — non è più indicato come file secondario

@@ -2,40 +2,58 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gioco educativo drag & drop sulla corretta alimentazione per bambini delle scuole primarie." />
+    <meta name="theme-color" content="#0d47a1" />
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content="Il Semaforo della Merenda" />
+    <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria." />
+    <meta property="og:image"       content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg" />
+    <meta property="og:url"         content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/giochi/semaforo/index.html" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:locale"      content="it_IT" />
+
     <title>Il Semaforo della Merenda</title>
-    <!-- Favicon -->
-    <link rel="icon" href="../../assets/ico&preview/favicon.ico" type="image/x-icon">
-    <!-- Theme color (barra browser Android) -->
-    <meta name="theme-color" content="#0d47a1">
-    <!-- Open Graph (anteprima su social e WhatsApp) -->
-    <meta property="og:title" content="La Salute a Tavola e in Palestra">
-    <meta property="og:description" content="Giochi educativi sulla salute e alimentazione per bambini delle scuole primarie — Nicotera (VV), Calabria.">
-    <meta property="og:image" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/assets/ico&preview/preview.jpg">
-    <meta property="og:url" content="https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/index.html">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="it_IT">
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="../../assets/ico&preview/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body>
-    <!-- Audio semaforo -->
-    <audio id="audio-verde" src="assets/audio/correct.mp3" preload="auto"></audio>
-    <audio id="audio-rosso" src="assets/audio/error.mp3" preload="auto"></audio>
-    <audio id="audio-vittoria" src="assets/audio/victory.mp3" preload="auto"></audio>
-    <audio id="audio-gameover" src="assets/audio/loss.mp3" preload="auto"></audio>
-    <audio id="audio-bg" src="assets/audio/background.mp3" preload="auto" loop></audio>
-    <div id="glow-red"    class="light-glow"></div>
-    <div id="glow-yellow" class="light-glow"></div>
-    <div id="glow-green"  class="light-glow"></div>
-    <div id="calib-overlay"></div>
-    <!-- SCHERMATA INIZIALE -->
-    <div id="start-screen">
+
+    <!-- ===== AUDIO ===== -->
+    <!-- aria-hidden: elementi puramente funzionali, invisibili agli screen reader -->
+    <div aria-hidden="true">
+      <audio id="audio-verde"    src="assets/audio/correct.mp3"    preload="auto"></audio>
+      <audio id="audio-rosso"    src="assets/audio/error.mp3"      preload="auto"></audio>
+      <audio id="audio-vittoria" src="assets/audio/victory.mp3"    preload="auto"></audio>
+      <audio id="audio-gameover" src="assets/audio/loss.mp3"       preload="auto"></audio>
+      <audio id="audio-bg"       src="assets/audio/background.mp3" preload="auto" loop></audio>
+    </div>
+
+    <!-- ===== GLOW SEMAFORO ===== -->
+    <div aria-hidden="true">
+      <div id="glow-red"    class="light-glow"></div>
+      <div id="glow-yellow" class="light-glow"></div>
+      <div id="glow-green"  class="light-glow"></div>
+    </div>
+
+    <!-- ===== OVERLAY CALIBRAZIONE ===== -->
+    <div id="calib-overlay" aria-hidden="true"></div>
+
+
+    <!-- ===== SCHERMATA INIZIALE ===== -->
+    <div id="start-screen" role="dialog" aria-modal="true" aria-labelledby="start-title">
       <div class="start-card">
-        <span class="start-emoji">🚦</span>
-        <div class="start-title">Il Semaforo<br>della Merenda</div>
+
+        <span class="start-emoji" aria-hidden="true">🚦</span>
+
+        <h1 class="start-title" id="start-title">
+          Il Semaforo<br>della Merenda
+        </h1>
+
         <p class="start-subtitle">Impara cosa mangiare durante la merenda!</p>
+
         <div class="start-rules">
           <p>🔴 <strong>Rosso</strong> → Alimenti da evitare</p>
           <p>🟡 <strong>Giallo</strong> → Con moderazione</p>
@@ -43,71 +61,121 @@
           <p>🖱️ Trascina ogni alimento nel rettangolo giusto!</p>
           <p>⚠️ <strong>Attenzione:</strong> hai solo <strong>3 errori</strong> a disposizione!</p>
         </div>
-        <button class="btn-start" id="btn-start">🎮 Inizia a giocare!</button>
+
+        <button class="btn-start" id="btn-start">
+          🎮 Inizia a giocare!
+        </button>
+
       </div>
     </div>
 
-    <!-- Preload immagini toast (nascoste) -->
-    <img id="img-semaforo-verde" src="assets/image/(mobile)pop-up/semaforo-verde.png" 
-        style="display:none" alt="">
-    <img id="img-semaforo-rosso" src="assets/image/(mobile)pop-up/semaforo-rosso.png" 
-        style="display:none" alt="">
-    <!-- Toast banner (solo mobile) -->
-    <div id="toast-banner">
-      <img id="toast-semaforo" src="" alt="">
-      <div style="display:flex; flex-direction:column; gap:2px;">
-        <span id="toast-icon" style="font-size:22px;"></span>
-        <span id="toast-text"></span>
+
+    <!-- ===== TOAST BANNER (solo mobile) ===== -->
+    <!--
+      Preload immagini nascoste: servono al JS per il src del toast.
+      Il toast stesso è aria-live per annunciare il feedback.
+    -->
+    <img id="img-semaforo-verde"
+      src="assets/image/(mobile)pop-up/semaforo-verde.png"
+      alt=""
+      aria-hidden="true"
+      style="display:none" />
+
+    <img id="img-semaforo-rosso"
+      src="assets/image/(mobile)pop-up/semaforo-rosso.png"
+      alt=""
+      aria-hidden="true"
+      style="display:none" />
+
+    <div id="toast-banner" role="status" aria-live="polite" aria-atomic="true">
+      <img id="toast-semaforo" src="" alt="" aria-hidden="true" />
+      <div class="toast-content">
+        <span id="toast-icon"  class="toast-icon-emoji"></span>
+        <span id="toast-text"  class="toast-text"></span>
       </div>
     </div>
 
-    <div id="success-screen">
+
+    <!-- ===== SCHERMATA SUCCESSO ===== -->
+    <div id="success-screen" role="dialog" aria-modal="true" aria-labelledby="success-title">
       <div class="success-card">
-        <span class="success-stars">⭐🌟⭐🌟⭐</span>
-        <div class="success-title">BRAVISSIMO!</div>
-        <div class="success-subtitle">Hai completato il Semaforo della Merenda! 🎉</div>
-        <div class="success-score" id="success-score">15 / 15 ✅</div>
-        <span class="success-emojis">🍎🥦🥛🍌🥕🥖</span>
-        <div class="success-message">
+
+        <span class="success-stars" aria-hidden="true">⭐🌟⭐🌟⭐</span>
+
+        <h2 class="success-title" id="success-title">BRAVISSIMO!</h2>
+        <p class="success-subtitle">Hai completato il Semaforo della Merenda! 🎉</p>
+
+        <div class="success-score" id="success-score" aria-live="polite">15 / 15 ✅</div>
+
+        <span class="success-emojis" aria-hidden="true">🍎🥦🥛🍌🥕🥖</span>
+
+        <p class="success-message">
           Hai messo tutti gli alimenti<br>
           nel <strong>posto giusto</strong>!<br>
           Ora sai cosa mangiare per stare in salute! 💪
-        </div>
-        <button class="btn-play-again" id="btn-play-again">🔄 Gioca ancora!</button>
+        </p>
+
+        <button class="btn-play-again" id="btn-play-again">
+          🔄 Gioca ancora!
+        </button>
+
       </div>
     </div>
 
-    <div id="gameover-screen">
+
+    <!-- ===== SCHERMATA GAME OVER ===== -->
+    <div id="gameover-screen" role="dialog" aria-modal="true" aria-labelledby="gameover-title">
       <div class="gameover-card">
-        <span class="gameover-emoji">😵</span>
-        <div class="gameover-title">HAI PERSO!</div>
-        <div class="gameover-subtitle">Hai sbagliato 3 volte... riprova! 💪</div>
-        <div class="gameover-errors">3 errori ❌</div>
-        <div class="gameover-message">
+
+        <span class="gameover-emoji" aria-hidden="true">😵</span>
+
+        <h2 class="gameover-title" id="gameover-title">HAI PERSO!</h2>
+        <p class="gameover-subtitle">Hai sbagliato 3 volte… riprova! 💪</p>
+
+        <div class="gameover-errors" aria-label="3 errori commessi">3 errori ❌</div>
+
+        <p class="gameover-message">
           Studia bene i colori del semaforo<br>e ritenta!
-        </div>
-        <button class="btn-retry" id="btn-retry">🔄 Riprova!</button>
+        </p>
+
+        <button class="btn-retry" id="btn-retry">
+          🔄 Riprova!
+        </button>
+
       </div>
     </div>
 
-    <div id="settings-panel">
-      <h3>⚙️ Impostazioni Coordinate Luci</h3>
+
+    <!-- ===== PANNELLO COORDINATE (solo tastiera) ===== -->
+    <div id="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-hidden="true">
+      <h3 id="settings-title">⚙️ Impostazioni Coordinate Luci</h3>
+
       <div class="settings-row">
-        <label>🔴 Rosso</label>
-        <input type="number" id="inp-red-x"> <span>X</span>
-        <input type="number" id="inp-red-y"> <span>Y</span>
+        <label for="inp-red-x">🔴 Rosso</label>
+        <input type="number" id="inp-red-x" aria-label="Rosso X" />
+        <span aria-hidden="true">X</span>
+        <input type="number" id="inp-red-y" aria-label="Rosso Y" />
+        <span aria-hidden="true">Y</span>
       </div>
+
       <div class="settings-row">
-        <label>🟡 Giallo</label>
-        <input type="number" id="inp-yellow-x"> <span>X</span>
-        <input type="number" id="inp-yellow-y"> <span>Y</span>
+        <label for="inp-yellow-x">🟡 Giallo</label>
+        <input type="number" id="inp-yellow-x" aria-label="Giallo X" />
+        <span aria-hidden="true">X</span>
+        <input type="number" id="inp-yellow-y" aria-label="Giallo Y" />
+        <span aria-hidden="true">Y</span>
       </div>
+
       <div class="settings-row">
-        <label>🟢 Verde</label>
-        <input type="number" id="inp-green-x"> <span>X</span>
-        <input type="number" id="inp-green-y"> <span>Y</span>
+        <label for="inp-green-x">🟢 Verde</label>
+        <input type="number" id="inp-green-x" aria-label="Verde X" />
+        <span aria-hidden="true">X</span>
+        <input type="number" id="inp-green-y" aria-label="Verde Y" />
+        <span aria-hidden="true">Y</span>
       </div>
-      <div class="settings-note">Coordinate in px sull'immagine originale (1456 × 816).</div>
+
+      <p class="settings-note">Coordinate in px sull'immagine originale (1456 × 816).</p>
+
       <div class="settings-btns">
         <button id="btn-settings-save">💾 Salva</button>
         <button id="btn-settings-reset">🔄 Default</button>
@@ -115,76 +183,116 @@
       </div>
     </div>
 
-    <div id="about-panel">
-      <div class="about-emoji">🚦</div>
-      <h2>Il Semaforo della Merenda</h2>
+
+    <!-- ===== PANNELLO ABOUT ===== -->
+    <div id="about-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true">
+
+      <div class="about-emoji" aria-hidden="true">🚦</div>
+
+      <h2 id="about-title">Il Semaforo della Merenda</h2>
       <p class="about-subtitle">Gioco educativo interattivo per bambini</p>
+
       <div class="about-box">
-        <p>🧑‍💻 <strong>Ideazione & Design:</strong><br>Francesco Taccone</p>
+        <p>🧑‍💻 <strong>Ideazione &amp; Design:</strong><br>Francesco Taccone</p>
         <p>🤖 <strong>Sviluppo codice:</strong><br>Realizzato con il supporto di <strong>Perplexity AI</strong></p>
         <p>🏫 <strong>Contesto:</strong><br>Servizio Civile 2025/2026<br>"La Salute a Tavola e in Palestra"<br>Nicotera (VV), Calabria 🇮🇹</p>
       </div>
+
       <div class="about-goal">
         🎯 <strong>Obiettivo:</strong> Insegnare ai bambini la corretta alimentazione attraverso il gioco!
       </div>
+
       <p class="about-license">📄 Licenza CC BY-NC 4.0 · © 2026 Francesco Taccone</p>
+
       <button id="btn-about-close">✖ Chiudi</button>
+
     </div>
 
-    <div class="top-controls-left">
+
+    <!-- ===== CONTROLLI TOP-LEFT (desktop) ===== -->
+    <div class="top-controls-left" aria-label="Navigazione">
       <a href="../../index.html" class="btn-ctrl btn-back-home">⬅ Home</a>
     </div>
 
-    <!-- Bottoni settings e calib rimossi dalla UI, accessibili solo da tastiera -->
-    <div class="top-controls">
-      <button id="btn-bg-toggle" class="btn-ctrl" title="Musica">🎵</button>
-      <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.4" title="Volume">
+    <!-- ===== CONTROLLI TOP-RIGHT (desktop) ===== -->
+    <!-- Settings e calibrazione accessibili solo da tastiera (Ctrl+Shift+8/9) -->
+    <div class="top-controls" aria-label="Controlli gioco">
+      <button id="btn-bg-toggle" class="btn-ctrl" title="Attiva/disattiva musica" aria-label="Musica">🎵</button>
+      <input
+        type="range"
+        id="volume-slider"
+        min="0" max="1" step="0.1" value="0.4"
+        title="Volume"
+        aria-label="Volume musica" />
       <button id="btn-reset" class="btn-ctrl">🔄 Reset</button>
-      <button id="btn-about" class="btn-ctrl">About</button>
+      <button id="btn-about" class="btn-ctrl" aria-label="Informazioni sul gioco">About</button>
     </div>
 
-    <div class="error-counter">
-      <div class="error-dot" id="err-dot-1"></div>
-      <div class="error-dot" id="err-dot-2"></div>
-      <div class="error-dot" id="err-dot-3"></div>
+    <!-- ===== INDICATORE ERRORI (desktop) ===== -->
+    <div class="error-counter" aria-label="Errori rimanenti" role="status">
+      <div class="error-dot" id="err-dot-1" aria-hidden="true"></div>
+      <div class="error-dot" id="err-dot-2" aria-hidden="true"></div>
+      <div class="error-dot" id="err-dot-3" aria-hidden="true"></div>
     </div>
 
-    <div class="main-area">
+
+    <!-- ===== AREA PRINCIPALE ===== -->
+    <main class="main-area">
       <div class="panel">
-        <div class="panel-title">🍽️ IL SEMAFORO DELLA MERENDA</div>
-        <div class="error-counter-mobile">
-          <div class="error-dot" id="err-dot-mob-1"></div>
-          <div class="error-dot" id="err-dot-mob-2"></div>
-          <div class="error-dot" id="err-dot-mob-3"></div>
+
+        <div class="panel-title" aria-hidden="true">🍽️ IL SEMAFORO DELLA MERENDA</div>
+
+        <!-- Indicatore errori mobile (dentro panel per essere nel flusso) -->
+        <div class="error-counter-mobile" aria-label="Errori rimanenti" role="status">
+          <div class="error-dot" id="err-dot-mob-1" aria-hidden="true"></div>
+          <div class="error-dot" id="err-dot-mob-2" aria-hidden="true"></div>
+          <div class="error-dot" id="err-dot-mob-3" aria-hidden="true"></div>
         </div>
+
         <div class="zones-wrapper">
+
           <div class="zone-wrapper">
             <span class="zone-icon-fixed" aria-hidden="true">❌</span>
-            <div id="zone-rosso" class="dropzone"></div>
+            <div id="zone-rosso"  class="dropzone" role="list" aria-label="Zona rossa — da evitare"></div>
           </div>
+
           <div class="zone-wrapper">
             <span class="zone-icon-fixed" aria-hidden="true">⚠️</span>
-            <div id="zone-giallo" class="dropzone"></div>
+            <div id="zone-giallo" class="dropzone" role="list" aria-label="Zona gialla — con moderazione"></div>
           </div>
+
           <div class="zone-wrapper">
             <span class="zone-icon-fixed" aria-hidden="true">✅</span>
-            <div id="zone-verde" class="dropzone"></div>
+            <div id="zone-verde"  class="dropzone" role="list" aria-label="Zona verde — sempre consigliati"></div>
           </div>
+
         </div>
-        <div id="global-status">Trascina gli alimenti nel rettangolo corretto! 🎮</div>
+
+        <div id="global-status" role="status" aria-live="polite">
+          Trascina gli alimenti nel rettangolo corretto! 🎮
+        </div>
+
       </div>
-    </div>
+    </main>
 
+
+    <!-- ===== ZONA ALIMENTI ===== -->
     <div class="bottom-area">
-      <div id="start-zone"></div>
+      <div id="start-zone" role="list" aria-label="Alimenti da classificare"></div>
     </div>
 
-    <div class="mobile-bottom-controls">
-      <a href="../../index.html" class="btn-ctrl btn-back-home-mobile">🏠</a>
-      <button id="btn-bg-toggle-mobile" class="btn-ctrl" style="background:#9c27b0;border-color:#7b1fa2">🎵</button>
-      <button id="btn-about-mobile" class="btn-ctrl">ℹ️ About</button>
-      <button id="btn-reset-mobile" class="btn-ctrl">🔄 Reset</button>
-    </div>
+
+    <!-- ===== CONTROLLI MOBILE (barra in basso) ===== -->
+    <nav class="mobile-bottom-controls" aria-label="Controlli gioco mobile">
+      <a href="../../index.html" class="btn-ctrl btn-back-home-mobile" aria-label="Torna alla homepage">🏠</a>
+      <button id="btn-bg-toggle-mobile" class="btn-ctrl btn-music-mobile" aria-label="Musica">🎵</button>
+      <button id="btn-about-mobile"     class="btn-ctrl" aria-label="Informazioni sul gioco">ℹ️ About</button>
+      <button id="btn-reset-mobile"     class="btn-ctrl">🔄 Reset</button>
+    </nav>
+
+
+    <!-- Script in fondo al body, dopo tutto il DOM -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="assets/js/game.js"></script>
   </body>
-  <script src="assets/js/game.js"></script>
 </html>
