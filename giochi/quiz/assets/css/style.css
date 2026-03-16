@@ -47,6 +47,14 @@ html, body {
   overflow: hidden;
 }
 
+/* Sblocca scroll quando sono visibili le schermate risultato */
+html.scroll-unlock,
+html.scroll-unlock body {
+  overflow: auto !important;
+  height: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
 
 /* ===== BODY ===== */
 body {

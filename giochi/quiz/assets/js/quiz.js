@@ -1090,8 +1090,7 @@ function restartGame() {
   BG.clear();
   DOM.successScreen.classList.remove('show');
   DOM.gameoverScreen.classList.remove('show');
-  document.documentElement.style.overflow = '';
-  document.body.style.overflow = '';
+  document.documentElement.classList.remove('scroll-unlock');
   DOM.gameScreen.removeAttribute('hidden');
   startGame();
 }
@@ -1227,8 +1226,7 @@ const SCHERMATE = (() => {
     buildRecap(DOM.recapSuccess);
     DOM.gameScreen.setAttribute('hidden','');
     DOM.successScreen.classList.add('show');
-    document.documentElement.style.overflow = 'auto';
-    document.body.style.overflow = 'auto';
+    document.documentElement.classList.add('scroll-unlock');
   }
 
   function mostraGameover(ragione) {
@@ -1239,8 +1237,7 @@ const SCHERMATE = (() => {
     buildRecap(DOM.recapGameover);
     DOM.gameScreen.setAttribute('hidden','');
     DOM.gameoverScreen.classList.add('show');
-    document.documentElement.style.overflow = 'auto';
-    document.body.style.overflow = 'auto';
+    document.documentElement.classList.add('scroll-unlock');
   }
 
   return { mostraSuccesso, mostraGameover };
