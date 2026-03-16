@@ -1324,7 +1324,7 @@ footer a:hover { color: #ffffff; }
 
 /* ===== RESPONSIVE — MOBILE (≤ 768px) ===== */
 @media (max-width: 768px) {
-  #hero         { padding: 56px 16px 86px; }
+  #hero         { padding: 56px 16px 110px; }
   .hero-emoji   { font-size: 70px; }
   .teacher-box  { padding: 36px 22px; }
   .stats-inner  { gap: 10px; }
