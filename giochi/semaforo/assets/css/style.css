@@ -17,7 +17,7 @@
 
 /* ===== BODY ===== */
 body {
-  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -514,7 +514,7 @@ body {
   gap: 14px;
   padding: 12px 32px 12px 12px;
   clip-path: polygon(0 0, 94% 0, 100% 50%, 94% 100%, 0 100%);
-  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
   font-size: 28px;
   font-weight: 900;
   color: white;
@@ -703,7 +703,7 @@ body.calibrating .top-controls {
   z-index: 10000;
   border: 3px solid #e3f2fd;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
   text-align: center;
 }
 
@@ -1077,7 +1077,7 @@ body.calibrating .top-controls {
   border-radius: 22px;
   padding: 6px 12px;
   min-width: 80px;
-  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
   white-space: nowrap;
@@ -1103,10 +1103,12 @@ body.calibrating .top-controls {
 @media (max-width: 768px) {
   html, body {
     height: 100%;
+    height: 100vh;
     height: 100dvh;
   }
 
   body {
+    height: 100vh;
     height: 100dvh;
     overflow: auto;
     display: flex;

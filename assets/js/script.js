@@ -342,7 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (btn) btn.textContent = '⏳ Invio in corso...';
+      if (btn) {
+        btn.textContent = '⏳ Invio in corso...';
+        btn.closest('button').disabled = true;
+      }
 
       try {
         // SICUREZZA: L'endpoint Formspree è visibile lato client.
@@ -370,7 +373,10 @@ document.addEventListener('DOMContentLoaded', () => {
           feedback.className   = 'contact-feedback error';
         }
       } finally {
-        if (btn) btn.textContent = '📨 Invia messaggio';
+        if (btn) {
+          btn.textContent = '📨 Invia messaggio';
+          btn.closest('button').disabled = false;
+        }
         setTimeout(() => {
           if (feedback) {
             feedback.textContent = '';

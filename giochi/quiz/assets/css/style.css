@@ -11,7 +11,7 @@
 
 /* ===== VARIABILI ===== */
 :root {
-  --font-main: 'Arial Rounded MT Bold', Arial, sans-serif;
+  --font-main: 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', system-ui, Arial, sans-serif;
 
   /* Palette */
   --blue-dark:   #0d1b6e;
@@ -20,7 +20,7 @@
   --accent-gold: #ffd600;
   --accent-orange: #ff9800;
   --correct:     #43a047;
-  --correct-glow:rgba(67,160,71,0.6);
+  --correct-glow: rgba(67,160,71,0.6);
   --wrong:       #e53935;
   --wrong-glow:  rgba(229,57,53,0.6);
   --white-glass: rgba(255,255,255,0.12);
