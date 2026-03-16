@@ -130,7 +130,7 @@ body {
   inset: 0;
   z-index: 9000;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1389,13 +1389,15 @@ body {
   .answer-letter   { width: 24px; height: 24px; font-size: 11px; }
 
   /* Start screen */
-  .start-card     { padding: 28px 18px; }
-  .start-title    { font-size: 32px; }
-  .start-emoji    { font-size: 56px; margin-bottom: 12px; }
-  .start-subtitle { font-size: 15px; margin-bottom: 20px; }
-  .btn-start      { font-size: 18px; padding: 14px 36px; }
-  .start-rules    { padding: 14px 16px; margin-bottom: 22px; }
-  .start-rules p  { font-size: 13px; margin: 5px 0; }
+  .start-card     { padding: 24px 16px; }
+  .start-title    { font-size: 28px; margin-bottom: 8px; }
+  .start-emoji    { font-size: 48px; margin-bottom: 8px; }
+  .start-subtitle { font-size: 14px; margin-bottom: 14px; line-height: 1.4; }
+  .btn-start      { font-size: 17px; padding: 13px 32px; }
+  .start-rules    { padding: 12px 14px; margin-bottom: 16px; border-radius: 14px; }
+  .start-rules p  { font-size: 12px; margin: 4px 0; line-height: 1.4; }
+  .start-rules-warning { margin-top: 6px !important; padding-top: 6px; }
+  .start-actions  { gap: 10px; }
 
   /* Result */
   .result-card    { padding: 30px 24px; }
@@ -1432,11 +1434,12 @@ body {
   .stat-box      { min-width: 60px; padding: 8px 10px; }
 
   /* Start card ultra-compact */
-  .start-card     { padding: 22px 14px; width: 96%; }
-  .start-title    { font-size: 28px; }
-  .start-emoji    { font-size: 48px; margin-bottom: 10px; }
-  .start-subtitle { font-size: 14px; margin-bottom: 16px; }
-  .btn-start      { font-size: 16px; padding: 12px 28px; }
-  .start-rules    { padding: 12px 12px; margin-bottom: 18px; }
+  .start-card     { padding: 18px 12px; width: 96%; }
+  .start-title    { font-size: 24px; }
+  .start-emoji    { font-size: 40px; margin-bottom: 6px; }
+  .start-subtitle { font-size: 13px; margin-bottom: 12px; }
+  .btn-start      { font-size: 15px; padding: 11px 24px; }
+  .start-rules    { padding: 10px 10px; margin-bottom: 14px; }
+  .start-rules p  { font-size: 11px; margin: 3px 0; }
   .start-rules p  { font-size: 12px; }
 }
