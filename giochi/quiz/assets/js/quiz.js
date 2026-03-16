@@ -1227,6 +1227,7 @@ const SCHERMATE = (() => {
     DOM.gameScreen.setAttribute('hidden','');
     DOM.successScreen.classList.add('show');
     document.documentElement.classList.add('scroll-unlock');
+    window.scrollTo(0, 0);
   }
 
   function mostraGameover(ragione) {
@@ -1238,6 +1239,7 @@ const SCHERMATE = (() => {
     DOM.gameScreen.setAttribute('hidden','');
     DOM.gameoverScreen.classList.add('show');
     document.documentElement.classList.add('scroll-unlock');
+    window.scrollTo(0, 0);
   }
 
   return { mostraSuccesso, mostraGameover };
