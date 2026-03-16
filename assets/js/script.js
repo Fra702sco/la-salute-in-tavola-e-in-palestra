@@ -1,6 +1,7 @@
 /* ============================================================
    LA SALUTE A TAVOLA E IN PALESTRA — script.js
    Struttura: DOMContentLoaded
+     ├── Popup novità
      ├── Navbar hamburger
      ├── Navbar scroll scura
      ├── Navbar link attivo (IntersectionObserver)
@@ -9,6 +10,44 @@
      ├── Reveal on scroll
      └── Form contatti
    ============================================================ */
+
+/* ============================================================
+   POPUP NOVITÀ
+   Cambia WHATS_NEW_VERSION ogni volta che vuoi mostrare
+   di nuovo il popup a chi ha già visitato il sito.
+   ============================================================ */
+const WHATS_NEW_VERSION = '2026-03-16';
+const STORAGE_KEY       = 'whats_new_seen';
+
+(function initWhatsNew() {
+  const overlay = document.getElementById('whats-new-overlay');
+  if (!overlay) return;
+
+  const seen = localStorage.getItem(STORAGE_KEY);
+  if (seen !== WHATS_NEW_VERSION) {
+    overlay.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden'; // blocca scroll sottostante
+  }
+
+  function closeModal() {
+    overlay.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+    localStorage.setItem(STORAGE_KEY, WHATS_NEW_VERSION);
+  }
+
+  document.getElementById('wn-close').addEventListener('click', closeModal);
+  document.getElementById('wn-ok').addEventListener('click', closeModal);
+
+  // Chiudi cliccando fuori dal modale
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Chiudi con Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !overlay.hasAttribute('hidden')) closeModal();
+  });
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,9 +84,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
 
   if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    const navInner = navbar.querySelector('.nav-inner');
+
+    // La navbar raggiunge il massimo scuro solo alla fine della pagina
+    const SCROLL_MAX = document.documentElement.scrollHeight - window.innerHeight;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function updateNavbar() {
+      const t = Math.min(window.scrollY / SCROLL_MAX, 1);
+
+      // Colore sinistro: blu vivace → nero quasi puro
+      const r1 = Math.round(lerp(25,  5,  t));
+      const g1 = Math.round(lerp(100, 5,  t));
+      const b1 = Math.round(lerp(210, 25, t));
+
+      // Colore destro: azzurro → blu notte profondo
+      const r2 = Math.round(lerp(66,  8,  t));
+      const g2 = Math.round(lerp(165, 15, t));
+      const b2 = Math.round(lerp(245, 80, t));
+
+      navbar.style.background =
+        `linear-gradient(90deg, rgba(${r1},${g1},${b1},0.97), rgba(${r2},${g2},${b2},0.97))`;
+
+      // Ombra: leggera → profonda e colorata
+      const shadowBlur    = Math.round(lerp(20, 50, t));
+      const shadowOpacity = lerp(0.25, 0.70, t).toFixed(2);
+      navbar.style.boxShadow = `0 8px ${shadowBlur}px rgba(0,0,0,${shadowOpacity})`;
+
+      // Altezza navbar: 70 → 58 px
+      if (navInner) navInner.style.height = Math.round(lerp(70, 58, t)) + 'px';
+    }
+
+    // Aggiornamento immediato (gestisce ricarica con scroll già attivo)
+    updateNavbar();
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
   }
 
 

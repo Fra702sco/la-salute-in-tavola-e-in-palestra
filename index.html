@@ -40,7 +40,7 @@
           <li><a href="#sport">🏃 Sport</a></li>
           <li><a href="#teachers">👩‍🏫 Insegnanti</a></li>
           <li><a href="#social">📲 Social</a></li>
-          <li><a href="#contact" class="nav-cta">✉️ Contattaci</a></li>
+          <li><a href="#contact" class="nav-cta"><span class="nav-cta-emoji" aria-hidden="true">✉️ </span>Contattaci</a></li>
         </ul>
 
         <button
@@ -92,6 +92,7 @@
         </span>
         <span class="badge" role="listitem">📍 Nicotera (VV)</span>
       </div>
+
     </section>
 
 
@@ -470,6 +471,60 @@
         </p>
       </div>
     </footer>
+
+    <!-- ===== POPUP NOVITÀ ===== -->
+    <div id="whats-new-overlay" class="wn-overlay" role="dialog" aria-modal="true" aria-labelledby="wn-title" hidden>
+      <div class="wn-modal">
+
+        <div class="wn-header">
+          <span class="wn-header-emoji" aria-hidden="true">🆕</span>
+          <h2 id="wn-title">Novità del sito</h2>
+          <button class="wn-close" id="wn-close" aria-label="Chiudi pannello novità">✕</button>
+        </div>
+
+        <ul class="wn-list" role="list">
+
+          <li class="wn-item wn-item--new">
+            <span class="wn-item-icon" aria-hidden="true">🧠</span>
+            <div>
+              <strong>Quiz Alimentare disponibile!</strong>
+              <p>Il nuovo gioco a domande sulla nutrizione è online — metti alla prova le tue conoscenze!</p>
+            </div>
+            <span class="wn-badge">Nuovo</span>
+          </li>
+
+          <li class="wn-item">
+            <span class="wn-item-icon" aria-hidden="true">🚦</span>
+            <div>
+              <strong>Il Semaforo della Merenda</strong>
+              <p>Trascina gli alimenti nel colore giusto e impara cosa mangiare ogni giorno.</p>
+            </div>
+          </li>
+
+          <li class="wn-item wn-item--soon">
+            <span class="wn-item-icon" aria-hidden="true">🃏</span>
+            <div>
+              <strong>Memory degli Alimenti — in arrivo</strong>
+              <p>Trova le coppie di alimenti sani e allena la memoria divertendoti!</p>
+            </div>
+            <span class="wn-badge wn-badge--soon">Presto</span>
+          </li>
+
+          <li class="wn-item wn-item--soon">
+            <span class="wn-item-icon" aria-hidden="true">🧩</span>
+            <div>
+              <strong>Puzzle della Piramide — in arrivo</strong>
+              <p>Componi la piramide alimentare e scopri cosa mangiare ogni giorno!</p>
+            </div>
+            <span class="wn-badge wn-badge--soon">Presto</span>
+          </li>
+
+        </ul>
+
+        <button class="wn-btn-ok" id="wn-ok">Ho capito, grazie! 👍</button>
+
+      </div>
+    </div>
 
     <script src="assets/js/script.js"></script>
   </body>
