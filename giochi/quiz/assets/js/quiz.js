@@ -557,6 +557,9 @@ const DOM = (() => {
     gameoverWrong  : q('gameover-wrong'),
     gameoverReached: q('gameover-reached'),
     gameoverReason : q('gameover-reason'),
+    /* Riepilogo errori */
+    recapSuccess   : q('recap-errori-success'),
+    recapGameover  : q('recap-errori-gameover'),
     /* Buttons risultato */
     btnPlayAgain   : q('btn-play-again'),
     btnRetry       : q('btn-retry'),
@@ -569,8 +572,6 @@ const DOM = (() => {
     toastText      : q('toast-text'),
     /* Confetti */
     confetti       : q('confetti-container'),
-    /* Skulls */
-    skulls         : q('skulls-container'),
     /* Progress */
     progressFill   : qs('.question-progress-fill'),
   };
@@ -599,6 +600,8 @@ function resetState() {
     secondiTotali : CFG.TEMPO_TOTALE_SEC,
     /* Timestamp inizio (per stats) */
     tsInizio      : 0,
+    /* Log domande sbagliate per il riepilogo finale */
+    erroriLog     : [],   // { domanda, rispostaData, rispostaGiusta, tempoSecondi }
     /* Partita attiva */
     attiva        : false,
     /* Musica attiva */
@@ -965,19 +968,26 @@ function onRisposta(btnIdx) {
     if (b.dataset.corretta === '1') b.classList.add('correct');
   });
 
+  const getAnswerText = b => b.textContent.replace(/^[A-D]/, '').trim();
+
   if (corretta) {
     S.corrette++;
     btn.classList.add('correct');
     AUDIO.play('correct');
-    FEEDBACK.mostra('ok', '✅ Corretto! Ottimo lavoro!');
     TOAST.mostra('ok', '✅', 'Risposta corretta!');
   } else {
     S.errori++;
     btn.classList.add('wrong');
     AUDIO.play('wrong');
     aggiornaDotErrore(S.errori);
-    FEEDBACK.mostra('ko', '❌ Sbagliato! La risposta giusta è evidenziata in verde.');
     TOAST.mostra('ko', '❌', 'Risposta sbagliata!');
+    const corrBtn = DOM.answerBtns.find(b => b.dataset.corretta === '1');
+    S.erroriLog.push({
+      domanda      : S.mazzoCorrente[S.indice].testo,
+      rispostaData : getAnswerText(btn),
+      rispostaGiusta: corrBtn ? getAnswerText(corrBtn) : '?',
+      tempoSecondi : CFG.SECONDI_DOMANDA - S.secondiRimasti,
+    });
   }
 
   // Verifica game over immediato
@@ -1004,7 +1014,6 @@ function onTimeout() {
   S.errori++;
   AUDIO.play('wrong');
   aggiornaDotErrore(S.errori);
-  FEEDBACK.mostra('timeout', '⏱️ Tempo scaduto! +1 errore');
   TOAST.mostra('timeout', '⏱️', 'Tempo scaduto!');
 
   // Mostra risposta corretta
@@ -1012,6 +1021,16 @@ function onTimeout() {
     b.disabled = true;
     b.classList.remove('urgent');
     if (b.dataset.corretta === '1') b.classList.add('correct');
+  });
+
+  // Log timeout come errore nel riepilogo
+  const corrBtnTO = DOM.answerBtns.find(b => b.dataset.corretta === '1');
+  const getAnswerTextTO = b => b.textContent.replace(/^[A-D]/, '').trim();
+  S.erroriLog.push({
+    domanda      : S.mazzoCorrente[S.indice].testo,
+    rispostaData : '— nessuna (tempo scaduto)',
+    rispostaGiusta: corrBtnTO ? getAnswerTextTO(corrBtnTO) : '?',
+    tempoSecondi : CFG.SECONDI_DOMANDA,
   });
 
   if (S.errori > CFG.MAX_ERRORI) {
@@ -1055,7 +1074,6 @@ function finePartita(motivo) {
       ? `Hai commesso ${CFG.MAX_ERRORI + 1} errori!`
       : '⏳ Hai esaurito il tempo totale!';
     SCHERMATE.mostraGameover(ragione);
-    SKULLS.lancia();
   }
 }
 
@@ -1070,11 +1088,42 @@ function aggiornaDotErrore(n) {
 function restartGame() {
   TIMER.stopAll();
   BG.clear();
-  SKULLS.ferma();
   DOM.successScreen.classList.remove('show');
   DOM.gameoverScreen.classList.remove('show');
   DOM.gameScreen.removeAttribute('hidden');
   startGame();
+}
+
+
+/* ── Riepilogo errori ── */
+function buildRecap(container) {
+  container.innerHTML = '';
+  const title = document.createElement('div');
+  title.className = 'recap-title';
+  title.textContent = S.erroriLog.length === 0
+    ? '📋 Riepilogo'
+    : `📋 Riepilogo errori (${S.erroriLog.length})`;
+  container.appendChild(title);
+
+  if (S.erroriLog.length === 0) {
+    const ok = document.createElement('p');
+    ok.className = 'recap-perfect';
+    ok.textContent = '🎉 Nessun errore! Risposta perfetta!';
+    container.appendChild(ok);
+    return;
+  }
+
+  S.erroriLog.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'recap-item';
+    div.innerHTML =
+      `<div class="recap-num">Errore ${i + 1}</div>` +
+      `<div class="recap-q">${item.domanda}</div>` +
+      `<div class="recap-wrong">❌ Hai risposto: <strong>${item.rispostaData}</strong></div>` +
+      `<div class="recap-right">✅ Risposta giusta: <strong>${item.rispostaGiusta}</strong></div>` +
+      `<div class="recap-time">⏱️ Tempo impiegato: <strong>${item.tempoSecondi}s su ${CFG.SECONDI_DOMANDA}s</strong></div>`;
+    container.appendChild(div);
+  });
 }
 
 
@@ -1149,47 +1198,6 @@ const CONFETTI = (() => {
 })();
 
 
-/* ============================================================
-   §10b SKULLS (gameover)
-   ============================================================ */
-const SKULLS = (() => {
-  function lancia() {
-    DOM.skulls.innerHTML = '';
-    DOM.skulls.classList.add('active');
-    const n = 40;
-    for (let i = 0; i < n; i++) {
-      setTimeout(() => crea(), i * 60);
-    }
-  }
-
-  function crea() {
-    const el   = document.createElement('span');
-    el.className = 'skull-piece';
-    el.textContent = '💀';
-
-    const vh       = window.innerHeight;
-    const fromY    = Math.floor(Math.random() * vh * 0.3);
-    const toY      = Math.floor(vh * 0.6 + Math.random() * vh * 0.3);
-    const duration = +(2 + Math.random() * 2).toFixed(1);
-
-    el.style.left = `${Math.floor(Math.random() * 96)}%`;
-    el.style.fontSize = `${Math.floor(20 + Math.random() * 20)}px`;
-    el.style.animationDuration = `${duration}s`;
-    // Delay negativo: il teschio parte già a metà animazione → niente spawn dall'alto
-    el.style.animationDelay = `-${(Math.random() * duration).toFixed(1)}s`;
-    el.style.setProperty('--from-y', `${fromY}px`);
-    el.style.setProperty('--to-y',   `${toY}px`);
-
-    DOM.skulls.appendChild(el);
-  }
-
-  function ferma() {
-    DOM.skulls.innerHTML = '';
-    DOM.skulls.classList.remove('active');
-  }
-
-  return { lancia, ferma };
-})();
 
 
 /* ============================================================
@@ -1214,6 +1222,7 @@ const SCHERMATE = (() => {
     DOM.successWrong.textContent   = S.errori;
     DOM.successTime.textContent    = TIMER.tempoUsatoStringa();
     DOM.successStars.textContent   = stelle;
+    buildRecap(DOM.recapSuccess);
     DOM.gameScreen.setAttribute('hidden','');
     DOM.successScreen.classList.add('show');
   }
@@ -1223,6 +1232,7 @@ const SCHERMATE = (() => {
     DOM.gameoverWrong.textContent   = S.errori;
     DOM.gameoverReached.textContent = `${S.indice + 1} / ${CFG.DOMANDE_PER_PARTITA}`;
     DOM.gameoverReason.textContent  = ragione;
+    buildRecap(DOM.recapGameover);
     DOM.gameScreen.setAttribute('hidden','');
     DOM.gameoverScreen.classList.add('show');
   }

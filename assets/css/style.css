@@ -260,7 +260,7 @@ body {
   left: 0;
   right: 0;
   height: 90px;
-  background: #f0f9ff;
+  background: #e3f2fd;
   clip-path: ellipse(57% 100% at 50% 100%);
 }
 
@@ -1018,9 +1018,9 @@ body {
   transform: scale(1.08) rotate(5deg);
 }
 
-.social-info { flex: 1; }
+.social-info { flex: 1; min-width: 0; }
 .social-name   { font-size: 22px; font-weight: 900; margin-bottom: 3px; }
-.social-handle { font-size: 15px; opacity: 0.9; margin-bottom: 4px; font-weight: bold; }
+.social-handle { font-size: 15px; opacity: 0.9; margin-bottom: 4px; font-weight: bold; overflow-wrap: break-word; word-break: break-word; }
 .social-desc   { font-size: 13px; opacity: 0.8; }
 
 .social-arrow {
@@ -1114,6 +1114,8 @@ body {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.2s;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .contact-info-item a:hover { color: white; }
