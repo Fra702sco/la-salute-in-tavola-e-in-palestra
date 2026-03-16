@@ -156,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
      FORM CONTATTI — Formspree
      ===================================================== */
 
-  // Domini di email temporanee/usa-e-getta da bloccare
+  // Domini di email temporanee/usa-e-getta da bloccare.
+  // Per aggiornare la lista: controlla periodicamente i nuovi domini su
+  // https://github.com/disposable-email-domains/disposable-email-domains
+  // e aggiungi qui i più diffusi. La lista non potrà mai essere esaustiva,
+  // ma riduce sensibilmente lo spam da email usa-e-getta.
   const TEMP_MAIL_DOMAINS = new Set([
     'mailinator.com','guerrillamail.com','guerrillamailblock.com','guerrillamail.info',
     'guerrillamail.biz','guerrillamail.de','guerrillamail.net','guerrillamail.org',
@@ -341,6 +345,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) btn.textContent = '⏳ Invio in corso...';
 
       try {
+        // SICUREZZA: L'endpoint Formspree è visibile lato client.
+        // Per limitare l'accesso al solo dominio autorizzato, vai su
+        // formspree.io → Form settings → Allowed domains e aggiungi
+        // "fra702sco.github.io" — questo blocca invii da altri domini.
         const res = await fetch('https://formspree.io/f/mkoqqqrj', {
           method:  'POST',
           headers: { 'Accept': 'application/json' },

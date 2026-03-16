@@ -869,7 +869,7 @@ body {
   border-radius: 24px;
   padding: 32px 26px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  border-left: 5px solid var(--accent);
+  border-left: 5px solid var(--accent, var(--accent-blue));
   position: relative;
   overflow: hidden;
   transition: all 0.25s ease;
@@ -880,7 +880,7 @@ body {
   position: absolute;
   top: 0; right: 0;
   width: 80px; height: 80px;
-  background: var(--accent);
+  background: var(--accent, var(--accent-blue));
   opacity: 0.05;
   border-radius: 0 24px 0 100%;
   pointer-events: none;

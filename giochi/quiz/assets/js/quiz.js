@@ -37,7 +37,7 @@ const CFG = Object.freeze({
   FEEDBACK_DURATA_MS  : 1400,         // ms feedback visibile
   PAUSA_PROSSIMA_MS   : 1600,         // ms prima della prossima domanda
   TIMER_CIRCUMFERENCE : 326.7,        // 2π × r52
-  HOME_URL            : '../../index.html',
+  HOME_URL            : new URL('../../index.html', window.location.href).href,
   AUDIO_VOL_BG        : 0.22,
   AUDIO_VOL_FX        : 0.75,
 });
@@ -1383,6 +1383,8 @@ DOM.answersGrid.addEventListener('touchend', e => {
   } catch (err) {
     console.error('Errore caricamento domande:', err);
     DOM.btnStart.textContent = '❌ Errore caricamento';
+    const errEl = document.getElementById('load-error');
+    if (errEl) errEl.hidden = false;
   }
 
   // Background di default sulla start screen

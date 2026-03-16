@@ -656,11 +656,14 @@ body {
 
 .answer-btn:hover:not(:disabled)::after { opacity: 1; }
 
-.answer-btn:hover:not(:disabled) {
+.answer-btn:hover:not(:disabled),
+.answer-btn:focus-visible:not(:disabled) {
   background: rgba(255,255,255,0.2);
   border-color: rgba(255,255,255,0.5);
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  outline: 3px solid rgba(255,255,255,0.7);
+  outline-offset: 2px;
 }
 
 .answer-btn:active:not(:disabled) {
@@ -742,8 +745,11 @@ body {
 }
 
 .answer-feedback.ok  { color: #66bb6a; text-shadow: 0 0 20px rgba(102,187,106,0.8); }
+.answer-feedback.ok::before  { content: '✓ '; }
 .answer-feedback.ko  { color: #ef5350; text-shadow: 0 0 20px rgba(239,83,80,0.8);   }
+.answer-feedback.ko::before  { content: '✗ '; }
 .answer-feedback.timeout { color: #ff9800; text-shadow: 0 0 20px rgba(255,152,0,0.8); }
+.answer-feedback.timeout::before { content: '⏱ '; }
 
 
 /* ============================================================

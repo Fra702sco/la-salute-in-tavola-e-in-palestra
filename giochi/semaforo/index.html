@@ -309,6 +309,13 @@
 
     <!-- Script in fondo al body, dopo tutto il DOM -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+      if (typeof Sortable === 'undefined') {
+        var s = document.createElement('script');
+        s.src = 'https://unpkg.com/sortablejs@1.15.0/Sortable.min.js';
+        document.head.appendChild(s);
+      }
+    </script>
     <script src="assets/js/game.js"></script>
   </body>
 </html>

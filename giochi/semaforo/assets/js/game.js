@@ -184,7 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   positionGlows();
-  window.addEventListener('resize', positionGlows);
+  let _resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(positionGlows, 150);
+  });
 
 
   /* =====================================================
@@ -710,7 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
     resetGame();
   });
   const confirmHomeScreen = document.getElementById('confirm-home-screen');
-  const HOME_URL = '../../index.html';
+  // HOME_URL: risolto dinamicamente per funzionare sia in locale sia su GitHub Pages
+  const HOME_URL = new URL('../../index.html', window.location.href).href;
 
   function openConfirmHome(e) {
     e.preventDefault();              
