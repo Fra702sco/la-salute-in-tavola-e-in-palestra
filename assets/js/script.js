@@ -225,6 +225,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =====================================================
+     STAT ITEMS — interazioni al click
+     ===================================================== */
+  const statEmojis = {
+    0: ['🎮','🕹️','👾'],
+    1: ['✅','💚','🆓'],
+    2: ['🚫','🛡️','🔒'],
+    3: ['📚','📖','🎓'],
+  };
+
+  document.querySelectorAll('.stat-item').forEach((item, idx) => {
+    function animateStat() {
+      // Wiggle sul numero
+      item.classList.remove('wiggle');
+      void item.offsetWidth;
+      item.classList.add('wiggle');
+
+      // Ripple
+      item.classList.remove('pop');
+      void item.offsetWidth;
+      item.classList.add('pop');
+      setTimeout(() => item.classList.remove('pop'), 400);
+
+      // Particelle emoji
+      const emojis = statEmojis[idx] || ['✨'];
+      for (let i = 0; i < 6; i++) {
+        const p = document.createElement('span');
+        p.className = 'stat-particle';
+        p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 40 + Math.random() * 50;
+        p.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+        p.style.setProperty('--dy', `${Math.sin(angle) * dist - 20}px`);
+        p.style.setProperty('--rot', `${(Math.random() - 0.5) * 360}deg`);
+        p.style.left = '50%';
+        p.style.top = '50%';
+        item.appendChild(p);
+        p.addEventListener('animationend', () => p.remove(), { once: true });
+      }
+    }
+
+    item.addEventListener('click', animateStat);
+    item.addEventListener('mouseenter', animateStat);
+    item.addEventListener('animationend', () => item.classList.remove('wiggle'));
+  });
+
+
+  /* =====================================================
      FORM CONTATTI — Formspree
      ===================================================== */
 

@@ -316,6 +316,27 @@ body {
 .btn-play-again:hover  { transform: scale(1.07) translateY(-3px); box-shadow: 0 14px 35px rgba(255,111,0,0.6); }
 .btn-play-again:active { transform: scale(0.97); }
 
+.btn-home-end {
+  display: inline-block;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #5c6bc0, #3949ab);
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 40px;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(92, 107, 192, 0.5);
+  transition: all 0.2s;
+  animation: btnAppear 0.5s 1.3s both;
+}
+
+.btn-home-end:hover  { transform: scale(1.07) translateY(-3px); box-shadow: 0 14px 35px rgba(92,107,192,0.6); }
+.btn-home-end:active { transform: scale(0.97); }
+
 
 /* ===== SCHERMATA GAME OVER ===== */
 #gameover-screen {
@@ -1208,6 +1229,7 @@ body.calibrating .top-controls {
   .success-emojis   { font-size: 26px; }
   .success-message  { font-size: 15px; }
   .btn-play-again   { font-size: 16px; padding: 12px 28px; }
+  .btn-home-end     { font-size: 15px; padding: 10px 24px; }
 
   /* Schermata iniziale */
   .start-card  { padding: 32px 24px; }

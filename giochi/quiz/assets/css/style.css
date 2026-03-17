@@ -123,6 +123,17 @@ body {
   100% { opacity: 0;    transform: translateY(-15vh) rotate(540deg) scale(1.1); }
 }
 
+@keyframes particleFall {
+  0%   { opacity: 0;    transform: translateY(-15vh) rotate(0deg)   scale(0.6); }
+  8%   { opacity: 0.85; }
+  92%  { opacity: 0.75; }
+  100% { opacity: 0;    transform: translateY(110vh) rotate(-540deg) scale(1.1); }
+}
+
+.bg-particle.fall {
+  animation-name: particleFall;
+}
+
 /* Varianti velocità/dimensione per le particelle */
 .bg-particle.slow   { animation-duration: 18s; font-size: 2.8rem; }
 .bg-particle.medium { animation-duration: 12s; font-size: 2.2rem; }

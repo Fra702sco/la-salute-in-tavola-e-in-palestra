@@ -716,6 +716,9 @@ const BG = (() => {
     const speeds = ['slow','medium','medium','fast','tiny'];
     el.classList.add(speeds[Math.floor(Math.random() * speeds.length)]);
 
+    // ~50% delle particelle cadono dall'alto verso il basso
+    if (Math.random() < 0.5) el.classList.add('fall');
+
     // Emoji casuale dall'array categoria
     el.textContent = emojiArr[Math.floor(Math.random() * emojiArr.length)];
 
@@ -723,7 +726,7 @@ const BG = (() => {
     el.style.left = `${Math.random() * 98}%`;
 
     // Delay start casuale
-    const delay = Math.random() * 8;
+    const delay = Math.random() * 2;
     el.style.animationDelay = `${delay}s`;
 
     // Durata leggermente randomizzata
@@ -1423,6 +1426,7 @@ DOM.answersGrid.addEventListener('touchend', e => {
     const el = document.createElement('span');
     el.className = 'bg-particle';
     el.classList.add(['slow','medium','fast','tiny'][Math.floor(Math.random() * 4)]);
+    if (Math.random() < 0.5) el.classList.add('fall');
     el.textContent = startEmoji[Math.floor(Math.random() * startEmoji.length)];
     el.style.left = `${Math.random() * 98}%`;
     el.style.animationDelay = `${Math.random() * 10}s`;
