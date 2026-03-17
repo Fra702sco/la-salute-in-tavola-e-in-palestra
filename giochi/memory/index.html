@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+  <title>Memory degli Alimenti — La Salute a Tavola e in Palestra</title>
+  <meta name="description" content="Trova le coppie di alimenti sani e allena la memoria divertendoti!" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ PARTICELLE ═══ -->
+  <div id="particles" aria-hidden="true"></div>
+
+  <!-- ═══ CONFETTI ═══ -->
+  <div id="confetti-container" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCHERMATA INIZIALE
+  ════════════════════════════════════════════════ -->
+  <section id="start-screen" class="screen active" role="main">
+    <div class="start-card">
+
+      <a href="../../index.html" class="home-link-top" aria-label="Torna alla home">🏠 Home</a>
+
+      <div class="start-icon" aria-hidden="true">🃏</div>
+      <h1 class="start-title">Memory degli <span class="title-highlight">Alimenti</span></h1>
+      <p class="start-subtitle">Trova le coppie di alimenti sani<br>e allena la memoria divertendoti!</p>
+
+      <!-- Difficoltà -->
+      <div class="diff-section">
+        <p class="diff-label">Scegli la difficoltà</p>
+        <div class="diff-row">
+          <button class="diff-btn" data-diff="easy">
+            <span class="diff-emoji">🌱</span>
+            <strong>Facile</strong>
+            <small>6 coppie</small>
+          </button>
+          <button class="diff-btn selected" data-diff="medium">
+            <span class="diff-emoji">⭐</span>
+            <strong>Medio</strong>
+            <small>8 coppie</small>
+          </button>
+          <button class="diff-btn" data-diff="hard">
+            <span class="diff-emoji">🔥</span>
+            <strong>Difficile</strong>
+            <small>12 coppie</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Regole -->
+      <div class="rules-row">
+        <div class="rule"><span>👆</span>Clicca due carte</div>
+        <div class="rule"><span>✅</span>Coppia = trovata!</div>
+        <div class="rule"><span>🔄</span>Sbagliata = torna</div>
+        <div class="rule"><span>⭐</span>Meno mosse = 3 stelle</div>
+      </div>
+
+      <button id="btn-start" class="btn-start">▶ &nbsp;Inizia a giocare</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SCHERMATA DI GIOCO
+  ════════════════════════════════════════════════ -->
+  <section id="game-screen" class="screen" role="main" aria-label="Griglia di gioco">
+
+    <header class="game-header">
+      <button id="btn-home" class="ctrl-btn" aria-label="Torna alla home">🏠</button>
+
+      <div class="header-stats">
+        <div class="hstat" id="hstat-timer">
+          <span class="hstat-icon">⏱️</span>
+          <span id="timer-val" class="hstat-val">00:00</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-icon">👆</span>
+          <span id="moves-val" class="hstat-val">0</span>
+          <span class="hstat-lbl">mosse</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-icon">✅</span>
+          <span id="pairs-val" class="hstat-val">0</span>
+          <span id="pairs-tot" class="hstat-lbl">/8</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-restart" class="ctrl-btn" aria-label="Ricomincia">🔄</button>
+        <button id="btn-music"   class="ctrl-btn" aria-label="Attiva/disattiva musica">🔇</button>
+      </div>
+    </header>
+
+    <div id="game-grid" class="game-grid" role="grid" aria-label="Carte del memory"></div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       SCHERMATA VITTORIA
+  ════════════════════════════════════════════════ -->
+  <section id="win-screen" class="screen" role="main" aria-live="assertive">
+    <div class="result-card">
+      <div class="res-trophy" aria-hidden="true">🏆</div>
+      <h2 class="res-title">Hai vinto!</h2>
+      <p class="res-sub">Tutte le coppie trovate!</p>
+
+      <div id="stars-row" class="stars-row" aria-label="Valutazione stelle">
+        <span class="star-item" data-n="1">⭐</span>
+        <span class="star-item" data-n="2">⭐</span>
+        <span class="star-item" data-n="3">⭐</span>
+      </div>
+
+      <div class="res-stats">
+        <div class="rstat">
+          <span class="rstat-icon">⏱️</span>
+          <strong id="res-time">00:00</strong>
+          <small>Tempo</small>
+        </div>
+        <div class="rstat">
+          <span class="rstat-icon">👆</span>
+          <strong id="res-moves">0</strong>
+          <small>Mosse</small>
+        </div>
+        <div class="rstat">
+          <span class="rstat-icon">🏅</span>
+          <strong id="res-score">0</strong>
+          <small>Punteggio</small>
+        </div>
+      </div>
+
+      <div class="res-btns">
+        <button id="btn-again"    class="btn-action primary">🔄 Ancora!</button>
+        <button id="btn-home-win" class="btn-action secondary">🏠 Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       MODALE SCEGLI DIFFICOLTÀ (per "Gioca ancora")
+  ════════════════════════════════════════════════ -->
+  <div id="modal-diff" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-label="Scegli difficoltà">
+    <div class="modal-box modal-diff-box">
+      <h3 class="modal-diff-title">🎮 Scegli difficoltà</h3>
+      <div class="diff-row modal-diff-row">
+        <button class="diff-btn" data-diff2="easy">
+          <span class="diff-emoji">🌱</span>
+          <strong>Facile</strong>
+          <small>6 coppie</small>
+        </button>
+        <button class="diff-btn" data-diff2="medium">
+          <span class="diff-emoji">⭐</span>
+          <strong>Medio</strong>
+          <small>8 coppie</small>
+        </button>
+        <button class="diff-btn" data-diff2="hard">
+          <span class="diff-emoji">🔥</span>
+          <strong>Difficile</strong>
+          <small>12 coppie</small>
+        </button>
+      </div>
+      <div class="modal-btns" style="margin-top:16px">
+        <button id="modal-diff-ok"     class="btn-action primary">▶ Inizia!</button>
+        <button id="modal-diff-cancel" class="btn-action secondary">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       MODALE CONFERMA HOME
+  ════════════════════════════════════════════════ -->
+  <div id="modal-home" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-label="Conferma uscita">
+    <div class="modal-box">
+      <p>Vuoi tornare alla home?<br><small>Il progresso andrà perso.</small></p>
+      <div class="modal-btns">
+        <button id="modal-yes" class="btn-action primary">🏠 Sì, esci</button>
+        <button id="modal-no"  class="btn-action secondary">Rimani</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ AUDIO (riutilizza file del quiz) ═══ -->
+  <audio id="snd-flip"  src="../quiz/assets/audio/tick.mp3"       preload="auto"></audio>
+  <audio id="snd-match" src="../quiz/assets/audio/correct.mp3"    preload="auto"></audio>
+  <audio id="snd-wrong" src="../quiz/assets/audio/error.mp3"      preload="auto"></audio>
+  <audio id="snd-win"   src="../quiz/assets/audio/victory.mp3"    preload="auto"></audio>
+  <audio id="snd-bg"    src="../quiz/assets/audio/background.mp3" loop preload="auto"></audio>
+
+  <script src="assets/js/game.js"></script>
+</body>
+</html>

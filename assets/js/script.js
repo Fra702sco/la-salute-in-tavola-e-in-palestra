@@ -16,7 +16,7 @@
    Cambia WHATS_NEW_VERSION ogni volta che vuoi mostrare
    di nuovo il popup a chi ha già visitato il sito.
    ============================================================ */
-const WHATS_NEW_VERSION = '2026-03-16';
+const WHATS_NEW_VERSION = '2026-03-18';
 const STORAGE_KEY       = 'whats_new_seen';
 
 (function initWhatsNew() {
@@ -416,13 +416,60 @@ document.addEventListener('DOMContentLoaded', () => {
     'wegwerfadresse.de','wegwerfemail.de','wegwerfemail.net','wegwerfmail.de',
   ]);
 
+  // TLD reali riconosciuti — codici paese a 2 lettere + TLD generici noti
+  // Un TLD di 2 lettere è quasi sempre un codice paese ISO valido.
+  // I TLD inventati (es. .fwer, .cowedfqw) vengono bloccati.
+  const GENERIC_TLDS = new Set([
+    'com','net','org','edu','gov','mil','int','info','biz','name','pro',
+    'aero','coop','museum','travel','jobs','mobi','tel','post','cat',
+    'app','dev','io','co','me','cc','tv','ws','ai','cloud','tech',
+    'online','store','shop','site','web','digital','media','news','blog',
+    'agency','design','studio','solutions','services','consulting',
+    'marketing','academy','email','mail','work','life','world','global',
+    'international','group','team','software','systems','network',
+    'management','finance','money','capital','fund','investments',
+    'health','care','clinic','hospital','pharmacy','legal','law',
+    'attorney','lawyer','accountant','tax','realty','estate','property',
+    'house','homes','land','mortgage','insurance','bank','credit','loan',
+    'cash','pay','trade','market','exchange','business','company',
+    'enterprises','ventures','holdings','partners','associates',
+    'industries','technology','engineering','science','research',
+    'institute','university','school','education','training','courses',
+    'events','conference','press','radio','film','video','photo',
+    'art','music','dance','sports','fitness','yoga','spa','beauty',
+    'salon','fashion','clothing','shoes','accessories','jewelry',
+    'furniture','kitchen','garden','tools','auto','cars','bike',
+    'hotel','resort','tours','vacation','holiday','food','restaurant',
+    'bar','coffee','wine','beer','organic','natural','eco','green',
+    'solar','energy','electric','social','chat','dating','games',
+    'play','fun','kids','baby','family','pet','farm','community',
+  ]);
+
   function isEmailValid(email) {
     // Formato base
-    const formatOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    const formatOk = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email);
     if (!formatOk) return { ok: false, msg: '❌ Formato email non valido.' };
 
-    // Domini sospetti (es. @test.com, @example.com, @foo.bar)
     const domain = email.split('@')[1].toLowerCase();
+    const parts  = domain.split('.');
+    const tld    = parts[parts.length - 1];
+    const label  = parts.slice(0, -1).join('.');
+
+    // Caratteri validi nel dominio
+    if (!/^[a-z0-9][a-z0-9.\-]*[a-z0-9]$/.test(domain)) {
+      return { ok: false, msg: '❌ Formato email non valido.' };
+    }
+
+    // Label del dominio deve avere almeno 2 caratteri
+    if (label.length < 2) return { ok: false, msg: '❌ Formato email non valido.' };
+
+    // TLD deve essere un codice paese (2 lettere) o un TLD generico noto
+    const isCountryCode = /^[a-z]{2}$/.test(tld);
+    if (!isCountryCode && !GENERIC_TLDS.has(tld)) {
+      return { ok: false, msg: '❌ Dominio email non riconosciuto. Inserisci un indirizzo reale.' };
+    }
+
+    // Domini sospetti (es. @test.com, @example.com)
     const FAKE_DOMAINS = new Set(['test.com','example.com','email.com','fake.com','noemail.com','no-email.com','noreply.com']);
     if (FAKE_DOMAINS.has(domain)) return { ok: false, msg: '❌ Email non accettata. Usa un indirizzo reale.' };
 

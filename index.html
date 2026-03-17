@@ -100,6 +100,7 @@
     }
     </script>
 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; media-src 'self'; font-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;" />
     <link rel="icon" href="assets/ico-preview/favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/ico-preview/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/ico-preview/favicon-16x16.png" />
@@ -236,14 +237,12 @@
           <a href="giochi/quiz/index.html" class="btn-play">▶ Gioca ora</a>
         </div>
 
-        <div class="game-card coming-soon memory reveal reveal-delay-3"
-          role="img"
-          aria-label="Memory degli Alimenti — in arrivo">
-          <span class="coming-soon-tag" aria-hidden="true">PRESTO</span>
+        <div class="game-card available memory reveal reveal-delay-3">
           <span class="game-emoji" aria-hidden="true">🃏</span>
           <div class="game-title">Memory degli Alimenti</div>
           <div class="game-desc">Trova le coppie di alimenti sani e allena la memoria divertendoti!</div>
-          <span class="game-tag tag-orange">🟠 In arrivo</span>
+          <span class="game-tag tag-green">🟢 Disponibile</span>
+          <a href="giochi/memory/index.html" class="btn-play">▶ Gioca ora</a>
         </div>
 
         <div class="game-card coming-soon puzzle reveal reveal-delay-4"
@@ -638,6 +637,15 @@
         <ul class="wn-list" role="list">
 
           <li class="wn-item wn-item--new">
+            <span class="wn-item-icon" aria-hidden="true">🃏</span>
+            <div>
+              <strong>Memory degli Alimenti — ora disponibile!</strong>
+              <p>Nuovo gioco online: trova le coppie di alimenti sani in 3 livelli di difficoltà e allena la memoria divertendoti!</p>
+            </div>
+            <span class="wn-badge">Nuovo</span>
+          </li>
+
+          <li class="wn-item wn-item--new">
             <span class="wn-item-icon" aria-hidden="true">🔒</span>
             <div>
               <strong>Privacy Policy aggiunta</strong>
@@ -660,14 +668,6 @@
             <div>
               <strong>Quiz Alimentare</strong>
               <p>Il gioco a domande sulla nutrizione è online — metti alla prova le tue conoscenze!</p>
-            </div>
-          </li>
-
-          <li class="wn-item">
-            <span class="wn-item-icon" aria-hidden="true">🚦</span>
-            <div>
-              <strong>Il Semaforo della Merenda</strong>
-              <p>Trascina gli alimenti nel colore giusto e impara cosa mangiare ogni giorno.</p>
             </div>
           </li>
 

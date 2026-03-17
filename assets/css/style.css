@@ -37,19 +37,22 @@ body {
   color: #1a237e;
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 10px;
 }
 
 /* ===== NAVBAR ===== */
 #navbar {
   position: sticky;
-  top: 0;
+  top: 10px;
   z-index: 1000;
+  margin: 0 16px;
   /* background e box-shadow aggiornati via JS scroll-linked */
   background: linear-gradient(90deg, rgba(25,100,210,0.97), rgba(66,165,245,0.97));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
   will-change: background, box-shadow;
 }
 
@@ -230,7 +233,8 @@ body {
     radial-gradient(circle at 0% 0%, rgba(255,255,255,0.14), transparent 40%),
     radial-gradient(circle at 100% 0%, rgba(255,255,255,0.12), transparent 40%),
     linear-gradient(135deg, #0d47a1 0%, #1565c0 35%, #1976d2 65%, #0288d1 100%);
-  padding: 80px 24px 60px;
+  padding: 115px 24px 60px;
+  margin-top: -85px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -932,6 +936,7 @@ body {
   transform: translateY(-50%);
   pointer-events: none;
   animation: sportRunner 1.8s ease-in-out infinite;
+  display: none;
 }
 
 @keyframes sportRunner {
@@ -1176,7 +1181,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  margin: 0 16px;
+  margin: 0 16px 48px;
 }
 
 #contact::before {
@@ -1714,8 +1719,8 @@ footer a:hover { color: #ffffff; }
 }
 
 
-/* ===== RESPONSIVE — TABLET (≤ 900px) ===== */
-@media (max-width: 900px) {
+/* ===== RESPONSIVE — LAPTOP (≤ 1024px) ===== */
+@media (max-width: 1024px) {
   .nav-links {
     position: fixed;
     top: 70px; left: 12px; right: 12px;
@@ -1759,6 +1764,33 @@ footer a:hover { color: #ffffff; }
   .nav-cta-emoji { display: none; }
 
   .nav-burger { display: flex; }
+
+  /* Giochi: 2 colonne su laptop stretto per evitare card orfane */
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sezioni: più respiro laterale */
+  #stats       { margin-left: 24px; margin-right: 24px; }
+  #education   { margin-left: 24px; margin-right: 24px; }
+  #sport       { margin-left: 24px; margin-right: 24px; }
+  #teachers    { margin-left: 24px; margin-right: 24px; }
+  #social      { margin-left: 24px; margin-right: 24px; }
+  #contact     { margin-left: 24px; margin-right: 24px; }
+  #sport::before { display: none; }
+}
+
+@media (max-width: 1400px) {
+  #sport::before { display: none; }
+}
+
+/* ===== RESPONSIVE — TABLET (≤ 900px) ===== */
+@media (max-width: 900px) {
+  /* Sport: 2 colonne invece di saltare subito a 1 */
+  .sport-grid   { grid-template-columns: repeat(2, 1fr); }
+
+  /* Contatti: colonna singola prima che diventi troppo stretto */
+  .contact-box        { grid-template-columns: 1fr; gap: 32px; }
+  .contact-left       { text-align: center; }
+  .contact-info-list  { align-items: center; }
 }
 
 
@@ -1780,9 +1812,6 @@ footer a:hover { color: #ffffff; }
   .sport-emoji-item   { font-size: 36px; }
   .sport-tip          { flex-direction: column; text-align: center; }
 
-  .contact-box        { grid-template-columns: 1fr; gap: 32px; }
-  .contact-left       { text-align: center; }
-  .contact-info-list  { align-items: center; }
   .contact-right      { padding: 26px 20px; }
 }
 

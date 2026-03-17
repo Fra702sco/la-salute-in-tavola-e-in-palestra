@@ -213,6 +213,7 @@ Sortable/Ghost → Responsive (tablet → mobile)
 Progetto sviluppato durante il **Servizio Civile** 2025/2026 — comune di Nicotera (VV), Calabria.
 
 > Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy. Vedi il [README principale](../../README.md) per i dettagli.
+> Altri giochi disponibili: [🧠 Quiz Alimentare](../quiz/README.md) · [🃏 Memory degli Alimenti](../memory/README.md)
 
 ---
 

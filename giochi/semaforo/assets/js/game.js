@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'bibita',     emoji: '🥤', label: 'Bibita' },
     { id: 'caramella',  emoji: '🍬', label: 'Caramella' },
     { id: 'torta',      emoji: '🍰', label: 'Torta fatta in casa' },
-    { id: 'succo',      emoji: '🧃', label: 'Succo' },
+    { id: 'succo',      emoji: '🧃', label: 'Succo di frutta bio' },
     { id: 'focaccia',   emoji: '🫓', label: 'Focaccia' },
     { id: 'panino',     emoji: '🥪', label: 'Panino' },
     { id: 'biscotto',   emoji: '🍪', label: 'Biscotto fatto in casa' },
