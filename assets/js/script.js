@@ -225,6 +225,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =====================================================
+     FLIP CARD — educazione alimentare
+     ===================================================== */
+  document.querySelectorAll('.edu-card-wrapper').forEach(card => {
+    card.addEventListener('click', function () {
+      this.classList.toggle('flipped');
+    });
+  });
+
+
+  /* =====================================================
      STAT ITEMS — interazioni al click
      ===================================================== */
   const statEmojis = {
