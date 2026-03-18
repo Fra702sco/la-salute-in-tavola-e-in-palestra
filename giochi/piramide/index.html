@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
-  <title>Memory degli Alimenti — La Salute a Tavola e in Palestra</title>
-  <meta name="description" content="Trova le coppie di alimenti sani e allena la memoria divertendoti!" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' https://fra702sco.github.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+  <title>Puzzle della Piramide — La Salute a Tavola e in Palestra</title>
+  <meta name="description" content="Costruisci la piramide alimentare trascinando gli alimenti al livello giusto! Gioco educativo per bambini." />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -24,9 +24,9 @@
 
       <a href="../../index.html" class="home-link-top" aria-label="Torna alla home">🏠 Home</a>
 
-      <div class="start-icon" aria-hidden="true">🃏</div>
-      <h1 class="start-title">Memory degli <span class="title-highlight">Alimenti</span></h1>
-      <p class="start-subtitle">Trova le coppie di alimenti sani<br>e allena la memoria divertendoti!</p>
+      <div class="start-icon" aria-hidden="true">🔺</div>
+      <h1 class="start-title">Puzzle della <span class="title-highlight">Piramide</span></h1>
+      <p class="start-subtitle">Costruisci la piramide alimentare!<br>Trascina ogni alimento al livello giusto.</p>
 
       <!-- Difficoltà -->
       <div class="diff-section">
@@ -35,37 +35,37 @@
           <button class="diff-btn" data-diff="easy">
             <span class="diff-emoji">🌱</span>
             <strong>Facile</strong>
-            <small>6 coppie</small>
+            <small>10 alimenti</small>
           </button>
           <button class="diff-btn selected" data-diff="medium">
             <span class="diff-emoji">⭐</span>
             <strong>Medio</strong>
-            <small>8 coppie</small>
+            <small>15 alimenti</small>
           </button>
           <button class="diff-btn" data-diff="hard">
             <span class="diff-emoji">🔥</span>
             <strong>Difficile</strong>
-            <small>12 coppie</small>
+            <small>20 alimenti</small>
           </button>
         </div>
       </div>
 
       <!-- Regole -->
       <div class="rules-row">
-        <div class="rule"><span>👆</span>Clicca due carte</div>
-        <div class="rule"><span>✅</span>Coppia = trovata!</div>
-        <div class="rule"><span>🔄</span>Sbagliata = torna</div>
-        <div class="rule"><span>⭐</span>Meno mosse = 3 stelle</div>
+        <div class="rule"><span>👆</span>Trascina l'alimento</div>
+        <div class="rule"><span>🔺</span>Mettilo al livello giusto</div>
+        <div class="rule"><span>✅</span>Corretto = punti!</div>
+        <div class="rule"><span>⭐</span>Pochi errori = 3 stelle</div>
       </div>
 
-      <button id="btn-start" class="btn-start">▶ &nbsp;Inizia a giocare</button>
+      <button id="btn-start" class="btn-start">▶ &nbsp;Costruisci la Piramide!</button>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════
        SCHERMATA DI GIOCO
   ════════════════════════════════════════════════ -->
-  <section id="game-screen" class="screen" role="main" aria-label="Griglia di gioco">
+  <section id="game-screen" class="screen" role="main" aria-label="Gioco piramide alimentare">
 
     <header class="game-header">
       <button id="btn-home" class="ctrl-btn" aria-label="Torna alla home">🏠</button>
@@ -76,14 +76,13 @@
           <span id="timer-val" class="hstat-val">00:00</span>
         </div>
         <div class="hstat">
-          <span class="hstat-icon">👆</span>
-          <span id="moves-val" class="hstat-val">0</span>
-          <span class="hstat-lbl">mosse</span>
+          <span class="hstat-icon">✅</span>
+          <span id="correct-val" class="hstat-val">0</span>
+          <span id="correct-tot" class="hstat-lbl">/15</span>
         </div>
         <div class="hstat">
-          <span class="hstat-icon">✅</span>
-          <span id="pairs-val" class="hstat-val">0</span>
-          <span id="pairs-tot" class="hstat-lbl">/8</span>
+          <span class="hstat-icon">❌</span>
+          <span id="errors-val" class="hstat-val">0</span>
         </div>
       </div>
 
@@ -93,7 +92,53 @@
       </div>
     </header>
 
-    <div id="game-grid" class="game-grid" role="grid" aria-label="Carte del memory"></div>
+    <!-- Area gioco: piramide + coda alimenti -->
+    <div class="game-area">
+
+      <!-- Piramide -->
+      <div id="pyramid" class="pyramid" role="img" aria-label="Piramide alimentare">
+        <div class="pyr-level" data-level="5" aria-label="Vertice: grassi e dolci">
+          <div class="pyr-shape pyr-top"></div>
+          <div class="pyr-label">Grassi e dolci</div>
+          <div class="pyr-hint">Con moderazione</div>
+          <div class="pyr-slots" id="slots-5"></div>
+        </div>
+        <div class="pyr-level" data-level="4" aria-label="Livello 4: carne, pesce, uova, legumi">
+          <div class="pyr-shape"></div>
+          <div class="pyr-label">Carne, pesce, uova, legumi</div>
+          <div class="pyr-hint">Qualche volta a settimana</div>
+          <div class="pyr-slots" id="slots-4"></div>
+        </div>
+        <div class="pyr-level" data-level="3" aria-label="Livello 3: latte e derivati">
+          <div class="pyr-shape"></div>
+          <div class="pyr-label">Latte e derivati</div>
+          <div class="pyr-hint">2–3 porzioni al giorno</div>
+          <div class="pyr-slots" id="slots-3"></div>
+        </div>
+        <div class="pyr-level" data-level="2" aria-label="Livello 2: frutta e verdura">
+          <div class="pyr-shape"></div>
+          <div class="pyr-label">Frutta e verdura</div>
+          <div class="pyr-hint">5 porzioni al giorno</div>
+          <div class="pyr-slots" id="slots-2"></div>
+        </div>
+        <div class="pyr-level" data-level="1" aria-label="Base: cereali, pane, pasta, riso">
+          <div class="pyr-shape pyr-base"></div>
+          <div class="pyr-label">Cereali, pane, pasta, riso</div>
+          <div class="pyr-hint">Ogni pasto principale</div>
+          <div class="pyr-slots" id="slots-1"></div>
+        </div>
+      </div>
+
+      <!-- Coda alimenti da trascinare -->
+      <div class="food-queue-wrapper">
+        <p class="queue-title">Trascina al livello giusto!</p>
+        <div id="food-queue" class="food-queue" role="list" aria-label="Alimenti da posizionare"></div>
+      </div>
+
+    </div>
+
+    <!-- Toast feedback -->
+    <div id="toast" class="toast" aria-live="polite"></div>
 
   </section>
 
@@ -103,8 +148,8 @@
   <section id="win-screen" class="screen" role="main" aria-live="assertive">
     <div class="result-card">
       <div class="res-trophy" aria-hidden="true">🏆</div>
-      <h2 class="res-title">Hai vinto!</h2>
-      <p class="res-sub">Tutte le coppie trovate!</p>
+      <h2 class="res-title">Piramide completata!</h2>
+      <p class="res-sub">Sei un esperto di alimentazione!</p>
 
       <div id="stars-row" class="stars-row" aria-label="Valutazione stelle">
         <span class="star-item" data-n="1">⭐</span>
@@ -119,9 +164,9 @@
           <small>Tempo</small>
         </div>
         <div class="rstat">
-          <span class="rstat-icon">👆</span>
-          <strong id="res-moves">0</strong>
-          <small>Mosse</small>
+          <span class="rstat-icon">✅</span>
+          <strong id="res-correct">0</strong>
+          <small>Corretti</small>
         </div>
         <div class="rstat">
           <span class="rstat-icon">🏅</span>
@@ -138,7 +183,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════
-       MODALE SCEGLI DIFFICOLTÀ (per "Gioca ancora")
+       MODALE SCEGLI DIFFICOLTÀ
   ════════════════════════════════════════════════ -->
   <div id="modal-diff" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-label="Scegli difficoltà">
     <div class="modal-box modal-diff-box">
@@ -147,17 +192,17 @@
         <button class="diff-btn" data-diff2="easy">
           <span class="diff-emoji">🌱</span>
           <strong>Facile</strong>
-          <small>6 coppie</small>
+          <small>10 alimenti</small>
         </button>
         <button class="diff-btn" data-diff2="medium">
           <span class="diff-emoji">⭐</span>
           <strong>Medio</strong>
-          <small>8 coppie</small>
+          <small>15 alimenti</small>
         </button>
         <button class="diff-btn" data-diff2="hard">
           <span class="diff-emoji">🔥</span>
           <strong>Difficile</strong>
-          <small>12 coppie</small>
+          <small>20 alimenti</small>
         </button>
       </div>
       <div class="modal-btns" style="margin-top:16px">
@@ -181,11 +226,11 @@
   </div>
 
   <!-- ═══ AUDIO (riutilizza file del quiz) ═══ -->
-  <audio id="snd-flip"  src="../quiz/assets/audio/tick.mp3"       preload="auto"></audio>
-  <audio id="snd-match" src="../quiz/assets/audio/correct.mp3"    preload="auto"></audio>
-  <audio id="snd-wrong" src="../quiz/assets/audio/error.mp3"      preload="auto"></audio>
-  <audio id="snd-win"   src="../quiz/assets/audio/victory.mp3"    preload="auto"></audio>
-  <audio id="snd-bg"    src="../quiz/assets/audio/background.mp3" loop preload="auto"></audio>
+  <audio id="snd-correct" src="../quiz/assets/audio/correct.mp3"   preload="auto"></audio>
+  <audio id="snd-wrong"  src="../quiz/assets/audio/error.mp3"      preload="auto"></audio>
+  <audio id="snd-level"  src="../quiz/assets/audio/correct.mp3"    preload="auto"></audio>
+  <audio id="snd-win"    src="../quiz/assets/audio/victory.mp3"    preload="auto"></audio>
+  <audio id="snd-bg"     src="../quiz/assets/audio/background.mp3" loop preload="auto"></audio>
 
   <script src="assets/js/game.js"></script>
 </body>

@@ -581,10 +581,11 @@ body {
 }
 
 /* Barre colore per tipo */
-.game-card.semaforo::before { background: linear-gradient(90deg, #e53935, #f9a825, #43a047); }
+.game-card.semaforo::before { background: linear-gradient(90deg, #2e7d32, #43a047); }
 .game-card.quiz::before     { background: linear-gradient(90deg, #1e88e5, #42a5f5); }
 .game-card.memory::before   { background: linear-gradient(90deg, #fb8c00, #ffa726); }
-.game-card.puzzle::before   { background: linear-gradient(90deg, #8e24aa, #ab47bc); }
+.game-card.puzzle::before    { background: linear-gradient(90deg, #8e24aa, #ab47bc); }
+.game-card.piramide::before { background: linear-gradient(90deg, #8e24aa, #ab47bc); }
 
 /* Glow su hover solo per card disponibili */
 .game-card.available::after {
