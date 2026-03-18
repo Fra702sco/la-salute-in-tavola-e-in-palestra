@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/sitemap.xml
