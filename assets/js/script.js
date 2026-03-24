@@ -1,3 +1,5 @@
+'use strict';
+
 /* ============================================================
    LA SALUTE A TAVOLA E IN PALESTRA — script.js
    Struttura: DOMContentLoaded
@@ -507,6 +509,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!name || !email || !message) return;
 
+      // Verifica consenso trattamento dati
+      const consent = document.getElementById('contact-consent');
+      if (consent && !consent.checked) {
+        if (feedback) {
+          feedback.textContent = '❌ Devi acconsentire al trattamento dei dati prima di inviare.';
+          feedback.className   = 'contact-feedback error';
+          setTimeout(() => { feedback.textContent = ''; feedback.className = 'contact-feedback'; }, 5000);
+        }
+        return;
+      }
+
       // Validazione email
       const check = isEmailValid(email);
       if (!check.ok) {
@@ -587,6 +600,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && !privacyOverlay.hasAttribute('hidden')) closePrivacy();
     });
+
+    // Link privacy nel checkbox consenso del form
+    const consentPrivacyLink = document.getElementById('consent-privacy-link');
+    if (consentPrivacyLink) consentPrivacyLink.addEventListener('click', openPrivacy);
   }
 
 }); // fine DOMContentLoaded

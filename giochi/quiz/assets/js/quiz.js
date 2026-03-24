@@ -948,7 +948,13 @@ function caricaDomanda(idx) {
     btn.disabled  = false;
     btn.className = 'answer-btn';
     btn.setAttribute('aria-label', `Risposta ${lettere[i]}`);
-    btn.innerHTML = `<span class="answer-letter" aria-hidden="true">${lettere[i]}</span>${r.testo}`;
+    btn.textContent = '';
+    const letterSpan = document.createElement('span');
+    letterSpan.className = 'answer-letter';
+    letterSpan.setAttribute('aria-hidden', 'true');
+    letterSpan.textContent = lettere[i];
+    btn.appendChild(letterSpan);
+    btn.appendChild(document.createTextNode(r.testo));
     btn.dataset.corretta = r.corretto ? '1' : '0';
     btn.setAttribute('aria-pressed', 'false');
   });
@@ -1129,12 +1135,39 @@ function buildRecap(container) {
   S.erroriLog.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'recap-item';
-    div.innerHTML =
-      `<div class="recap-num">Errore ${i + 1}</div>` +
-      `<div class="recap-q">${item.domanda}</div>` +
-      `<div class="recap-wrong">❌ Hai risposto: <strong>${item.rispostaData}</strong></div>` +
-      `<div class="recap-right">✅ Risposta giusta: <strong>${item.rispostaGiusta}</strong></div>` +
-      `<div class="recap-time">⏱️ Tempo impiegato: <strong>${item.tempoSecondi}s su ${CFG.SECONDI_DOMANDA}s</strong></div>`;
+    const num = document.createElement('div');
+    num.className = 'recap-num';
+    num.textContent = `Errore ${i + 1}`;
+    div.appendChild(num);
+
+    const q = document.createElement('div');
+    q.className = 'recap-q';
+    q.textContent = item.domanda;
+    div.appendChild(q);
+
+    const wrong = document.createElement('div');
+    wrong.className = 'recap-wrong';
+    wrong.appendChild(document.createTextNode('❌ Hai risposto: '));
+    const wrongS = document.createElement('strong');
+    wrongS.textContent = item.rispostaData;
+    wrong.appendChild(wrongS);
+    div.appendChild(wrong);
+
+    const right = document.createElement('div');
+    right.className = 'recap-right';
+    right.appendChild(document.createTextNode('✅ Risposta giusta: '));
+    const rightS = document.createElement('strong');
+    rightS.textContent = item.rispostaGiusta;
+    right.appendChild(rightS);
+    div.appendChild(right);
+
+    const time = document.createElement('div');
+    time.className = 'recap-time';
+    time.appendChild(document.createTextNode('⏱️ Tempo impiegato: '));
+    const timeS = document.createElement('strong');
+    timeS.textContent = `${item.tempoSecondi}s su ${CFG.SECONDI_DOMANDA}s`;
+    time.appendChild(timeS);
+    div.appendChild(time);
     container.appendChild(div);
   });
 }
@@ -1411,7 +1444,7 @@ DOM.answersGrid.addEventListener('touchend', e => {
     DOM.btnStart.disabled    = false;
     DOM.btnStart.textContent = '🎮 Inizia a giocare!';
   } catch (err) {
-    console.error('Errore caricamento domande:', err);
+    /* errore caricamento domande gestito nell'UI */
     DOM.btnStart.textContent = '❌ Errore caricamento';
     const errEl = document.getElementById('load-error');
     if (errEl) errEl.hidden = false;

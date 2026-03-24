@@ -1363,6 +1363,51 @@ body {
 
 .form-privacy-note a:hover { color: white; }
 
+.form-minor-notice {
+  font-size: 13px;
+  color: #ff8f00;
+  text-align: center;
+  margin: 10px 0 4px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.form-consent {
+  margin: 6px 0 10px;
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  color: #b0bec5;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.consent-label input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: #1565c0;
+  cursor: pointer;
+}
+
+.consent-privacy-link {
+  background: none;
+  border: none;
+  color: #bbdefb;
+  text-decoration: underline;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.consent-privacy-link:hover { color: white; }
+
 
 /* ===== PRIVACY POLICY MODAL ===== */
 .footer-privacy-btn {

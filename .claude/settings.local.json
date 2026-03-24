@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(wc:*)",
+      "Bash(grep -r innerHTML /c/Users/frata/Documents/la-salute-in-tavola-e-in-palestra --include=*.js --include=*.html)",
+      "Bash(grep -r innerHTMLs*= /c/Users/frata/Documents/la-salute-in-tavola-e-in-palestra --include=*.js)",
+      "Bash(grep:*)",
+      "Bash(node -c assets/js/script.js)",
+      "Bash(node -c giochi/quiz/assets/js/quiz.js)",
+      "Bash(node -c giochi/semaforo/assets/js/game.js)",
+      "Bash(node -c giochi/piramide/assets/js/game.js)",
+      "Bash(node -c giochi/memory/assets/js/game.js)",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Bash(node -c \"$file\")",
+      "Bash(done)",
+      "Bash(node -c giochi/panino/assets/js/game.js)"
+    ]
+  }
+}

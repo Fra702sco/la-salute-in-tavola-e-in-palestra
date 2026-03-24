@@ -207,16 +207,28 @@ function createCard(food, idx) {
   card.setAttribute('tabindex', '0');
   card.setAttribute('aria-label', `Carta coperta`);
 
-  card.innerHTML = `
-    <div class="card-inner">
-      <div class="card-back" aria-hidden="true">
-        <div class="card-shimmer"></div>
-      </div>
-      <div class="card-front" aria-hidden="true">
-        <span class="card-emoji">${food.emoji}</span>
-        <span class="card-name">${food.name}</span>
-      </div>
-    </div>`;
+  const inner = document.createElement('div');
+  inner.className = 'card-inner';
+  const back = document.createElement('div');
+  back.className = 'card-back';
+  back.setAttribute('aria-hidden', 'true');
+  const shimmer = document.createElement('div');
+  shimmer.className = 'card-shimmer';
+  back.appendChild(shimmer);
+  const front = document.createElement('div');
+  front.className = 'card-front';
+  front.setAttribute('aria-hidden', 'true');
+  const cardEmoji = document.createElement('span');
+  cardEmoji.className = 'card-emoji';
+  cardEmoji.textContent = food.emoji;
+  const cardName = document.createElement('span');
+  cardName.className = 'card-name';
+  cardName.textContent = food.name;
+  front.appendChild(cardEmoji);
+  front.appendChild(cardName);
+  inner.appendChild(back);
+  inner.appendChild(front);
+  card.appendChild(inner);
 
   // Entrata a cascata
   card.style.animation = `cardEntrance 0.45s ${idx * 0.045}s var(--ease-bounce) both`;

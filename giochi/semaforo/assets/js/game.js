@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       audioBg.muted  = false;
       audioBg.volume = getVolume();
-      audioBg.play().catch(err => console.warn('Audio:', err));
+      audioBg.play().catch(() => {});
       bgPlaying = true;
     }
     setBgButtons(bgPlaying);
@@ -156,8 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let bulbCoords = (() => {
     try {
       const s = localStorage.getItem('semaforo_bulbCoords');
-      return s ? JSON.parse(s) : JSON.parse(JSON.stringify(DEFAULT_COORDS));
+      if (!s) return JSON.parse(JSON.stringify(DEFAULT_COORDS));
+      const parsed = JSON.parse(s);
+      // Validazione schema: deve essere un array di 3 oggetti con id, x, y numerici
+      if (!Array.isArray(parsed) || parsed.length !== 3) throw new Error('invalid');
+      parsed.forEach(b => {
+        if (typeof b.id !== 'string' || !Number.isFinite(b.x) || !Number.isFinite(b.y)) throw new Error('invalid');
+      });
+      return parsed;
     } catch (e) {
+      localStorage.removeItem('semaforo_bulbCoords');
       return JSON.parse(JSON.stringify(DEFAULT_COORDS));
     }
   })();
@@ -248,7 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function showCalibStep() {
     if (calibStep >= 3) {
       saveCoords();
-      calibOverlay.innerHTML = `<div class="step">✅ Calibrazione salvata!</div>`;
+      calibOverlay.textContent = '';
+      const doneDiv = document.createElement('div');
+      doneDiv.className = 'step';
+      doneDiv.textContent = '✅ Calibrazione salvata!';
+      calibOverlay.appendChild(doneDiv);
       calibOverlay.classList.add('show');
       document.body.classList.remove('calibrating');
       isCalibrating = false;
@@ -257,10 +269,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const s = calibSteps[calibStep];
-    calibOverlay.innerHTML = `
-      <div class="step" style="color:${s.color}">${s.label}</div>
-      <div>Clicca esattamente al centro della luce</div>
-      <div class="hint">Step ${calibStep + 1} / 3 &nbsp;|&nbsp; ESC per annullare</div>`;
+    calibOverlay.textContent = '';
+    const stepDiv = document.createElement('div');
+    stepDiv.className = 'step';
+    stepDiv.style.color = s.color;
+    stepDiv.textContent = s.label;
+    const instrDiv = document.createElement('div');
+    instrDiv.textContent = 'Clicca esattamente al centro della luce';
+    const hintDiv = document.createElement('div');
+    hintDiv.className = 'hint';
+    hintDiv.textContent = `Step ${calibStep + 1} / 3 \u00A0|\u00A0 ESC per annullare`;
+    calibOverlay.appendChild(stepDiv);
+    calibOverlay.appendChild(instrDiv);
+    calibOverlay.appendChild(hintDiv);
     calibOverlay.classList.add('show');
   }
 
@@ -422,7 +443,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (status === 'ok') {
       green.classList.add('on');
       playSound('audio-verde');
-      text.innerHTML = '✅ <strong style="color:#1b5e20">Perfetto! Alimento nel posto giusto!</strong> 🎉';
+      text.textContent = '';
+      text.appendChild(document.createTextNode('✅ '));
+      const okStrong = document.createElement('strong');
+      okStrong.style.color = '#1b5e20';
+      okStrong.textContent = 'Perfetto! Alimento nel posto giusto!';
+      text.appendChild(okStrong);
+      text.appendChild(document.createTextNode(' 🎉'));
       trafficTimer = setTimeout(() => {
         green.classList.remove('on');
         text.textContent = 'Trascina gli alimenti nel rettangolo corretto! 🎮';
@@ -432,7 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (status === 'ko') {
       red.classList.add('on');
       playSound('audio-rosso');
-      text.innerHTML = '❌ <strong style="color:#b71c1c">Ops! Posto sbagliato, riprova!</strong>';
+      text.textContent = '';
+      text.appendChild(document.createTextNode('❌ '));
+      const koStrong = document.createElement('strong');
+      koStrong.style.color = '#b71c1c';
+      koStrong.textContent = 'Ops! Posto sbagliato, riprova!';
+      text.appendChild(koStrong);
       trafficTimer = setTimeout(() => {
         red.classList.remove('on');
         text.textContent = 'Trascina gli alimenti nel rettangolo corretto! 🎮';
@@ -551,7 +583,18 @@ document.addEventListener('DOMContentLoaded', () => {
     div.className   = 'item';
     div.dataset.id  = item.id;
     div.setAttribute('role', 'listitem');
-    div.innerHTML   = `<span aria-hidden="true">${item.emoji}</span><span class="label">${item.label}</span><span class="check" aria-hidden="true"></span>`;
+    const emojiSpan = document.createElement('span');
+    emojiSpan.setAttribute('aria-hidden', 'true');
+    emojiSpan.textContent = item.emoji;
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'label';
+    labelSpan.textContent = item.label;
+    const checkSpan = document.createElement('span');
+    checkSpan.className = 'check';
+    checkSpan.setAttribute('aria-hidden', 'true');
+    div.appendChild(emojiSpan);
+    div.appendChild(labelSpan);
+    div.appendChild(checkSpan);
     return div;
   }
 

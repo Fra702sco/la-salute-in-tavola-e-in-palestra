@@ -107,6 +107,13 @@
               "name": "Puzzle della Piramide",
               "description": "Costruisci la piramide alimentare e scopri cosa mangiare ogni giorno!",
               "url": "https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/giochi/piramide/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Il Panino Perfetto",
+              "description": "Scegli gli ingredienti giusti e costruisci il panino sano perfetto!",
+              "url": "https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/giochi/panino/"
             }
           ]
         }
@@ -202,7 +209,7 @@
       <h2 class="visually-hidden">Statistiche del progetto</h2>
       <div class="stats-inner">
         <div class="stat-item reveal reveal-delay-1">
-          <div class="stat-number" aria-label="4 giochi">4</div>
+          <div class="stat-number" aria-label="5 giochi">5</div>
           <div class="stat-label">🎮 Giochi disponibili</div>
         </div>
         <div class="stat-item reveal reveal-delay-2">
@@ -265,6 +272,14 @@
           <div class="game-desc">Costruisci la piramide alimentare e scopri cosa mangiare ogni giorno!</div>
           <span class="game-tag tag-green">🟢 Disponibile</span>
           <a href="giochi/piramide/index.html" class="btn-play">▶ Gioca ora</a>
+        </div>
+
+        <div class="game-card available panino reveal reveal-delay-5">
+          <span class="game-emoji" aria-hidden="true">🥪</span>
+          <div class="game-title">Il Panino Perfetto</div>
+          <div class="game-desc">Scegli gli ingredienti giusti e costruisci il panino sano perfetto!</div>
+          <span class="game-tag tag-green">🟢 Disponibile</span>
+          <a href= "index.html" class="btn-play">▶ Gioca ora</a>
         </div>
 
       </div>
@@ -561,6 +576,13 @@
                   placeholder="Scrivi qui il tuo messaggio..."
                   required></textarea>
               </div>
+              <p class="form-minor-notice">⚠️ Se hai meno di 14 anni, chiedi il permesso a un genitore o tutore prima di compilare questo modulo.</p>
+              <div class="form-group form-consent">
+                <label class="consent-label">
+                  <input type="checkbox" id="contact-consent" required />
+                  <span>Confermo di avere almeno 14 anni oppure di avere il permesso di un genitore/tutore per l'invio di questi dati. Ho letto la <button type="button" class="consent-privacy-link" id="consent-privacy-link">Privacy Policy</button>.</span>
+                </label>
+              </div>
               <button type="submit" class="btn-contact">
                 <span id="btn-contact-text">📨 Invia messaggio</span>
               </button>
@@ -592,6 +614,10 @@
         &
         <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude AI</a>
       </div>
+      <div style="margin-top:8px; font-size:12px; opacity:0.7;">
+        Se sono presenti problemi nel sito di qualsiasi genere si prega di contattare all'email
+        <a href="mailto:francescotaccone26@gmail.com" style="color:#bbdefb; text-decoration:underline;">francescotaccone26@gmail.com</a>
+      </div>
       <div style="margin-top:10px; font-size:12px; opacity:0.6;">
         Licenza
         <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
@@ -615,21 +641,34 @@
           <p>Il presente sito è gestito nell'ambito del progetto educativo <strong>"La Salute a Tavola e in Palestra"</strong>, realizzato durante il Servizio Civile 2025/2026 presso il Comune di Nicotera (VV), Calabria. Per qualsiasi richiesta: <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a></p>
 
           <h3>2. Dati raccolti</h3>
-          <p>Questo sito <strong>non raccoglie, non traccia e non profilano</strong> i visitatori. In particolare:</p>
+          <p>Questo sito <strong>non raccoglie, non traccia e non profila</strong> i visitatori. In particolare:</p>
           <ul>
-            <li> Nessun cookie di profilazione o tracciamento</li>
-            <li> Nessun servizio di analytics (Google Analytics, ecc.)</li>
-            <li> Nessuna registrazione o account utente</li>
-            <li> Solo <code>localStorage</code> del browser per ricordare la preferenza sul popup novità (dato che rimane sul tuo dispositivo e non viene trasmesso)</li>
+            <li>Nessun cookie di profilazione o tracciamento</li>
+            <li>Nessun servizio di analytics (Google Analytics, ecc.)</li>
+            <li>Nessuna registrazione o account utente</li>
+            <li>Solo <code>localStorage</code> del browser per ricordare la preferenza sul popup novità e le impostazioni di calibrazione del gioco Semaforo (dati che rimangono sul tuo dispositivo e non vengono trasmessi)</li>
           </ul>
 
           <h3>3. Modulo di contatto</h3>
           <p>Il modulo "Scrivici" invia nome, indirizzo email e messaggio tramite il servizio <strong>Formspree</strong> (<a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy Formspree</a>). I dati vengono utilizzati esclusivamente per rispondere alla tua richiesta e non vengono condivisi con terze parti.</p>
 
-          <h3>4. Diritti dell'utente (GDPR)</h3>
-          <p>Ai sensi del Regolamento UE 2016/679 hai diritto di accesso, rettifica, cancellazione e opposizione al trattamento. Per esercitare i tuoi diritti scrivi a <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>.</p>
+          <h3>4. Base giuridica del trattamento (Art. 6 GDPR)</h3>
+          <p>Il trattamento dei dati forniti tramite il modulo di contatto si basa su:</p>
+          <ul>
+            <li><strong>Consenso</strong> (Art. 6.1.a): l'utente acconsente esplicitamente al trattamento compilando il modulo e selezionando la casella di consenso</li>
+            <li><strong>Legittimo interesse</strong> (Art. 6.1.f): rispondere alle richieste di contatto ricevute</li>
+          </ul>
 
-          <h3>5. Proprietà intellettuale</h3>
+          <h3>5. Minori (Art. 8 GDPR)</h3>
+          <p>Ai sensi dell'Art. 8 del Regolamento UE 2016/679 e del D.lgs. 101/2018, i minori di 14 anni devono ottenere il consenso di un genitore o tutore prima di inviare dati personali tramite il modulo di contatto.</p>
+
+          <h3>6. Conservazione dei dati</h3>
+          <p>I dati inviati tramite il modulo di contatto vengono conservati per il tempo strettamente necessario a rispondere alla richiesta e successivamente eliminati. Formspree conserva i dati secondo la propria <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+
+          <h3>7. Diritti dell'utente (GDPR)</h3>
+          <p>Ai sensi del Regolamento UE 2016/679 hai diritto di accesso, rettifica, cancellazione, portabilità e opposizione al trattamento dei tuoi dati personali. Per esercitare i tuoi diritti scrivi a <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>.</p>
+
+          <h3>8. Proprietà intellettuale</h3>
           <p>I contenuti del sito sono rilasciati sotto licenza <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons BY-NC 4.0</a>: liberi da usare e condividere con attribuzione, vietato l'uso commerciale.</p>
 
         </div>

@@ -267,10 +267,15 @@ function createFoodItem(food, idx) {
   el.setAttribute('draggable', 'true');
   el.style.setProperty('--d', `${idx * 0.06}s`);
 
-  el.innerHTML = `
-    <span class="food-emoji" aria-hidden="true">${food.emoji}</span>
-    <span class="food-name">${food.name}</span>
-  `;
+  const emojiSpan = document.createElement('span');
+  emojiSpan.className = 'food-emoji';
+  emojiSpan.setAttribute('aria-hidden', 'true');
+  emojiSpan.textContent = food.emoji;
+  const nameSpan = document.createElement('span');
+  nameSpan.className = 'food-name';
+  nameSpan.textContent = food.name;
+  el.appendChild(emojiSpan);
+  el.appendChild(nameSpan);
 
   // Desktop drag
   el.addEventListener('dragstart', onDragStart);
@@ -334,10 +339,14 @@ function onTouchStart(e) {
   // Crea ghost
   const ghost = document.createElement('div');
   ghost.className = 'food-ghost';
-  ghost.innerHTML = `
-    <span class="food-emoji">${item.querySelector('.food-emoji').textContent}</span>
-    <span class="food-name">${item.querySelector('.food-name').textContent}</span>
-  `;
+  const ghostEmoji = document.createElement('span');
+  ghostEmoji.className = 'food-emoji';
+  ghostEmoji.textContent = item.querySelector('.food-emoji').textContent;
+  const ghostName = document.createElement('span');
+  ghostName.className = 'food-name';
+  ghostName.textContent = item.querySelector('.food-name').textContent;
+  ghost.appendChild(ghostEmoji);
+  ghost.appendChild(ghostName);
   document.body.appendChild(ghost);
   state.ghostEl = ghost;
 
@@ -423,7 +432,11 @@ function onCorrect(foodEl, levelEl) {
   // Aggiungi alla piramide
   const slot = document.createElement('span');
   slot.className = 'slot-food';
-  slot.innerHTML = `<span class="slot-emoji">${emoji}</span>${name}`;
+  const slotEmoji = document.createElement('span');
+  slotEmoji.className = 'slot-emoji';
+  slotEmoji.textContent = emoji;
+  slot.appendChild(slotEmoji);
+  slot.appendChild(document.createTextNode(name));
   levelEl.querySelector('.pyr-slots').appendChild(slot);
 
   // Aggiorna contatori
