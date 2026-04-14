@@ -24,7 +24,8 @@
       "Bash(powershell -Command \"Remove-Item -Recurse -Force 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods' 2>$null; Test-Path 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods'\")",
       "Bash(powershell -Command \"Remove-Item -Recurse -Force 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods' -ErrorAction SilentlyContinue\")",
       "Bash(cp \"C:/Users/frata/Desktop/pikaso-creations/freepik__digital-illustration-a-7yearold-caucasian-boy-with__34583.jpeg\" \"C:/Users/frata/Documents/la-salute-in-tavola-e-in-palestra/giochi/panino/assets/img/bambino-felice.jpeg\")",
-      "Bash(cp \"C:/Users/frata/Desktop/pikaso-creations/freepik__talk__34584.png\" \"C:/Users/frata/Documents/la-salute-in-tavola-e-in-palestra/giochi/panino/assets/img/bambino-triste.png\")"
+      "Bash(cp \"C:/Users/frata/Desktop/pikaso-creations/freepik__talk__34584.png\" \"C:/Users/frata/Documents/la-salute-in-tavola-e-in-palestra/giochi/panino/assets/img/bambino-triste.png\")",
+      "Bash(git push *)"
     ]
   }
 }
