@@ -16,7 +16,15 @@
       "Bash(do echo:*)",
       "Bash(node -c \"$file\")",
       "Bash(done)",
-      "Bash(node -c giochi/panino/assets/js/game.js)"
+      "Bash(node -c giochi/panino/assets/js/game.js)",
+      "Bash(powershell -Command \"Get-Item 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods' | Select-Object FullName, Attributes\")",
+      "Bash(powershell -Command \"Set-Content -Path ''C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods\\\\test.txt'' -Value ''test''\")",
+      "Bash(powershell -Command \"Test-Path ''C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods\\\\test.txt''\")",
+      "Bash(powershell -Command \"Remove-Item 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods\\\\test.txt'\")",
+      "Bash(powershell -Command \"Remove-Item -Recurse -Force 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods' 2>$null; Test-Path 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods'\")",
+      "Bash(powershell -Command \"Remove-Item -Recurse -Force 'C:\\\\Users\\\\frata\\\\Documents\\\\la-salute-in-tavola-e-in-palestra\\\\giochi\\\\panino\\\\assets\\\\img\\\\foods' -ErrorAction SilentlyContinue\")",
+      "Bash(cp \"C:/Users/frata/Desktop/pikaso-creations/freepik__digital-illustration-a-7yearold-caucasian-boy-with__34583.jpeg\" \"C:/Users/frata/Documents/la-salute-in-tavola-e-in-palestra/giochi/panino/assets/img/bambino-felice.jpeg\")",
+      "Bash(cp \"C:/Users/frata/Desktop/pikaso-creations/freepik__talk__34584.png\" \"C:/Users/frata/Documents/la-salute-in-tavola-e-in-palestra/giochi/panino/assets/img/bambino-triste.png\")"
     ]
   }
 }
