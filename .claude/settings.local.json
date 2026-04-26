@@ -38,7 +38,11 @@
       "Bash(git ls-tree *)",
       "Bash(git rm *)",
       "WebFetch(domain:www.comune.nicotera.vv.it)",
-      "WebFetch(domain:form.agid.gov.it)"
+      "WebFetch(domain:form.agid.gov.it)",
+      "WebFetch(domain:securityheaders.com)",
+      "WebFetch(domain:sitecheck.sucuri.net)",
+      "WebFetch(domain:www.ssllabs.com)",
+      "WebFetch(domain:validator.w3.org)"
     ]
   }
 }
