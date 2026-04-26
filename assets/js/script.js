@@ -35,7 +35,7 @@ const safeStorage = {
    Cambia WHATS_NEW_VERSION ogni volta che vuoi mostrare
    di nuovo il popup a chi ha già visitato il sito.
    ============================================================ */
-const WHATS_NEW_VERSION = '2026-03-18';
+const WHATS_NEW_VERSION = '2026-04-26';
 const STORAGE_KEY       = 'whats_new_seen';
 
 (function initWhatsNew() {

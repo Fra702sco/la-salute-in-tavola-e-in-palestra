@@ -29,7 +29,6 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 | 🧠 **Quiz Alimentare** | ✅ Disponibile | 70+ domande su nutrizione, sport e vitamine + riepilogo errori finale |
 | 🃏 **Memory degli Alimenti** | ✅ Disponibile | 3 livelli di difficoltà — trova le coppie di alimenti sani |
 | 🔺 **Puzzle della Piramide** | ✅ Disponibile | Costruisci la piramide alimentare trascinando gli alimenti |
-| 🥪 **Il Panino Perfetto** | ✅ Disponibile | Scegli 3 ingredienti sani e costruisci il panino perfetto |
 
 ---
 
@@ -125,13 +124,9 @@ la-salute-in-tavola-e-in-palestra/
     │   └── assets/css + js
     │   # Riusa l'audio del Quiz
     │
-    ├── piramide/                           # ✅ Puzzle piramide alimentare
-    │   ├── index.html
-    │   └── assets/css + js
-    │
-    └── panino/                             # ✅ Costruisci il panino perfetto
+    └── piramide/                           # ✅ Puzzle piramide alimentare
         ├── index.html
-        └── assets/css + js + img (alimenti, bambino-felice, bambino-triste)
+        └── assets/css + js
 ```
 
 ---
@@ -186,7 +181,7 @@ Reveal on scroll → Responsive (≤ 900px → ≤ 768px → ≤ 600px)
 | **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop nel gioco Semaforo — **servito in locale** (no dipendenze CDN) |
 | **Web Audio API** | Effetti sonori e musica nei giochi |
 | **IntersectionObserver API** | Animazioni di entrata su scroll e link attivo navbar |
-| **localStorage** | Popup novità + calibrazione semaforo + combinazioni Panino — tutti wrappati in `safeStorage` (try/catch) |
+| **localStorage** | Popup novità + calibrazione semaforo — wrappati in `safeStorage` (try/catch anti-quota / private mode) |
 | **Fetch API** | Caricamento domande da file JSON esterno (quiz) |
 | **[Formspree](https://formspree.io)** | Ricezione form contatti — qualificato come responsabile esterno ex Art. 28 GDPR |
 | **Content Security Policy** | CSP restrittiva su tutte le pagine (`default-src 'none'`) + `Referrer-Policy: strict-origin-when-cross-origin` |

@@ -183,7 +183,7 @@ Modale home → Responsive (≤600px, ≤390px)
 Progetto sviluppato durante il **Servizio Civile Universale** 2025/2026 — Comune di Nicotera (VV), Calabria.
 
 > Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy GDPR-compliant. Vedi il [README principale](../../README.md) per i dettagli.
-> Altri giochi disponibili: [🚦 Il Semaforo della Merenda](../semaforo/README.md) · [🧠 Quiz Alimentare](../quiz/README.md) · 🔺 Puzzle della Piramide · 🥪 Il Panino Perfetto
+> Altri giochi disponibili: [🚦 Il Semaforo della Merenda](../semaforo/README.md) · [🧠 Quiz Alimentare](../quiz/README.md) · 🔺 Puzzle della Piramide
 
 ---
 
