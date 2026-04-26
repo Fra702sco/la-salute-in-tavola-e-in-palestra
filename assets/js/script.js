@@ -624,4 +624,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  /* =====================================================
+     NOTE LEGALI MODAL — stesso pattern del Privacy modal
+     ===================================================== */
+  const legalOverlay  = document.getElementById('legal-overlay');
+  const openLegalBtn  = document.getElementById('open-legal');
+  const closeLegalBtn = document.getElementById('legal-close');
+
+  if (legalOverlay && openLegalBtn) {
+    function openLegal() {
+      legalOverlay.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      closeLegalBtn.focus();
+    }
+    function closeLegal() {
+      legalOverlay.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+
+    openLegalBtn.addEventListener('click', openLegal);
+    closeLegalBtn.addEventListener('click', closeLegal);
+    legalOverlay.addEventListener('click', e => { if (e.target === legalOverlay) closeLegal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !legalOverlay.hasAttribute('hidden')) closeLegal();
+    });
+  }
+
 }); // fine DOMContentLoaded

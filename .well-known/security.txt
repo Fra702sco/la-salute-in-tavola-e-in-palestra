@@ -1,0 +1,10 @@
+# Security Policy — La Salute a Tavola e in Palestra
+# Comune di Nicotera — Servizio Civile Universale 2025/2026
+#
+# Politica di disclosure responsabile per ricercatori di sicurezza.
+# Responsible disclosure policy for security researchers.
+
+Contact: mailto:serviziocivilenicotera2025@outlook.com
+Expires: 2027-04-26T00:00:00.000Z
+Preferred-Languages: it, en
+Canonical: https://fra702sco.github.io/la-salute-in-tavola-e-in-palestra/.well-known/security.txt
