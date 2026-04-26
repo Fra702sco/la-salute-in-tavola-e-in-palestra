@@ -165,13 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       return parsed;
     } catch (e) {
-      localStorage.removeItem('semaforo_bulbCoords');
+      try { localStorage.removeItem('semaforo_bulbCoords'); } catch {}
       return JSON.parse(JSON.stringify(DEFAULT_COORDS));
     }
   })();
 
   function saveCoords() {
-    localStorage.setItem('semaforo_bulbCoords', JSON.stringify(bulbCoords));
+    try { localStorage.setItem('semaforo_bulbCoords', JSON.stringify(bulbCoords)); } catch {}
   }
 
   function positionGlows() {
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-settings-reset').addEventListener('click', () => {
     bulbCoords = JSON.parse(JSON.stringify(DEFAULT_COORDS));
-    localStorage.removeItem('semaforo_bulbCoords');
+    try { localStorage.removeItem('semaforo_bulbCoords'); } catch {}
     positionGlows();
     openSettings();
   });

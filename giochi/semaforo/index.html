@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content="Gioco educativo drag & drop sulla corretta alimentazione per bambini delle scuole primarie." />
     <meta name="theme-color" content="#0d47a1" />
 
@@ -310,9 +311,10 @@
     </nav>
 
 
-    <!-- Script in fondo al body, dopo tutto il DOM -->
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js" integrity="sha384-eeLEhtwdMwD3X9y+8P3Cn7Idl/M+w8H4uZqkgD/2eJVkWIN1yKzEj6XegJ9dL3q0" crossorigin="anonymous"></script>
-    <script src="assets/js/sortable-fallback.js"></script>
+    <!-- Script in fondo al body, dopo tutto il DOM.
+         SortableJS è servito localmente: nessuna dipendenza da CDN esterni,
+         nessuna superficie di attacco supply-chain (jsdelivr/unpkg). -->
+    <script src="assets/js/Sortable.min.js"></script>
     <script src="assets/js/game.js"></script>
   </body>
 </html>

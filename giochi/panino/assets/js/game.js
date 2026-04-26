@@ -219,7 +219,7 @@ function loadCombos() {
       Array.isArray(c) && c.length === MAX_SLOTS &&
       c.every(id => typeof id === 'string'));
   } catch {
-    localStorage.removeItem(COMBO_KEY);
+    try { localStorage.removeItem(COMBO_KEY); } catch {}
     return [];
   }
 }
@@ -227,7 +227,7 @@ function loadCombos() {
 function saveCombo(ids) {
   const combos = loadCombos();
   combos.push([...ids].sort());
-  localStorage.setItem(COMBO_KEY, JSON.stringify(combos));
+  try { localStorage.setItem(COMBO_KEY, JSON.stringify(combos)); } catch {}
 }
 
 function isDuplicate(ids) {

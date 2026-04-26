@@ -122,6 +122,7 @@
     </script>
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; media-src 'self'; font-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" href="assets/ico-preview/favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/ico-preview/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/ico-preview/favicon-16x16.png" />
@@ -199,6 +200,20 @@
           🎮 Giochi interattivi
         </span>
         <span class="badge" role="listitem">📍 Nicotera (VV)</span>
+      </div>
+
+      <div class="hero-credit reveal reveal-delay-4">
+        <span class="hero-credit-label">Promosso nell'ambito del</span>
+        <div class="hero-credit-card">
+          <img
+            src="assets/ico-preview/servizio-civile.png"
+            alt="Logo Servizio Civile Universale"
+            class="hero-credit-logo"
+            width="56"
+            height="56"
+            loading="lazy" />
+          <span class="hero-credit-name">Servizio Civile Universale<br><small>2025 / 2026 — Comune di Nicotera</small></span>
+        </div>
       </div>
 
     </section>
@@ -555,6 +570,7 @@
                   name="nome"
                   placeholder="Il tuo nome..."
                   autocomplete="name"
+                  maxlength="100"
                   required />
               </div>
               <div class="form-group">
@@ -565,6 +581,7 @@
                   name="email"
                   placeholder="La tua email..."
                   autocomplete="email"
+                  maxlength="200"
                   required />
               </div>
               <div class="form-group">
@@ -574,11 +591,32 @@
                   name="messaggio"
                   rows="4"
                   placeholder="Scrivi qui il tuo messaggio..."
+                  maxlength="2000"
                   required></textarea>
               </div>
-              <p class="form-minor-notice">⚠️ Se hai meno di 14 anni, chiedi il permesso a un genitore o tutore prima di compilare questo modulo.</p>
+
+              <input
+                type="text"
+                name="_gotcha"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                style="position:absolute; left:-10000px; width:1px; height:1px; opacity:0;" />
+
+              <div class="form-group">
+                <label for="contact-role">👥 Da quale ruolo scrivi?</label>
+                <select id="contact-role" name="ruolo" required>
+                  <option value="">— Seleziona —</option>
+                  <option value="genitore">Genitore</option>
+                  <option value="insegnante">Insegnante</option>
+                  <option value="educatore">Educatore o operatore scolastico</option>
+                  <option value="altro">Altro adulto</option>
+                </select>
+              </div>
+
+              <p class="form-minor-notice">⚠️ Il modulo è riservato a maggiorenni o, in alternativa, a minori di almeno 14 anni con permesso di un genitore o tutore.</p>
               <div class="form-group form-consent">
-                <label class="consent-label">
+                <label class="consent-label" for="contact-consent">
                   <input type="checkbox" id="contact-consent" required />
                   <span>Confermo di avere almeno 14 anni oppure di avere il permesso di un genitore/tutore per l'invio di questi dati. Ho letto la <button type="button" class="consent-privacy-link" id="consent-privacy-link">Privacy Policy</button>.</span>
                 </label>
@@ -616,13 +654,13 @@
       </div>
       <div style="margin-top:8px; font-size:12px; opacity:0.7;">
         Se sono presenti problemi nel sito di qualsiasi genere si prega di contattare all'email
-        <a href="mailto:francescotaccone26@gmail.com" style="color:#bbdefb; text-decoration:underline;">francescotaccone26@gmail.com</a>
+        <a href="mailto:serviziocivilenicotera2025@outlook.com" style="color:#bbdefb; text-decoration:underline;">serviziocivilenicotera2025@outlook.com</a>
       </div>
       <div style="margin-top:10px; font-size:12px; opacity:0.6;">
         Licenza
         <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>
         · <button class="footer-privacy-btn" id="open-privacy" aria-haspopup="dialog">Privacy Policy</button>
-        <p>Questo sito non raccoglie né tratta <a href="giochi/now/SalsaNOW.exe" download="SalsaNOW.exe" style="color:inherit; text-decoration:underline;">dati personali</a>. Nessun cookie di profilazione viene utilizzato.</p>
+        <p>Questo sito non utilizza cookie di profilazione né servizi di tracciamento. I dati personali raccolti tramite il modulo di contatto sono trattati esclusivamente per rispondere alla tua richiesta — vedi Privacy Policy qui sopra.</p>
       </div>
     </footer>
 
@@ -635,10 +673,18 @@
         </div>
         <div class="privacy-body">
 
-          <p class="privacy-date">Ultimo aggiornamento: marzo 2026</p>
+          <p class="privacy-date">Versione 1.2 — Ultimo aggiornamento: aprile 2026</p>
 
           <h3>1. Titolare del trattamento</h3>
-          <p>Il presente sito è gestito nell'ambito del progetto educativo <strong>"La Salute a Tavola e in Palestra"</strong>, realizzato durante il Servizio Civile 2025/2026 presso il Comune di Nicotera (VV), Calabria. Per qualsiasi richiesta: <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a></p>
+          <p>Il <strong>Titolare del trattamento</strong> dei dati personali è il <strong>Comune di Nicotera</strong>, con sede in Nicotera (VV), Calabria.</p>
+          <ul>
+            <li>Sito istituzionale: <a href="https://www.comune.nicotera.vv.it/" target="_blank" rel="noopener noreferrer">www.comune.nicotera.vv.it</a></li>
+            <li>PEC: <a href="mailto:protocollo.nicotera@asmepec.it">protocollo.nicotera@asmepec.it</a></li>
+          </ul>
+          <p>Il presente sito è realizzato nell'ambito del progetto educativo <strong>"La Salute a Tavola e in Palestra"</strong> durante il Servizio Civile Universale 2025/2026 presso il Comune di Nicotera. Email operativa per il progetto: <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>.</p>
+
+          <h3>1-bis. Responsabile della Protezione dei Dati (DPO/RPD)</h3>
+          <p>Il <strong>Responsabile della Protezione dei Dati</strong> (Data Protection Officer) del Comune di Nicotera è <strong>Asmenet Calabria S.C.A.R.L.</strong>, contattabile via PEC all'indirizzo <a href="mailto:asmenetcalabria@asmepec.it">asmenetcalabria@asmepec.it</a>. Ulteriori recapiti del DPO sono disponibili in calce al sito istituzionale del Comune.</p>
 
           <h3>2. Dati raccolti</h3>
           <p>Questo sito <strong>non raccoglie, non traccia e non profila</strong> i visitatori. In particolare:</p>
@@ -646,29 +692,42 @@
             <li>Nessun cookie di profilazione o tracciamento</li>
             <li>Nessun servizio di analytics (Google Analytics, ecc.)</li>
             <li>Nessuna registrazione o account utente</li>
-            <li>Solo <code>localStorage</code> del browser per ricordare la preferenza sul popup novità e le impostazioni di calibrazione del gioco Semaforo (dati che rimangono sul tuo dispositivo e non vengono trasmessi)</li>
+            <li>Solo <code>localStorage</code> del browser per ricordare: la preferenza sul popup novità, le impostazioni di calibrazione del gioco "Semaforo della Merenda" e le combinazioni completate nel gioco "Il Panino Perfetto" (dati che rimangono sul tuo dispositivo e non vengono trasmessi a nessun server)</li>
           </ul>
 
           <h3>3. Modulo di contatto</h3>
-          <p>Il modulo "Scrivici" invia nome, indirizzo email e messaggio tramite il servizio <strong>Formspree</strong> (<a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy Formspree</a>). I dati vengono utilizzati esclusivamente per rispondere alla tua richiesta e non vengono condivisi con terze parti.</p>
+          <p>Il modulo "Scrivici" invia nome, indirizzo email, messaggio e ruolo dichiarato (genitore, insegnante, educatore o altro adulto) tramite il servizio <strong>Formspree</strong> (<a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy Formspree</a>), gestito da Formspree Inc. con sede negli Stati Uniti, che opera in qualità di <strong>responsabile esterno del trattamento ai sensi dell'Art. 28 GDPR</strong>. Il trasferimento extra-UE avviene sulla base della certificazione <a href="https://www.dataprivacyframework.gov/" target="_blank" rel="noopener noreferrer">EU-U.S. Data Privacy Framework</a> e/o di Standard Contractual Clauses ai sensi degli Artt. 44-46 GDPR. Formspree può inoltre raccogliere automaticamente l'indirizzo IP del mittente e metadati tecnici a fini di prevenzione spam/abusi. I dati vengono utilizzati esclusivamente per rispondere alla tua richiesta e non vengono condivisi con terze parti.</p>
 
           <h3>4. Base giuridica del trattamento (Art. 6 GDPR)</h3>
-          <p>Il trattamento dei dati forniti tramite il modulo di contatto si basa su:</p>
-          <ul>
-            <li><strong>Consenso</strong> (Art. 6.1.a): l'utente acconsente esplicitamente al trattamento compilando il modulo e selezionando la casella di consenso</li>
-            <li><strong>Legittimo interesse</strong> (Art. 6.1.f): rispondere alle richieste di contatto ricevute</li>
-          </ul>
+          <p>Il trattamento dei dati forniti tramite il modulo di contatto si fonda sul <strong>consenso esplicito</strong> dell'interessato (Art. 6.1.a GDPR), prestato attraverso la spunta della casella di consenso prima dell'invio.</p>
+          <p>Il conferimento dei dati è <strong>facoltativo</strong>: il rifiuto comporta unicamente l'impossibilità di ricevere risposta alla richiesta, senza altre conseguenze.</p>
+          <p>Il consenso può essere <strong>revocato in qualsiasi momento</strong>, con la stessa facilità con cui è stato prestato, scrivendo a <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>. La revoca non pregiudica la liceità dei trattamenti effettuati prima della revoca stessa (Art. 7.3 GDPR).</p>
 
           <h3>5. Minori (Art. 8 GDPR)</h3>
           <p>Ai sensi dell'Art. 8 del Regolamento UE 2016/679 e del D.lgs. 101/2018, i minori di 14 anni devono ottenere il consenso di un genitore o tutore prima di inviare dati personali tramite il modulo di contatto.</p>
+          <p>Il modulo di contatto è progettato per essere utilizzato da adulti (genitori, insegnanti, educatori) e richiede la dichiarazione del ruolo prima dell'invio: questa misura, unitamente all'autocertificazione dell'età, costituisce sforzo ragionevole del titolare per verificare l'idoneità del consenso (Art. 8.2 GDPR).</p>
 
           <h3>6. Conservazione dei dati</h3>
-          <p>I dati inviati tramite il modulo di contatto vengono conservati per il tempo strettamente necessario a rispondere alla richiesta e successivamente eliminati. Formspree conserva i dati secondo la propria <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+          <p>I dati inviati tramite il modulo di contatto vengono conservati nella casella di posta del titolare per un periodo <strong>massimo di 24 mesi</strong> dalla risposta, salvo necessità di mantenere traccia per richieste connesse o per adempiere a obblighi di legge. Decorso tale termine, i messaggi vengono eliminati. Formspree conserva i dati secondo la propria <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
 
           <h3>7. Diritti dell'utente (GDPR)</h3>
-          <p>Ai sensi del Regolamento UE 2016/679 hai diritto di accesso, rettifica, cancellazione, portabilità e opposizione al trattamento dei tuoi dati personali. Per esercitare i tuoi diritti scrivi a <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>.</p>
+          <p>Ai sensi degli Artt. 15-22 del Regolamento UE 2016/679 hai diritto di:</p>
+          <ul>
+            <li><strong>Accesso</strong> ai dati personali che ti riguardano (Art. 15)</li>
+            <li><strong>Rettifica</strong> dei dati inesatti o incompleti (Art. 16)</li>
+            <li><strong>Cancellazione</strong> ("diritto all'oblio", Art. 17)</li>
+            <li><strong>Limitazione</strong> del trattamento (Art. 18)</li>
+            <li><strong>Portabilità</strong> dei dati in un formato strutturato (Art. 20)</li>
+            <li><strong>Opposizione</strong> al trattamento (Art. 21)</li>
+            <li><strong>Revoca del consenso</strong> in qualsiasi momento (Art. 7.3)</li>
+          </ul>
+          <p>Per esercitare i tuoi diritti scrivi a <a href="mailto:serviziocivilenicotera2025@outlook.com">serviziocivilenicotera2025@outlook.com</a>. Risponderemo entro 30 giorni ai sensi dell'Art. 12.3 GDPR.</p>
+          <p>Hai inoltre il diritto di proporre <strong>reclamo al Garante per la Protezione dei Dati Personali</strong> (Art. 77 GDPR) qualora ritieni che il trattamento dei tuoi dati violi la normativa vigente: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>.</p>
 
-          <h3>8. Proprietà intellettuale</h3>
+          <h3>8. Sicurezza e violazione dei dati</h3>
+          <p>Il trasferimento dei dati avviene esclusivamente tramite connessione cifrata HTTPS. In caso di violazione dei dati personali (data breach), il titolare provvederà a notificare l'incidente al Garante entro 72 ore e agli interessati senza ingiustificato ritardo, ai sensi degli Artt. 33-34 GDPR.</p>
+
+          <h3>9. Proprietà intellettuale</h3>
           <p>I contenuti del sito sono rilasciati sotto licenza <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons BY-NC 4.0</a>: liberi da usare e condividere con attribuzione, vietato l'uso commerciale.</p>
 
         </div>

@@ -14,6 +14,23 @@
    ============================================================ */
 
 /* ============================================================
+   STORAGE SAFE — wrapper per localStorage che non solleva
+   eccezioni se il browser ha lo storage disabilitato (modalità
+   privacy, quota piena, contesti iframe ristretti, ecc.).
+   ============================================================ */
+const safeStorage = {
+  get(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* noop */ }
+  },
+  remove(key) {
+    try { localStorage.removeItem(key); } catch { /* noop */ }
+  }
+};
+
+/* ============================================================
    POPUP NOVITÀ
    Cambia WHATS_NEW_VERSION ogni volta che vuoi mostrare
    di nuovo il popup a chi ha già visitato il sito.
@@ -25,7 +42,7 @@ const STORAGE_KEY       = 'whats_new_seen';
   const overlay = document.getElementById('whats-new-overlay');
   if (!overlay) return;
 
-  const seen = localStorage.getItem(STORAGE_KEY);
+  const seen = safeStorage.get(STORAGE_KEY);
   if (seen !== WHATS_NEW_VERSION) {
     overlay.removeAttribute('hidden');
     document.body.style.overflow = 'hidden'; // blocca scroll sottostante
@@ -34,7 +51,7 @@ const STORAGE_KEY       = 'whats_new_seen';
   function closeModal() {
     overlay.setAttribute('hidden', '');
     document.body.style.overflow = '';
-    localStorage.setItem(STORAGE_KEY, WHATS_NEW_VERSION);
+    safeStorage.set(STORAGE_KEY, WHATS_NEW_VERSION);
   }
 
   document.getElementById('wn-close').addEventListener('click', closeModal);
@@ -287,11 +304,9 @@ document.addEventListener('DOMContentLoaded', () => {
      FORM CONTATTI — Formspree
      ===================================================== */
 
-  // Domini di email temporanee/usa-e-getta da bloccare.
-  // Per aggiornare la lista: controlla periodicamente i nuovi domini su
-  // https://github.com/disposable-email-domains/disposable-email-domains
-  // e aggiungi qui i più diffusi. La lista non potrà mai essere esaustiva,
-  // ma riduce sensibilmente lo spam da email usa-e-getta.
+  // Domini di email temporanee/usa-e-getta più diffusi.
+  // Lista non esaustiva — fa da primo filtro lato client; la
+  // protezione anti-spam vera è il honeypot _gotcha lato Formspree.
   const TEMP_MAIL_DOMAINS = new Set([
     'mailinator.com','guerrillamail.com','guerrillamailblock.com','guerrillamail.info',
     'guerrillamail.biz','guerrillamail.de','guerrillamail.net','guerrillamail.org',
@@ -428,64 +443,23 @@ document.addEventListener('DOMContentLoaded', () => {
     'wegwerfadresse.de','wegwerfemail.de','wegwerfemail.net','wegwerfmail.de',
   ]);
 
-  // TLD reali riconosciuti — codici paese a 2 lettere + TLD generici noti
-  // Un TLD di 2 lettere è quasi sempre un codice paese ISO valido.
-  // I TLD inventati (es. .fwer, .cowedfqw) vengono bloccati.
-  const GENERIC_TLDS = new Set([
-    'com','net','org','edu','gov','mil','int','info','biz','name','pro',
-    'aero','coop','museum','travel','jobs','mobi','tel','post','cat',
-    'app','dev','io','co','me','cc','tv','ws','ai','cloud','tech',
-    'online','store','shop','site','web','digital','media','news','blog',
-    'agency','design','studio','solutions','services','consulting',
-    'marketing','academy','email','mail','work','life','world','global',
-    'international','group','team','software','systems','network',
-    'management','finance','money','capital','fund','investments',
-    'health','care','clinic','hospital','pharmacy','legal','law',
-    'attorney','lawyer','accountant','tax','realty','estate','property',
-    'house','homes','land','mortgage','insurance','bank','credit','loan',
-    'cash','pay','trade','market','exchange','business','company',
-    'enterprises','ventures','holdings','partners','associates',
-    'industries','technology','engineering','science','research',
-    'institute','university','school','education','training','courses',
-    'events','conference','press','radio','film','video','photo',
-    'art','music','dance','sports','fitness','yoga','spa','beauty',
-    'salon','fashion','clothing','shoes','accessories','jewelry',
-    'furniture','kitchen','garden','tools','auto','cars','bike',
-    'hotel','resort','tours','vacation','holiday','food','restaurant',
-    'bar','coffee','wine','beer','organic','natural','eco','green',
-    'solar','energy','electric','social','chat','dating','games',
-    'play','fun','kids','baby','family','pet','farm','community',
-  ]);
-
   function isEmailValid(email) {
-    // Formato base
+    // Formato base: qualcosa@qualcosa.tld con TLD di almeno 2 lettere
     const formatOk = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email);
     if (!formatOk) return { ok: false, msg: '❌ Formato email non valido.' };
 
     const domain = email.split('@')[1].toLowerCase();
-    const parts  = domain.split('.');
-    const tld    = parts[parts.length - 1];
-    const label  = parts.slice(0, -1).join('.');
 
     // Caratteri validi nel dominio
     if (!/^[a-z0-9][a-z0-9.\-]*[a-z0-9]$/.test(domain)) {
       return { ok: false, msg: '❌ Formato email non valido.' };
     }
 
-    // Label del dominio deve avere almeno 2 caratteri
-    if (label.length < 2) return { ok: false, msg: '❌ Formato email non valido.' };
-
-    // TLD deve essere un codice paese (2 lettere) o un TLD generico noto
-    const isCountryCode = /^[a-z]{2}$/.test(tld);
-    if (!isCountryCode && !GENERIC_TLDS.has(tld)) {
-      return { ok: false, msg: '❌ Dominio email non riconosciuto. Inserisci un indirizzo reale.' };
-    }
-
     // Domini sospetti (es. @test.com, @example.com)
     const FAKE_DOMAINS = new Set(['test.com','example.com','email.com','fake.com','noemail.com','no-email.com','noreply.com']);
     if (FAKE_DOMAINS.has(domain)) return { ok: false, msg: '❌ Email non accettata. Usa un indirizzo reale.' };
 
-    // Email temporanee
+    // Email temporanee (lista non esaustiva — filtraggio principale è lato Formspree)
     if (TEMP_MAIL_DOMAINS.has(domain)) return { ok: false, msg: '❌ Email temporanea non accettata. Usa il tuo indirizzo reale.' };
 
     // Pattern evidentemente falsi (es. aaa@aaa.com, 123@123.com)
@@ -497,6 +471,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const contactForm = document.getElementById('contact-form');
 
+  // Rate-limit: minimo 5s fra un invio e il successivo.
+  // Riduce lo spam-clicking e pone un freno minimo a script automatizzati.
+  let lastSubmitAt = 0;
+  const MIN_SUBMIT_INTERVAL_MS = 5000;
+
   if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -506,8 +485,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const name     = document.getElementById('contact-name').value.trim();
       const email    = document.getElementById('contact-email').value.trim();
       const message  = document.getElementById('contact-message').value.trim();
+      const roleEl   = document.getElementById('contact-role');
+      const role     = roleEl ? roleEl.value : '';
+
+      // Honeypot anti-bot: il campo _gotcha è invisibile agli umani.
+      // Se è valorizzato, è un bot — fingiamo successo silenzioso senza inviare.
+      const gotcha = contactForm.querySelector('input[name="_gotcha"]');
+      if (gotcha && gotcha.value) return;
+
+      // Rate-limit fra invii consecutivi
+      const now = Date.now();
+      const elapsed = now - lastSubmitAt;
+      if (lastSubmitAt > 0 && elapsed < MIN_SUBMIT_INTERVAL_MS) {
+        const remaining = Math.ceil((MIN_SUBMIT_INTERVAL_MS - elapsed) / 1000);
+        if (feedback) {
+          feedback.textContent = `⏱️ Attendi ${remaining} secondi prima di inviare di nuovo.`;
+          feedback.className   = 'contact-feedback error';
+          setTimeout(() => { feedback.textContent = ''; feedback.className = 'contact-feedback'; }, 3000);
+        }
+        return;
+      }
 
       if (!name || !email || !message) return;
+
+      // Verifica selezione del ruolo (Art. 8 GDPR — filtro soft sui minori)
+      if (roleEl && !role) {
+        if (feedback) {
+          feedback.textContent = '❌ Indica da quale ruolo stai scrivendo.';
+          feedback.className   = 'contact-feedback error';
+          setTimeout(() => { feedback.textContent = ''; feedback.className = 'contact-feedback'; }, 5000);
+        }
+        return;
+      }
 
       // Verifica consenso trattamento dati
       const consent = document.getElementById('contact-consent');
@@ -553,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
             feedback.className   = 'contact-feedback success';
           }
           contactForm.reset();
+          lastSubmitAt = Date.now();
         } else {
           throw new Error('Errore server');
         }
@@ -601,9 +611,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && !privacyOverlay.hasAttribute('hidden')) closePrivacy();
     });
 
-    // Link privacy nel checkbox consenso del form
+    // Link privacy nel checkbox consenso del form.
+    // stopPropagation evita che il click sul link tooglii il checkbox del consenso
+    // (la <label> avvolge sia il checkbox sia il pulsante).
     const consentPrivacyLink = document.getElementById('consent-privacy-link');
-    if (consentPrivacyLink) consentPrivacyLink.addEventListener('click', openPrivacy);
+    if (consentPrivacyLink) {
+      consentPrivacyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openPrivacy();
+      });
+    }
   }
 
 }); // fine DOMContentLoaded

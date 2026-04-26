@@ -371,6 +371,77 @@ body {
 }
 
 
+/* ===== HERO — credit istituzionale (Servizio Civile) ===== */
+.hero-credit {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-credit-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+}
+
+.hero-credit-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 10px 22px 10px 12px;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-credit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.26), 0 3px 8px rgba(0, 0, 0, 0.10);
+}
+
+.hero-credit-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  flex-shrink: 0;
+}
+
+.hero-credit-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1a237e;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.hero-credit-name small {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #455a64;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+  .hero-credit-card { padding: 8px 18px 8px 10px; gap: 10px; }
+  .hero-credit-logo { width: 46px; height: 46px; }
+  .hero-credit-name { font-size: 13px; white-space: normal; }
+  .hero-credit-name small { font-size: 10px; }
+  .hero-credit-label { font-size: 10px; letter-spacing: 1.5px; }
+}
+
+
 /* ===== STATS ===== */
 #stats {
   background: rgba(255, 255, 255, 0.96);
@@ -1297,7 +1368,8 @@ body {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   padding: 13px 16px;
   border: 2px solid #e0e0e0;
   border-radius: 14px;
@@ -1311,11 +1383,23 @@ body {
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='%231565c0'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   border-color: #1565c0;
   box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.16);
-  background: white;
+  background-color: white;
 }
 
 .btn-contact {
