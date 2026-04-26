@@ -28,7 +28,14 @@
       "Bash(git push *)",
       "Bash(rm \"C:/Users/frata/Documents/Project/la-salute-in-tavola-e-in-palestra/giochi/now/SalsaNOW.exe\")",
       "Bash(rmdir \"C:/Users/frata/Documents/Project/la-salute-in-tavola-e-in-palestra/giochi/now\")",
-      "Bash(curl -fsSL \"https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js\" -o \"C:/Users/frata/Documents/Project/la-salute-in-tavola-e-in-palestra/giochi/semaforo/assets/js/Sortable.min.js\")"
+      "Bash(curl -fsSL \"https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js\" -o \"C:/Users/frata/Documents/Project/la-salute-in-tavola-e-in-palestra/giochi/semaforo/assets/js/Sortable.min.js\")",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter \"git rm --cached --ignore-unmatch giochi/now/SalsaNOW.exe\" --prune-empty --tag-name-filter cat -- --all)",
+      "Bash(git stash *)",
+      "Bash(xargs -r -n 1 git update-ref -d)",
+      "Bash(git reflog *)",
+      "Bash(git gc *)",
+      "Bash(git branch *)",
+      "Bash(git ls-tree *)"
     ]
   }
 }

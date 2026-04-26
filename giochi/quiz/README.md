@@ -253,10 +253,10 @@ Progress bar domanda → Responsive (tablet → mobile → ≤380px)
 - **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
 - **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI** e **Claude Code (Anthropic)**
 
-Progetto sviluppato durante il **Servizio Civile** 2025/2026 — comune di Nicotera (VV), Calabria.
+Progetto sviluppato durante il **Servizio Civile Universale** 2025/2026 — Comune di Nicotera (VV), Calabria.
 
-> Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy. Vedi il [README principale](../../README.md) per i dettagli.
-> Altri giochi disponibili: [🚦 Il Semaforo della Merenda](../semaforo/README.md) · [🃏 Memory degli Alimenti](../memory/README.md)
+> Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy GDPR-compliant. Vedi il [README principale](../../README.md) per i dettagli.
+> Altri giochi disponibili: [🚦 Il Semaforo della Merenda](../semaforo/README.md) · [🃏 Memory degli Alimenti](../memory/README.md) · 🔺 Puzzle della Piramide · 🥪 Il Panino Perfetto
 
 ---
 

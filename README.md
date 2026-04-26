@@ -27,8 +27,9 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 |---|---|---|
 | 🚦 **Il Semaforo della Merenda** | ✅ Disponibile | Drag & drop — classifica 15 alimenti nel semaforo |
 | 🧠 **Quiz Alimentare** | ✅ Disponibile | 70+ domande su nutrizione, sport e vitamine + riepilogo errori finale |
-| 🃏 **Memory degli Alimenti** | 🟠 In arrivo | Trova le coppie di alimenti sani |
-| 🧩 **Puzzle della Piramide** | 🟣 In arrivo | Componi la piramide alimentare |
+| 🃏 **Memory degli Alimenti** | ✅ Disponibile | 3 livelli di difficoltà — trova le coppie di alimenti sani |
+| 🔺 **Puzzle della Piramide** | ✅ Disponibile | Costruisci la piramide alimentare trascinando gli alimenti |
+| 🥪 **Il Panino Perfetto** | ✅ Disponibile | Scegli 3 ingredienti sani e costruisci il panino perfetto |
 
 ---
 
@@ -43,9 +44,10 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 - 🏃 **Sezione sport** — 6 card con barre animate; emoji 🏃 decorativa animata con effetto corsa (bounce + rotazione)
 - 👩‍🏫 **Sezione insegnanti e genitori** — informazioni sul progetto
 - 📲 **Link social** — Facebook e Instagram del progetto
-- ✉️ **Form contatti** — invio diretto via **Formspree** con validazione email (blocco domini temporanei)
+- ✉️ **Form contatti** — invio via **Formspree** con: validazione email, honeypot anti-bot (`_gotcha`), rate-limit 5s tra invii, `maxlength` sui campi e selezione del ruolo (genitore/insegnante/educatore) per la conformità Art. 8 GDPR
+- 🛡️ **Logo Servizio Civile Universale** nell'hero — credit istituzionale del Comune di Nicotera
 - 🌀 **Scroll personalizzato** — animazione smooth con easing su click navbar (900ms)
-- 🔒 **Privacy Policy** — modale accessibile dal footer con informativa GDPR completa
+- 🔒 **Privacy Policy GDPR-compliant** — modale dal footer con: Titolare (Comune di Nicotera), DPO (Asmenet Calabria S.C.A.R.L.), base giuridica unica (consenso Art. 6.1.a), 7 diritti completi, reclamo Garante, procedura data breach, conservazione 24 mesi, qualifica Formspree come responsabile ex Art. 28 GDPR + DPF/SCC per trasferimento extra-UE
 - 🔍 **SEO ottimizzato** — title/description con keyword, canonical, geo tag, Open Graph completo, Twitter Card, JSON-LD strutturato (WebSite, EducationalOrganization, ItemList giochi)
 - ♿ **Accessibilità** — HTML semantico, ARIA completo, `aria-live` su feedback dinamici
 - 🚫 **Zero pubblicità**, zero registrazione, zero tracking
@@ -81,53 +83,55 @@ la-salute-in-tavola-e-in-palestra/
 ├── index.html                              # Homepage principale
 ├── README.md                               # Questo file
 ├── LICENSE                                 # Licenza CC BY-NC 4.0
+├── .gitignore                              # Esclusioni (binari, segreti, OS)
+├── robots.txt                              # Direttive crawler
+├── sitemap.xml                             # Sitemap SEO
 │
 ├── assets/
 │   ├── css/
 │   │   └── style.css                       # CSS homepage
 │   ├── js/
-│   │   └── script.js                       # JS homepage (navbar, form, reveal)
+│   │   └── script.js                       # JS homepage (navbar, form, reveal, safeStorage)
 │   └── ico-preview/
 │       ├── favicon.ico                     # Icona del sito
-│       └── preview.jpg                     # Immagine Open Graph (social/WhatsApp)
+│       ├── favicon-16x16.png · favicon-32x32.png
+│       ├── apple-touch-icon.png
+│       ├── android-chrome-192x192.png · android-chrome-512x512.png
+│       ├── site.webmanifest                # PWA manifest
+│       ├── preview.jpg                     # Immagine Open Graph (social/WhatsApp)
+│       └── servizio-civile.png             # Logo Servizio Civile Universale (hero credit)
 │
 └── giochi/
     │
-    ├── semaforo/                           # ✅ Disponibile
-    │   ├── index.html
-    │   ├── README.md
+    ├── semaforo/                           # ✅ Drag & drop alimenti
+    │   ├── index.html · README.md · LICENSE
     │   └── assets/
     │       ├── css/style.css
     │       ├── js/game.js
-    │       ├── audio/
-    │       │   ├── background.mp3
-    │       │   ├── correct.mp3
-    │       │   ├── error.mp3
-    │       │   ├── victory.mp3
-    │       │   └── loss.mp3
-    │       └── image/
-    │           ├── background/
-    │           │   ├── background.jpg
-    │           │   └── background-mobile.png
-    │           └── (mobile)pop-up/
-    │               ├── semaforo-verde.png
-    │               └── semaforo-rosso.png
+    │       ├── js/Sortable.min.js          # SortableJS in locale (no CDN)
+    │       ├── audio/ (background, correct, error, victory, loss)
+    │       └── image/background + (mobile)pop-up
     │
-    └── quiz/                               # ✅ Disponibile
+    ├── quiz/                               # ✅ 70+ domande
+    │   ├── index.html · README.md · LICENSE
+    │   └── assets/
+    │       ├── css/style.css
+    │       ├── js/quiz.js
+    │       ├── domande-risposte/domande.json
+    │       └── audio/ (background, correct, error, victory, loss, tick)
+    │
+    ├── memory/                             # ✅ Memory a coppie (3 livelli)
+    │   ├── index.html · README.md · LICENSE
+    │   └── assets/css + js
+    │   # Riusa l'audio del Quiz
+    │
+    ├── piramide/                           # ✅ Puzzle piramide alimentare
+    │   ├── index.html
+    │   └── assets/css + js
+    │
+    └── panino/                             # ✅ Costruisci il panino perfetto
         ├── index.html
-        ├── README.md
-        └── assets/
-            ├── css/style.css
-            ├── js/quiz.js
-            ├── domande-risposte/
-            │   └── domande.json            # Banca dati domande + categorie
-            └── audio/
-                ├── background.mp3
-                ├── correct.mp3
-                ├── error.mp3
-                ├── victory.mp3
-                ├── loss.mp3
-                └── tick.mp3
+        └── assets/css + js + img (alimenti, bambino-felice, bambino-triste)
 ```
 
 ---
@@ -137,6 +141,8 @@ la-salute-in-tavola-e-in-palestra/
 ### `assets/js/script.js`
 
 ```
+safeStorage — wrapper try/catch per localStorage (privacy mode, quota, iframe)
+
 IIFE (esecuzione immediata)
  └── Popup novità — mostra se versione localStorage ≠ WHATS_NEW_VERSION
 
@@ -147,9 +153,15 @@ DOMContentLoaded
  ├── Navbar — scroll personalizzato easeInOutQuad (900ms)
  ├── Barre sport — animazione riempimento (IntersectionObserver)
  ├── Reveal on scroll (IntersectionObserver + fallback)
- ├── Validazione email — blocco domini temporanei/falsi (300+ domini)
- ├── Form contatti — invio async via Formspree con feedback successo/errore + disable bottone
- └── Privacy Policy modal — apri/chiudi dal footer
+ ├── Validazione email — TLD permissivo + blocco domini temporanei/fake
+ ├── Form contatti — invio async via Formspree con:
+ │    ├── Honeypot _gotcha (drop silenzioso se valorizzato)
+ │    ├── Rate-limit 5 secondi tra invii consecutivi
+ │    ├── Validazione ruolo (Art. 8 GDPR — filtro soft minori)
+ │    ├── Validazione consenso (Art. 6.1.a GDPR)
+ │    └── Feedback successo/errore + disable bottone durante invio
+ └── Privacy Policy modal — apri/chiudi dal footer + stopPropagation sul link
+                            consenso per evitare toggle accidentale del checkbox
 ```
 
 ### `assets/css/style.css`
@@ -171,12 +183,13 @@ Reveal on scroll → Responsive (≤ 900px → ≤ 768px → ≤ 600px)
 | **HTML5 semantico** | Struttura portale e giochi + ARIA completo |
 | **CSS3** | Animazioni, glassmorphism, reveal on scroll, media queries |
 | **JavaScript ES6+** | Navbar, scroll custom, form, IntersectionObserver |
-| **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop nel gioco Semaforo |
+| **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop nel gioco Semaforo — **servito in locale** (no dipendenze CDN) |
 | **Web Audio API** | Effetti sonori e musica nei giochi |
 | **IntersectionObserver API** | Animazioni di entrata su scroll e link attivo navbar |
-| **localStorage** | Versione popup novità + impostazioni calibrazione semaforo |
+| **localStorage** | Popup novità + calibrazione semaforo + combinazioni Panino — tutti wrappati in `safeStorage` (try/catch) |
 | **Fetch API** | Caricamento domande da file JSON esterno (quiz) |
-| **[Formspree](https://formspree.io)** | Ricezione messaggi del form contatti senza backend |
+| **[Formspree](https://formspree.io)** | Ricezione form contatti — qualificato come responsabile esterno ex Art. 28 GDPR |
+| **Content Security Policy** | CSP restrittiva su tutte le pagine (`default-src 'none'`) + `Referrer-Policy: strict-origin-when-cross-origin` |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
 
@@ -241,12 +254,14 @@ quotidiana e all'importanza del movimento, attraverso giochi interattivi accessi
 
 ---
 
-## 👤 Autore
+## 👤 Autore e titolarità
 
 **La Salute a Tavola e in Palestra** è un progetto educativo interattivo realizzato
-durante il Servizio Civile 2025/2026 presso il comune di Nicotera (VV), Calabria 🇮🇹
+durante il **Servizio Civile Universale 2025/2026** presso il **Comune di Nicotera (VV)**, Calabria 🇮🇹
 
-- **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
+- **Titolare del trattamento dati** (GDPR): Comune di Nicotera — PEC `protocollo.nicotera@asmepec.it`
+- **DPO/RPD**: Asmenet Calabria S.C.A.R.L. — PEC `asmenetcalabria@asmepec.it`
+- **Ideazione, design e sviluppo**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
 - **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI** e **Claude Code (Anthropic)**
 
 ### 🤝 Ringraziamenti
@@ -265,8 +280,10 @@ durante il Servizio Civile 2025/2026 presso il comune di Nicotera (VV), Calabria
 Questo progetto è distribuito sotto licenza
 **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.
 
+Copyright © 2026 **Comune di Nicotera** (titolare) e **Francesco Taccone** (autore).
+
 ✅ Puoi usarlo, modificarlo e condividerlo liberamente
-✅ Devi citare l'autore originale
+✅ Devi citare gli autori originali
 ❌ Non puoi usarlo per scopi commerciali
 
 [![CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)

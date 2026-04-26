@@ -36,7 +36,7 @@ imparando in modo divertente cosa è bene mangiare durante la merenda.
 
 - 🖥️ **Schermata iniziale** con regole del gioco, avviso 3 errori e pulsante "Inizia a giocare!"
 - 🔙 **Pulsante Annulla** nella schermata iniziale per tornare alla homepage senza conferma
-- 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet; fallback CDN)
+- 🖱️ **Drag & Drop** fluido con SortableJS (compatibile mouse, touch screen e tablet) — libreria servita in locale, nessuna dipendenza da CDN esterni
 - 👻 **Ghost manuale personalizzato** — elemento rimpicciolito che segue il cursore/dito
 - 🚦 **Semaforo animato** — si illumina di verde se corretto, rosso se sbagliato
 - 📳 **Toast banner mobile** — notifica animata con immagine semaforo da sinistra su smartphone
@@ -97,7 +97,8 @@ giochi/semaforo/
     ├── css/
     │   └── style.css                       # Stili del gioco
     ├── js/
-    │   └── game.js                         # Logica del gioco
+    │   ├── game.js                         # Logica del gioco
+    │   └── Sortable.min.js                 # SortableJS 1.15 (locale, no CDN)
     ├── audio/
     │   ├── background.mp3                  # Musica di sottofondo (loop)
     │   ├── correct.mp3                     # Suono risposta corretta
@@ -174,9 +175,9 @@ Sortable/Ghost → Responsive (tablet → mobile)
 | **HTML5 semantico** | Struttura + accessibilità ARIA completa |
 | **CSS3** | Animazioni, layout, glow, clip-path toast, media queries |
 | **JavaScript ES6+** | Logica, ghost, audio, calibrazione, localStorage, debounce resize |
-| **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop degli alimenti |
+| **[SortableJS 1.15](https://sortablejs.github.io/Sortable/)** | Drag & drop degli alimenti — **bundled in locale** (`assets/js/Sortable.min.js`) |
 | **Web Audio API** | Effetti sonori e musica di sottofondo |
-| **localStorage** | Salvataggio impostazioni di calibrazione |
+| **localStorage** | Salvataggio impostazioni di calibrazione (con wrapper `try/catch` anti-quota/private mode) |
 
 > Nessun framework, nessuna dipendenza backend — tutto gira nel browser.
 
@@ -210,10 +211,10 @@ Sortable/Ghost → Responsive (tablet → mobile)
 - **Ideazione, design e coordinamento**: Francesco Taccone ([@Fra702sco](https://github.com/Fra702sco))
 - **Sviluppo del codice**: Realizzato con il supporto di **Perplexity AI** e **Claude Code (Anthropic)**
 
-Progetto sviluppato durante il **Servizio Civile** 2025/2026 — comune di Nicotera (VV), Calabria.
+Progetto sviluppato durante il **Servizio Civile Universale** 2025/2026 — Comune di Nicotera (VV), Calabria.
 
-> Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy. Vedi il [README principale](../../README.md) per i dettagli.
-> Altri giochi disponibili: [🧠 Quiz Alimentare](../quiz/README.md) · [🃏 Memory degli Alimenti](../memory/README.md)
+> Il portale principale include: popup novità, navbar scroll-linked, SEO ottimizzato e Privacy Policy GDPR-compliant. Vedi il [README principale](../../README.md) per i dettagli.
+> Altri giochi disponibili: [🧠 Quiz Alimentare](../quiz/README.md) · [🃏 Memory degli Alimenti](../memory/README.md) · 🔺 Puzzle della Piramide · 🥪 Il Panino Perfetto
 
 ---
 
