@@ -47,6 +47,8 @@ Tutto è gratuito, senza pubblicità e senza registrazione.
 - 🛡️ **Logo Servizio Civile Universale** nell'hero — credit istituzionale del Comune di Nicotera
 - 🌀 **Scroll personalizzato** — animazione smooth con easing su click navbar (900ms)
 - 🔒 **Privacy Policy GDPR-compliant** — modale dal footer con: Titolare (Comune di Nicotera), DPO (Asmenet Calabria S.C.A.R.L.), base giuridica unica (consenso Art. 6.1.a), 7 diritti completi, reclamo Garante, procedura data breach, conservazione 24 mesi, qualifica Formspree come responsabile ex Art. 28 GDPR + DPF/SCC per trasferimento extra-UE
+- ⚖️ **Note Legali** — modale dal footer con disclaimer educativo/medico (i contenuti non sostituiscono consulenza medica/nutrizionale/sportiva), limitazione di responsabilità, comportamento accettabile, foro competente (Vibo Valentia), licenza CC BY-NC 4.0
+- 🛡️ **Disclosure responsabile** — file [`/.well-known/security.txt`](./.well-known/security.txt) ([RFC 9116](https://datatracker.ietf.org/doc/html/rfc9116)) per la segnalazione di vulnerabilità da parte di ricercatori di sicurezza
 - 🔍 **SEO ottimizzato** — title/description con keyword, canonical, geo tag, Open Graph completo, Twitter Card, JSON-LD strutturato (WebSite, EducationalOrganization, ItemList giochi)
 - ♿ **Accessibilità** — HTML semantico, ARIA completo, `aria-live` su feedback dinamici
 - 🚫 **Zero pubblicità**, zero registrazione, zero tracking
@@ -83,8 +85,12 @@ la-salute-in-tavola-e-in-palestra/
 ├── README.md                               # Questo file
 ├── LICENSE                                 # Licenza CC BY-NC 4.0
 ├── .gitignore                              # Esclusioni (binari, segreti, OS)
+├── .nojekyll                               # Disabilita Jekyll su GitHub Pages
 ├── robots.txt                              # Direttive crawler
 ├── sitemap.xml                             # Sitemap SEO
+│
+├── .well-known/
+│   └── security.txt                        # Vulnerability disclosure (RFC 9116)
 │
 ├── assets/
 │   ├── css/
@@ -155,8 +161,9 @@ DOMContentLoaded
  │    ├── Validazione ruolo (Art. 8 GDPR — filtro soft minori)
  │    ├── Validazione consenso (Art. 6.1.a GDPR)
  │    └── Feedback successo/errore + disable bottone durante invio
- └── Privacy Policy modal — apri/chiudi dal footer + stopPropagation sul link
-                            consenso per evitare toggle accidentale del checkbox
+ ├── Privacy Policy modal — apri/chiudi dal footer + stopPropagation sul link
+ │                          consenso per evitare toggle accidentale del checkbox
+ └── Note Legali modal — apri/chiudi dal footer (disclaimer + limitazioni)
 ```
 
 ### `assets/css/style.css`
